@@ -9,4 +9,4 @@ router.post('classes/', createClass);
 router.put('classes/:id', updateClass);
 router.delete('classes/:id', deleteClass);
 
-export default router;
+export default classRoutes;

@@ -9,4 +9,4 @@ router.post('teachers/', createTeacher);
 router.put('teachers/:id', updateTeacher);
 router.delete('teachers/:id', deleteTeacher);
 
-export default router;
+export default teacherRoutes;
