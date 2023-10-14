@@ -1,50 +1,64 @@
+// const db = require('../db')
 import db from '../db.js';
+
+// ;(async () => {
+//   try {
+//     await db('todos').insert({description: `Add names in 'Collaborators' section in README.md`})
+//     await db('todos').insert({description: 'Setup Docker'})
+//     console.log('Added sample descriptions!')
+//     process.exit(0)
+//   } catch (err) {
+//     console.log(1)
+//     process.exit(1)
+//   }
+// })()
+
+
 
 ;(async () => {
   try {
     await db('teachers').insert({
-      email: `teacher1@example.com`,
-      password: `qwertyui`,
-      name: "teacher1",
-      contact: "9876543210",
+      name: `teacher1`,
+      email: 'teacher1@gmail.com',
+      password: 'password1',
+      phone: '1234567890'
     })
     await db('teachers').insert({
-      email: `teacher2@example.com`,
-      password: `qwertyui`,
-      name: "teacher2",
-      contact: "9876543210",
-    })
-
-    await db('students').insert({
-      email: `student1@example.com`,
-      password: `qwertyui`,
-      name: "student1",
-      contact: "9876543210",
-    })
-    await db('students').insert({
-      email: `student2@example.com`,
-      password: `qwertyui`,
-      name: "student2",
-      contact: "9876543210",
-    })
-
-    await db('classes').insert({
-      email: `class1@example.com`,
-      password: `qwertyui`,
-      name: "class1",
-      contact: "9876543210",
-    })
-    await db('classes').insert({
-      email: `class2@example.com`,
-      password: `qwertyui`,
-      name: "class2",
-      contact: "9876543210",
-    })
-
-    console.log('Added sample descriptions!')
+        name: `teacher2`,
+        email: 'teacher2@gmail.com',
+        password: 'password2',
+        phone: '1234567890'
+      })
+    console.log('Added sample teachers!')
     process.exit(0)
   } catch (err) {
     console.log(1)
     process.exit(1)
   }
-})()
+}
+)();
+
+// for student table
+
+; (async () => {
+  try {
+    await db('students').insert({
+        name: `student1`,
+        email: 'student1@gmail.com',
+        password: 'password1',
+        phone: '1234567890'
+      })
+    await db('students').insert({
+        name: `student2`,
+        email: 'student2@gmail.com',
+        password: 'password2',
+        phone: '1234567890'
+      })
+    console.log('Added sample students!')
+    process.exit(0)
+  } catch (err) {
+    console.log(1)
+    process.exit(1)
+  }
+})();
+
