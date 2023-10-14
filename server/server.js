@@ -15,7 +15,6 @@ app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`)
 })
 
-// app.use("/api/todos", todoRoutes)
 app.use("/api/teachers", teacherRoutes)
 app.use("/api/students", studentRoutes)
 
