@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "docker-compose up -d",
+    "build": "./build.sh",
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed.js"
   },

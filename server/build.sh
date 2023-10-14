@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # compose the containers from the docker-compose.yml file
-docker-compose up -d
+docker-compose up -d --build
 # use --build flag if you make changes to docker or server related files to rebuild
 
 # create db schema
