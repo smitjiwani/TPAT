@@ -34,14 +34,14 @@ const router = Router()
  *         phone: 1234567890
  */
 
-/*
+/**
  * @swagger
  * tags:
  *  name: Students
  *  description: The student managing API
  */
 
-/*
+/**
  * @swagger
  * /api/students:
  *  get:
@@ -61,7 +61,7 @@ const router = Router()
  */
 router.get('/', controller.getAllStudents)
 
-/*
+/**
  * @swagger
  * /api/students/{id}:
  *  get:
@@ -72,8 +72,8 @@ router.get('/', controller.getAllStudents)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The Student ID
+ *        required: true
+ *        description: The Student ID
  *    responses:
  *      200:
  *        description: The student by it's ID
@@ -88,7 +88,7 @@ router.get('/', controller.getAllStudents)
  */
 router.get('/:id', controller.getStudentById)
 
-/*
+/**
  * @swagger
  * /api/students/email/{email}:
  *  get:
@@ -99,8 +99,8 @@ router.get('/:id', controller.getStudentById)
  *        name: email
  *        schema:
  *          type: string
- *         required: true
- *         description: The Student email
+ *        required: true
+ *        description: The Student email
  *    responses:
  *      200:
  *        description: The student by it's email
@@ -115,9 +115,9 @@ router.get('/:id', controller.getStudentById)
  */
 router.get('/email/:email', controller.getStudentByEmail)
 
-/*
+/**
  * @swagger
- * /api/students/{id}:
+ * /api/students:
  *  post:
  *    summary: Create new student entry.
  *    tags: [Students]
@@ -141,7 +141,7 @@ router.get('/email/:email', controller.getStudentByEmail)
  */
 router.post('/', controller.createStudent)
 
-/*
+/**
  * @swagger
  * /api/students/{id}:
  *  put:
@@ -152,8 +152,8 @@ router.post('/', controller.createStudent)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The Student ID
+ *        required: true
+ *        description: The Student ID
  *    requestBody:
  *      required: true
  *      content:
@@ -172,7 +172,7 @@ router.post('/', controller.createStudent)
  */
 router.put('/:id', controller.updateStudent)
 
-/*
+/**
  * @swagger
  * /api/students/{id}:
  *  delete:
@@ -183,8 +183,8 @@ router.put('/:id', controller.updateStudent)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The Student ID
+ *        required: true
+ *        description: The Student ID
  *    responses:
  *      200:
  *        description: The student was successfully deleted.

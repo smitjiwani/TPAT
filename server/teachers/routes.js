@@ -34,15 +34,16 @@ const router = Router()
  *         phone: 1234567890
  */
 
-/*
+/**
  * @swagger
  * tags:
  *  name: Teachers
  *  description: The teacher managing API
- */
+*/
 
-/*
+/**
  * @swagger
+
  * /api/teachers:
  *  get:
  *    summary: Returns the list of teachers.
@@ -61,7 +62,7 @@ const router = Router()
  */
 router.get('/', controller.getAllTeachers)
 
-/*
+/**
  * @swagger
  * /api/teachers/{id}:
  *  get:
@@ -72,8 +73,8 @@ router.get('/', controller.getAllTeachers)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The Teacher ID
+ *        required: true
+ *        description: The Teacher ID
  *    responses:
  *      200:
  *        description: The teacher by it's ID
@@ -88,7 +89,7 @@ router.get('/', controller.getAllTeachers)
  */
 router.get('/:id', controller.getTeacherById)
 
-/*
+/**
  * @swagger
  * /api/teachers/email/{email}:
  *  get:
@@ -99,8 +100,8 @@ router.get('/:id', controller.getTeacherById)
  *        name: email
  *        schema:
  *          type: string
- *         required: true
- *         description: The Teacher email
+ *        required: true
+ *        description: The Teacher email
  *    responses:
  *      200:
  *        description: The teacher by it's email
@@ -115,9 +116,9 @@ router.get('/:id', controller.getTeacherById)
  */
 router.get('/email/:email', controller.getTeacherByEmail)
 
-/*
+/**
  * @swagger
- * /api/teachers/{id}:
+ * /api/teachers:
  *  post:
  *    summary: Create new teacher entry.
  *    tags: [Teachers]
@@ -141,7 +142,7 @@ router.get('/email/:email', controller.getTeacherByEmail)
  */
 router.post('/', controller.createTeacher)
 
-/*
+/**
  * @swagger
  * /api/teachers/{id}:
  *  put:
@@ -152,8 +153,8 @@ router.post('/', controller.createTeacher)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The teacher ID
+ *        required: true
+ *        description: The teacher ID
  *    requestBody:
  *      required: true
  *      content:
@@ -172,7 +173,7 @@ router.post('/', controller.createTeacher)
  */
 router.put('/:id', controller.updateTeacher)
 
-/*
+/**
  * @swagger
  * /api/teachers/{id}:
  *  delete:
@@ -183,8 +184,8 @@ router.put('/:id', controller.updateTeacher)
  *        name: id
  *        schema:
  *          type: string
- *         required: true
- *         description: The Teacher ID
+ *        required: true
+ *        description: The Teacher ID
  *    responses:
  *      200:
  *        description: The teacher was successfully deleted.
