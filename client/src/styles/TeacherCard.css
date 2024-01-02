@@ -1,0 +1,32 @@
+.TeacherCard {
+    background-color: #dee0de;
+    color: black;
+    border-radius: 0.6rem;
+    display: flex;
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.details {
+    border-right: 2px solid black;
+    padding: 0 1.5rem;
+    max-width: 15rem;
+    min-width: 15rem;
+}
+
+.profileImage {
+    height: 10rem;
+    width: 10rem;
+}
+
+.imageSection { 
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.responseButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

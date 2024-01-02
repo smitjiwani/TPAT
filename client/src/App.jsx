@@ -7,6 +7,12 @@ import Login from './pages/Login'
 function App() {
   const [count, setCount] = useState(0)
 
+  // Created this temporarily for dev purposes
+  const user = {
+    role : 'teacher',
+    loggedIn: true
+  }
+
   return (
     <>
       {
