@@ -9,7 +9,7 @@ function App() {
 
   // Created this temporarily for dev purposes
   const user = {
-    role : 'teacher',
+    role: 'student',
     loggedIn: true
   }
 
