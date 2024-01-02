@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./db');
+const db = require('../db');
 
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
@@ -8,16 +8,16 @@ router.post('/login', async (req, res) => {
   try {
     let user;
     if (role === 'student') {
-      user = await db.getStudentByUsernameAndPassword(username, password);
+        user = await db('students').where({ email: username }).first();
     } else if (role === 'teacher') {
-      user = await db.getTeacherByUsernameAndPassword(username, password);
+      user = await db('teachers').where({ email: username }).first();
     }
 
-    if (user) {
-      res.json({
-        id: user.id,
-        username: user.username,
-        role: user.role,
+    if (user && user.password === password) {
+        res.json({
+          id: user.id,
+          username: user.email, 
+          role: role,
       });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
