@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import TeacherDashboard from './pages/TeacherDashboard'
+import StudentDashboard from './pages/StudentDashboard'
+import Login from './pages/Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +18,7 @@ function App() {
       }
 
       {
-        !user.loggedIn && <LoginPrompt />
+        !user.loggedIn && <Login />
       }
 
     </>
