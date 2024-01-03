@@ -10,17 +10,18 @@ function App() {
   // Created this temporarily for dev purposes
   const user = {
     role: 'student',
-    loggedIn: true
+    loggedIn: false
   }
 
   return (
     <>
+    
       {
-        user.role === 'teacher' && <TeacherDashboard />
+        user.loggedIn && user.role === 'teacher' && <TeacherDashboard />
       }
 
       {
-        user.role === 'student' && <StudentDashboard />
+        user.loggedIn && user.role === 'student' && <StudentDashboard />
       }
 
       {
