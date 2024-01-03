@@ -1,0 +1,64 @@
+.loginPage {
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.loginBox {
+    background-color: white;
+    width: 20rem;
+    height: 30rem;
+    border-radius: 1.2rem;
+    text-align: left;
+    padding: 3rem;
+}
+
+.loginForm {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* padding: 3rem; */
+}
+
+.inputSection {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.rememberBox {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+.loginButton {
+    width: 12rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: rgb(101, 219, 101);
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radioBox {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 1rem 0;
+}
+
+h2{
+    padding: 2rem 0 2rem 0;
+}
+input {
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
