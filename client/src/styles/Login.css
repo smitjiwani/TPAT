@@ -37,7 +37,16 @@
 }
 
 .loginButton {
-    width: 20rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: rgb(101, 219, 101);
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .radioBox {

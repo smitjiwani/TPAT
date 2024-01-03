@@ -44,11 +44,11 @@ function Login() {
     else if (e.target.name == 'password') {
       setPassword(e.target.value)
     }
-    else if(e.target.name == 'student'){
+    else if (e.target.name == 'student') {
       setRole({ teacher: false, student: true })
       console.log(role)
     }
-    else if(e.target.name == 'teacher'){
+    else if (e.target.name == 'teacher') {
       setRole({ teacher: true, student: false })
       console.log(role)
     }
@@ -62,7 +62,7 @@ function Login() {
         </h2>
         <div className='radioBox'>
           <span>Sign in as :</span>
-          <RadioButton 
+          <RadioButton
             name="student"
             id="studentRadio"
             value="student"
@@ -70,7 +70,7 @@ function Login() {
             checked={role.student}
             text="student"
           />
-          <RadioButton 
+          <RadioButton
             name="teacher"
             id="teahcerRadio"
             value="teacher"
@@ -99,7 +99,9 @@ function Login() {
             </div>
             <a href="#" >Forgot password?</a>
           </div>
-          <button type="submit" className='loginButton' >Sign in</button>
+          <div className='buttonContainer'>
+            <button type="submit" className='loginButton' >Sign in</button>
+          </div>
           <p >
             Don’t have an account yet? <a href="#" >Sign up</a>
           </p>
