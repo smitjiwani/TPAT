@@ -2,6 +2,7 @@ import { Router } from 'express'
 import * as controller from './controllers.js'
 
 const router = Router()
+const auth = require('../authentication/auth.js');
 
 /**
  * @swagger
@@ -198,5 +199,7 @@ router.put('/:id', controller.updateStudent)
  *        description: Student not found.
  */
 router.delete('/:id', controller.deleteStudent)
+
+router.use('/', auth);
 
 export default router
