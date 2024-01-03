@@ -2,6 +2,7 @@ import { Router } from 'express'
 import * as controller from './controllers.js'
 
 const router = Router()
+const auth = require('../authentication/auth.js')
 
 /**
  * @swagger
@@ -23,6 +24,9 @@ const router = Router()
  *         email:
  *           type: string
  *           description: The email address of the teacher.
+ *         password:
+ *           type: string
+ *           description: The password of the teacher.
  *         phone:
  *           type: string
  *           description: The phone number of the teacher.
@@ -35,6 +39,7 @@ const router = Router()
  *         email: teacher1@gmail.com
  *         password: password1
  *         phone: 1234567890
+ *         score: 300
  */
 
 /**
@@ -206,13 +211,12 @@ router.delete('/:id', controller.deleteTeacher)
 /**
  * @swagger
  * /api/teachers/{id}:
- *  put:
+ *  patch:
  *    summary: Update teacher's score by their ID.
  *    tags: [Teachers]
  *    parameters:
  *      - in: path
  *        name: id
- *        score: score
  *        schema:
  *          type: string
  *        required: true
@@ -233,6 +237,8 @@ router.delete('/:id', controller.deleteTeacher)
  *      400:
  *        description: Bad Request
  */
-router.put('/:id', controller.updateScore)
+router.patch('/:id', controller.updateScore)
+
+router.use('/', auth)
 
 export default router

@@ -4,7 +4,7 @@ import db from '../db.js'
   try {
     await db.schema.dropTableIfExists('teachers')
     await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.increments()
+      table.increments('id').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -25,7 +25,7 @@ import db from '../db.js'
   try {
     await db.schema.dropTableIfExists('students')
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.increments()
+      table.increments('id').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
