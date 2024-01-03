@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../db');
+import { Router } from 'express';
+const router = Router();
+import db from '../db.js';
 
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
@@ -8,10 +8,11 @@ router.post('/login', async (req, res) => {
   try {
     let user;
     if (role === 'student') {
-        user = await db('students').where({ email: username }).first();
+        user = await db('students').where({emal: username}).first();
     } else if (role === 'teacher') {
-      user = await db('teachers').where({ email: username }).first();
+      user = await db('teachers').where({email: username}).first();
     }
+    console.log(user)
 
     if (user && user.password === password) {
         res.json({
@@ -28,4 +29,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import * as controller from './controllers.js'
 
 const router = Router()
-const auth = require('../authentication/auth.js');
+// const auth = require('../authentication/auth.js');
 
 /**
  * @swagger
@@ -200,6 +200,6 @@ router.put('/:id', controller.updateStudent)
  */
 router.delete('/:id', controller.deleteStudent)
 
-router.use('/', auth);
+// router.use('/', auth);
 
 export default router
