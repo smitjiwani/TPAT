@@ -16,6 +16,17 @@ services:
       POSTGRES_USER: 'username'
     volumes:
       - data:/var/lib/postgresql/data
+  mongodb:
+    image: mongo
+    container_name: 'mongodb'
+    #ports:
+     # - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'admin'
+      MONGO_INITDB_ROOT_PASSWORD: 'password'
+    volumes:
+      - mongodb_data:/data/db
 
 volumes:
   data:
+  mongodb_data:
