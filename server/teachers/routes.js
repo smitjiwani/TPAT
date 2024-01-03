@@ -16,16 +16,19 @@ const router = Router()
  *       properties:
  *         id:
  *           type: int
- *           description: The auto-generated unique ID of the student.
+ *           description: The auto-generated unique ID of the teacher.
  *         name:
  *           type: string
- *           description: The name of the student.
+ *           description: The name of the teacher.
  *         email:
  *           type: string
- *           description: The email address of the student.
+ *           description: The email address of the teacher.
  *         phone:
  *           type: string
- *           description: The phone number of the student.
+ *           description: The phone number of the teacher.
+ *         score:
+ *          type: numeric
+ *          description: The elo score give of the teacher
  *       example:
  *         id: 5
  *         name: teacher1
@@ -39,7 +42,7 @@ const router = Router()
  * tags:
  *  name: Teachers
  *  description: The teacher managing API
-*/
+ */
 
 /**
  * @swagger
@@ -199,5 +202,37 @@ router.put('/:id', controller.updateTeacher)
  *        description: Teacher not found.
  */
 router.delete('/:id', controller.deleteTeacher)
+
+/**
+ * @swagger
+ * /api/teachers/{id}:
+ *  put:
+ *    summary: Update teacher's score by their ID.
+ *    tags: [Teachers]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        score: score
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The teacher ID and score
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Teacher'
+ *    responses:
+ *      200:
+ *        description: The teacher's score was successfully added.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Teacher'
+ *      400:
+ *        description: Bad Request
+ */
+router.put('/:id', controller.updateScore)
 
 export default router

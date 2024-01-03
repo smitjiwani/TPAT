@@ -1,4 +1,4 @@
-import db from '../db.js';
+import db from '../db.js'
 
 ;(async () => {
   try {
@@ -7,8 +7,9 @@ import db from '../db.js';
       table.increments()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
-      table.string('password').notNullable
+      table.string('password').notNullable()
       table.string('phone')
+      table.numeric('score').notNullable()
     })
     console.log('Created teachers table!')
     process.exit(0)
@@ -16,18 +17,18 @@ import db from '../db.js';
     console.log(err)
     process.exit(1)
   }
-})();
+})()
 
 // for student table
 
-; (async () => {
+;(async () => {
   try {
     await db.schema.dropTableIfExists('students')
     await db.schema.withSchema('public').createTable('students', (table) => {
       table.increments()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
-      table.string('password').notNullable
+      table.string('password').notNullable()
       table.string('phone')
     })
     console.log('Created students table!')
@@ -36,6 +37,4 @@ import db from '../db.js';
     console.log(err)
     process.exit(1)
   }
-})();
-
-
+})()
