@@ -1,8 +1,10 @@
 import { Router } from 'express'
 import * as controller from './controllers.js'
+import auth from '../authentication/auth.js';
+
 
 const router = Router()
-const auth = require('../authentication/auth.js');
+
 
 /**
  * @swagger

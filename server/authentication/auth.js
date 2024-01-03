@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const db = require('../db');
+import db from '../db.js';
 
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
@@ -29,3 +29,4 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+export default auth; 
