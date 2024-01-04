@@ -9,6 +9,9 @@ import studentRoutes from './students/routes.js'
 import quizRoutes from './quiz/routes.js'
 import takingQuizRoutes from './takeQuiz//routes.js'
 
+import auth from "./authentication/auth.js"
+import cors from 'cors'
+
 const PORT = process.env.PORT || 5000
 
 const options = {
@@ -31,6 +34,7 @@ const options = {
 const specs = swaggerJSDoc(options)
 
 const app = express()
+app.use(cors())
 
 app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(specs))
 
@@ -46,6 +50,8 @@ app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/quiz', quizRoutes)
 app.use('/api/takeQuiz', takingQuizRoutes)
+
+app.use('/api/auth', auth)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')

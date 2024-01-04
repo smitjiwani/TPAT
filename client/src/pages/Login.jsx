@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
+import { useNavigate  } from "react-router-dom"
+
 
 function Login() {
 
@@ -9,48 +11,44 @@ function Login() {
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ student: false, teacher: false })
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const data = { email: email, password: password, role: (role.teacher ? 'teacher' : "student") }
+    const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
 
-    let res = await fetch(``, {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
 
-    let response = await res.json();
-
-    setEmail('')
-    setPassword('')
-
-    if (response.success) {
-      console.log(response)
+    if (response.status === 'success') {
+      if (data.role === 'teacher') {
+        navigate("/teacherdashboard");
+      } else {
+        navigate("/studentdashboard");
+      }
+    } else {
+      console.log(response);
+      navigate("/");
     }
-    else {
-      console.log(response)
-    }
-  }
+  };
 
 
   const handleChange = (e) => {
     if (e.target.name == 'email') {
       setEmail(e.target.value)
-      console.log(role)
     }
     else if (e.target.name == 'password') {
       setPassword(e.target.value)
     }
     else if (e.target.name == 'student') {
       setRole({ teacher: false, student: true })
-      console.log(role)
     }
     else if (e.target.name == 'teacher') {
       setRole({ teacher: true, student: false })
-      console.log(role)
     }
   }
 
