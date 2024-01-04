@@ -2,7 +2,7 @@ import db from '../db.js'
 
 export const getAllTeachers = db('teachers').select('*')
 
-export const getTeacherById = (id) => db('teachers').where({ id }).select('*')
+export const getTeacherById = (teacherID) => db('teachers').where({ teacherID }).select('*')
 
 export const getTeacherByEmail = (email) =>
   db('teachers').where({ email }).select('*')
@@ -10,13 +10,13 @@ export const getTeacherByEmail = (email) =>
 export const createTeacher = (teacher) =>
   db('teachers').insert(teacher).returning('*')
 
-export const updateTeacher = (id, teacher) =>
-  db('teachers').where({ id }).update(teacher).returning('*')
+export const updateTeacher = (teacherID, teacher) =>
+  db('teachers').where({ teacherID}).update(teacher).returning('*')
 
-export const deleteTeacher = (id) =>
-  db('teachers').where({ id }).del().returning('*')
+export const deleteTeacher = (teacherID) =>
+  db('teachers').where({ teacherID}).del().returning('*')
 
-export const getScoreById = (id) => db('teachers').where({ id }).select('score')
+export const getScoreById = (teacherID) => db('teachers').where({ teacherID }).select('score')
 
-export const updateScoreById = (id, score) =>
-  db('teachers').where({ id }).update(score).returning('score')
+export const updateScoreById = (teacherID, score) =>
+  db('teachers').where({ teacherID }).update(score).returning('score')
