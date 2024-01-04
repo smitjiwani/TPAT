@@ -33,7 +33,7 @@ import db from '../db.js'
       email: 'student1@gmail.com',
       password: 'password1',
       phone: '1234567890',
-      subjectID: 'sample-subject-1', 
+      subjectID: 'sample-subject-1',
       classID: 'sample-class-1',
     })
     await db('students').insert({
@@ -41,7 +41,7 @@ import db from '../db.js'
       email: 'student2@gmail.com',
       password: 'password2',
       phone: '1234567890',
-      subjectID: 'sample-subject-2', 
+      subjectID: 'sample-subject-2',
       classID: 'sample-class-2',
     })
     console.log('Added sample students!')
@@ -52,19 +52,20 @@ import db from '../db.js'
   }
 })()
 
+// for class table
 ;(async () => {
   try {
-    await db('studDashboard').insert({
-        teacherID: 'sample-uuid-1', 
-        classID: 'sample-class-1',
-        subjectID: 'sample-subject-1',
+    await db('class').insert({
+      teacherID: 'sample-uuid-1',
+      classID: 'sample-class-1',
+      subjectID: 'sample-subject-1',
     })
-    await db('studDashboard').insert({
-      teacherID: 'sample-uuid-2', 
+    await db('class').insert({
+      teacherID: 'sample-uuid-2',
       classID: 'sample-class-2',
       subjectID: 'sample-subject-2',
-  })
-    console.log('Added sample studDashboard!')
+    })
+    console.log('Added sample class!')
     process.exit(0)
   } catch (err) {
     console.log(1)

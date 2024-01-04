@@ -34,8 +34,8 @@ import { v4 as uuidv4 } from 'uuid'
       table.string('subjectID')
       table.string('classID')
 
-      table.foreign('subjectID').references('studDashboard.subjectID')
-      table.foreign('classID').references('studDashboard.classID')
+      table.foreign('subjectID').references('class.subjectID')
+      table.foreign('classID').references('class.classID')
     })
     console.log('Created students table!')
     process.exit(0)
@@ -59,7 +59,7 @@ import { v4 as uuidv4 } from 'uuid'
 
         table.foreign('teacherID').references('teachers.teacherID')
       })
-    console.log('Created stud_dashboard table!')
+    console.log('Created class table!')
     process.exit(0)
   } catch (err) {
     console.log(err)

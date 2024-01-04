@@ -3,7 +3,7 @@ import db from '../db.js'
 // queries for student table
 
 // export const getAllStudents = db('students').select('*');
-export const getAllStudent = (studentID) =>
+export const getAllStudent = () =>
   db('students')
     .join('class', function () {
       this.on('students.classID', '=', 'class.classID').andOn(
@@ -32,8 +32,22 @@ export const getStudentById = (studentID) =>
     })
     .first()
 
+// export const getStudentByEmail = (email) => db('students').where({ email }).select('*')
 export const getStudentByEmail = (email) =>
-  db('students').where({ email }).select('*')
+  db('students')
+    .join('class', function () {
+      this.on('students.classID', '=', 'class.classID').andOn(
+        'students.subjectID',
+        '=',
+        'class.subjectID',
+      )
+    })
+    .join('teachers', 'class.teacherID', '=', 'teachers.teacherID')
+    .select('students.*', 'teachers.* as teacher')
+    .where({
+      'students.email': email,
+    })
+    .first()
 
 export const createStudent = (student) =>
   db('students').insert(student).returning('*')
