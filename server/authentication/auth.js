@@ -38,26 +38,25 @@ router.post('/login', async (req, res) => {
   try {
     let user;
     if (role === 'student') {
-      user = await db('students').where({email: email }).first();
+      user = await db('students').where({ email: email }).first();
     } else if (role === 'teacher') {
-      user = await db('teachers').where({email: email}).first();
+      user = await db('teachers').where({ email: email }).first();
     }
     console.log(user)
 
     if (user && user.password === password) {
-        res.json({
-          id: user.id,
-          email: user.email, 
-          role: role,
-          status: 'success'
+      res.status(200).json({
+        id: user.id,
+        email: user.email,
+        role: role,
+        status: 'success'
       });
-      res.status(200).json({ message: 'Login successful' });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-    console.error('Login error:', error);
     res.status(500).json({ error: 'Server error' });
+    console.error('Login error:', error);
   }
 });
 
