@@ -22,6 +22,6 @@ const resultSchema = new mongoose.Schema(
   { timestamnp: true },
 )
 
-const Result = mongoose.model('Quiz', resultSchema)
+const Result = mongoose.model('takeQuiz', resultSchema)
 
 export default Result

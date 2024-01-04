@@ -4,12 +4,12 @@ import db from '../db.js';
 
 export const getAllStudents = db('students').select('*');
 
-export const getStudentById = (id) => db('students').where({ id }).select('*');
+export const getStudentById = (studentID) => db('students').where({ studentID }).select('*');
 
 export const getStudentByEmail = (email) => db('students').where({ email }).select('*');
 
 export const createStudent = (student) => db('students').insert(student).returning('*');
 
-export const updateStudent = (id, student) => db('students').where({ id }).update(student).returning('*');
+export const updateStudent = (studentID, student) => db('students').where({ studentID }).update(student).returning('*');
 
-export const deleteStudent = (id) => db('students').where({ id }).del().returning('*');
+export const deleteStudent = (studentID) => db('students').where({ studentID }).del().returning('*');

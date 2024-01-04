@@ -15,10 +15,14 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+<<<<<<< HEAD
 
     const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
+=======
+    const data = { email: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
+>>>>>>> ee13e095e060176b41824d35528e7cb4454471bf
 
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
