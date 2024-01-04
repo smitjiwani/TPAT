@@ -2,9 +2,38 @@ import React from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import axios from 'axios';
 
 function TeacherCard(props) {
-  // add teacher card prop here
+  const handleRatingClick = async (rating) => {
+    try {
+      
+      const response = await axios.post(`/updateScore/${props.teacherId}`, {
+        score: calculateScoreFromRating(rating)
+      });
+      
+      console.log(response.data); // This might contain the updated score
+    } catch (error) {
+      
+      console.error('Error updating score:', error);
+    }
+  };
+
+  const calculateScoreFromRating = (rating) => {
+ 
+    switch (rating) {
+      case 5:
+        return 5;
+      case 4:
+        return 4;
+      case 3:
+        return 3;
+      case 2:
+        return 2;
+      case 1:
+        return 1;
+    }
+  };
 
 
   return (
