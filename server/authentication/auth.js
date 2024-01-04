@@ -1,14 +1,13 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db.js';
-
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
 
   try {
     let user;
     if (role === 'student') {
-        user = await db('students').where({emal: username}).first();
+        user = await db('students').where({email: username}).first();
     } else if (role === 'teacher') {
       user = await db('teachers').where({email: username}).first();
     }
@@ -25,7 +24,7 @@ router.post('/login', async (req, res) => {
     }
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Internal Server error' });
   }
 });
 

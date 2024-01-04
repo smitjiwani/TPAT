@@ -6,7 +6,6 @@ import { useNavigate  } from "react-router-dom"
 
 function Login() {
 
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ student: false, teacher: false })
@@ -35,7 +34,7 @@ function Login() {
     // navigate("/studentdashboard")
     if (response.success) {
       console.log(response)
-      navigate((role.teacher ? "teacherdashboard": "/studentdashboard"))
+      navigate((role.teacher ? "/teacherdashboard": "/studentdashboard"))
     }
     else {
       console.log(response)
