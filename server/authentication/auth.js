@@ -54,13 +54,8 @@ router.post('/login', async (req, res) => {
       res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-<<<<<<< HEAD
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal Server error' });
-=======
     res.status(500).json({ error: 'Server error' });
     console.error('Login error:', error);
->>>>>>> ee13e095e060176b41824d35528e7cb4454471bf
   }
 });
 

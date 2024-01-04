@@ -10,11 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-<<<<<<< HEAD
-      table.integer('score').notNullable()
-=======
       table.integer('score').notNullable().defaultTo(0)
->>>>>>> ee13e095e060176b41824d35528e7cb4454471bf
     })
     console.log('Created teachers table!')
     process.exit(0)
