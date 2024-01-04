@@ -1,5 +1,7 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
+
+// for teacher table
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('teachers')
@@ -42,9 +44,11 @@ import { v4 as uuidv4 } from 'uuid'
     process.exit(1)
   }
 })()
+
+// for class table
 ;(async () => {
   try {
-    await db.schema.dropTableIfExists('studDashboard')
+    await db.schema.dropTableIfExists('class')
     await db.schema
       .withSchema('public')
       .createTable('studDashboard', (table) => {
@@ -52,6 +56,8 @@ import { v4 as uuidv4 } from 'uuid'
         table.string('classID').notNullable().unique()
         table.string('subjectID').notNullable().unique()
         table.primary(['classID', 'subjectID'])
+
+        table.foreign('teacherID').references('teachers.teacherID')
       })
     console.log('Created stud_dashboard table!')
     process.exit(0)
