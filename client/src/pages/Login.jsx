@@ -13,18 +13,9 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') }
-    
-    let res = await fetch(`http://localhost:5000/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    e.preventDefault();
 
+<<<<<<< HEAD
     let response = await res.json();
     
     setEmail('')
@@ -35,12 +26,27 @@ function Login() {
     if (response.success) {
       console.log(response)
       navigate((role.teacher ? "/teacherdashboard": "/studentdashboard"))
+=======
+    const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
+
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
+
+    if (response.status === 'success') {
+      if (data.role === 'teacher') {
+        navigate("/teacherdashboard");
+      } else {
+        navigate("/studentdashboard");
+      }
+    } else {
+      console.log(response);
+      navigate("/");
+>>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
     }
-    else {
-      console.log(response)
-      navigate("/")
-    }
-  }
+  };
 
 
   const handleChange = (e) => {

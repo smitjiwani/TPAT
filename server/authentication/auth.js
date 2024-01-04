@@ -1,24 +1,66 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db.js';
+<<<<<<< HEAD
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
+=======
+
+
+router.get('/login', (req, res) => {
+  res.send('Hello from auth');
+});
+
+router.post('/register', async (req, res) => {
+
+  const { username, email, password, role, phone } = req.body;
+>>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
 
   try {
     let user;
     if (role === 'student') {
+<<<<<<< HEAD
         user = await db('students').where({email: username}).first();
+=======
+      user = await db('students').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+>>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
     } else if (role === 'teacher') {
-      user = await db('teachers').where({email: username}).first();
+      user = await db('teachers').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+    }
+    console.log(user)
+    res.json({
+      id: user.id,
+      email: user.email,
+      role: role,
+      status: 'success'
+    });
+    res.status(201).json({ message: 'User created' });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password, role } = req.body;
+
+  try {
+    let user;
+    if (role === 'student') {
+      user = await db('students').where({email: email }).first();
+    } else if (role === 'teacher') {
+      user = await db('teachers').where({email: email}).first();
     }
     console.log(user)
 
     if (user && user.password === password) {
         res.json({
           id: user.id,
-          username: user.email, 
+          email: user.email, 
           role: role,
+          status: 'success'
       });
+      res.status(200).json({ message: 'Login successful' });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
