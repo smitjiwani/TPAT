@@ -8,7 +8,7 @@ import db from '../db.js'
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-      table.numeric('score').notNullable().defaultTo(0)
+      table.integer('score').notNullable().defaultTo(0)
     })
     console.log('Created teachers table!')
     process.exit(0)
