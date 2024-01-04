@@ -15,18 +15,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-<<<<<<< HEAD
-    let response = await res.json();
-    
-    setEmail('')
-    setPassword('')
-    
-    // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
-    // navigate("/studentdashboard")
-    if (response.success) {
-      console.log(response)
-      navigate((role.teacher ? "/teacherdashboard": "/studentdashboard"))
-=======
+
     const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
 
     const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -44,7 +33,6 @@ function Login() {
     } else {
       console.log(response);
       navigate("/");
->>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
     }
   };
 

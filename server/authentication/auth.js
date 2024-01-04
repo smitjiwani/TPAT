@@ -1,11 +1,6 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db.js';
-<<<<<<< HEAD
-router.post('/login', async (req, res) => {
-  const { username, password, role } = req.body;
-=======
-
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -14,16 +9,11 @@ router.get('/login', (req, res) => {
 router.post('/register', async (req, res) => {
 
   const { username, email, password, role, phone } = req.body;
->>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
 
   try {
     let user;
     if (role === 'student') {
-<<<<<<< HEAD
-        user = await db('students').where({email: username}).first();
-=======
       user = await db('students').insert({name: username, email: email, password: password, phone: phone}).returning('*');
->>>>>>> bf0a6a2a4a555df860b49e8a71de3531c174312d
     } else if (role === 'teacher') {
       user = await db('teachers').insert({name: username, email: email, password: password, phone: phone}).returning('*');
     }
