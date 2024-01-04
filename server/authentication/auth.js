@@ -2,6 +2,10 @@ import { Router } from 'express';
 const router = Router();
 import db from '../db.js';
 
+router.get('/login', (req, res) => {
+  res.send('Hello from auth');
+});
+
 router.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
 
