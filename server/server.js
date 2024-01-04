@@ -6,6 +6,8 @@ import swaggerJSDoc from 'swagger-jsdoc'
 
 import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
+import quizRoutes from './quiz/routes.js'
+import takingQuizRoutes from './takeQuiz//routes.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -42,6 +44,8 @@ app.listen(PORT, () => {
 
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
+app.use('/api/quiz', quizRoutes)
+app.use('/api/takeQuiz', takingQuizRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello from homepage')
