@@ -7,7 +7,7 @@ import db from '../db.js'
       table.increments('id').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
-      table.string('password').notNullable().defaultTo()
+      table.string('password').notNullable()
       table.string('phone')
       table.integer('score').notNullable().defaultTo(0)
     })
