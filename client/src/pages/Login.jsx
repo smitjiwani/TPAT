@@ -14,34 +14,27 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') }
-    
-    let res = await fetch(`http://localhost:5000/api/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    e.preventDefault();
 
-    let response = await res.json();
-    
-    setEmail('')
-    setPassword('')
-    
-    // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
-    // navigate("/studentdashboard")
-    if (response.success) {
-      console.log(response)
-      navigate((role.teacher ? "teacherdashboard": "/studentdashboard"))
+    const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
+
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json());
+
+    if (response.status === 'success') {
+      if (data.role === 'teacher') {
+        navigate("/teacherdashboard");
+      } else {
+        navigate("/studentdashboard");
+      }
+    } else {
+      console.log(response);
+      navigate("/");
     }
-    else {
-      console.log(response)
-      navigate("/")
-    }
-  }
+  };
 
 
   const handleChange = (e) => {
