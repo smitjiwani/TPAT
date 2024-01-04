@@ -6,8 +6,8 @@ import swaggerJSDoc from 'swagger-jsdoc'
 
 import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
-import quizRoutes from './quiz/routes.js'
-import takingQuizRoutes from './takeQuiz//routes.js'
+// import quizRoutes from './quiz/routes.js'
+// import takingQuizRoutes from './takeQuiz//routes.js'
 
 import auth from "./authentication/auth.js"
 import cors from 'cors'
@@ -48,8 +48,8 @@ app.listen(PORT, () => {
 
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
-app.use('/api/quiz', quizRoutes)
-app.use('/api/takeQuiz', takingQuizRoutes)
+// app.use('/api/quiz', quizRoutes)
+// app.use('/api/takeQuiz', takingQuizRoutes)
 
 app.use('/api/auth', auth)
 

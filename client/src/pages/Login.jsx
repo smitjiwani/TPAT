@@ -6,7 +6,6 @@ import { useNavigate  } from "react-router-dom"
 
 function Login() {
 
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState({ student: false, teacher: false })
@@ -15,6 +14,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     const data = { email: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
 
