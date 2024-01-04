@@ -1,6 +1,7 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
+// for teacher table
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('teachers')
@@ -21,7 +22,6 @@ import { v4 as uuidv4 } from 'uuid'
 })()
 
 // for student table
-
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('students')
@@ -31,8 +31,8 @@ import { v4 as uuidv4 } from 'uuid'
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-      table.string('subjectID') 
-      table.string('classID') 
+      table.string('subjectID')
+      table.string('classID')
 
       table.foreign('subjectID').references('studDashboard.subjectID')
       table.foreign('classID').references('studDashboard.classID')
@@ -45,15 +45,20 @@ import { v4 as uuidv4 } from 'uuid'
   }
 })()
 
+// for class table
 ;(async () => {
   try {
-    await db.schema.dropTableIfExists('studDashboard')
-    await db.schema.withSchema('public').createTable('studDashboard', (table) => {
-      table.uuid('teacherID').defaultTo(uuidv4())
-      table.string('classID').notNullable().unique()
-      table.string('subjectID').notNullable().unique()
-      table.primary(['classID', 'subjectID']);
-    })
+    await db.schema.dropTableIfExists('class')
+    await db.schema
+      .withSchema('public')
+      .createTable('studDashboard', (table) => {
+        table.uuid('teacherID').defaultTo(uuidv4())
+        table.string('classID').notNullable().unique()
+        table.string('subjectID').notNullable().unique()
+        table.primary(['classID', 'subjectID'])
+
+        table.foreign('teacherID').references('teachers.teacherID')
+      })
     console.log('Created stud_dashboard table!')
     process.exit(0)
   } catch (err) {
@@ -61,4 +66,3 @@ import { v4 as uuidv4 } from 'uuid'
     process.exit(1)
   }
 })()
-
