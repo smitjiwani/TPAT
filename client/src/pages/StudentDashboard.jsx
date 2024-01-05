@@ -19,6 +19,7 @@ function StudentDashboard() {
 
   useEffect(() => {
     getTeachers()
+    console.log(teachers)
   }, [])
 
   return (

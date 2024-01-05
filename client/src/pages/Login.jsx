@@ -101,7 +101,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="#" >Sign up</a>
+            Don’t have an account yet? <a href="/signup" >Sign up</a>
           </p>
         </form>
       </div>

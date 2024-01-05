@@ -1,11 +1,12 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
+
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('teachers')
-    await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary().defaultTo(uuidv4())
+    await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
+      table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -25,8 +26,8 @@ import { v4 as uuidv4 } from 'uuid'
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('students')
-    await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().defaultTo(uuidv4())
+    await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('students', (table) => {
+      table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
