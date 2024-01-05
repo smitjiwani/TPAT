@@ -1,5 +1,4 @@
 import db from '../db.js'
-import { v4 as uuidv4 } from 'uuid'
 
 const migrate = async () => {
   try {
@@ -32,7 +31,7 @@ const migrate = async () => {
 
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().defaultTo(uuidv4())
+      table.uuid('studentID').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
