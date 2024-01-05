@@ -32,6 +32,7 @@ function StudentDashboard() {
           return (
             <TeacherCard
               key={teacher.teacherID}
+              id={teacher.teacherID}
               name={teacher.name}
               email={teacher.email}
               phone={teacher.phone}

@@ -8,7 +8,7 @@ function TeacherDashboard() {
   const getTeacherInfo = async () => {
     try {
       // need a user.id here instead of 1
-      const response = await fetch('/api/teachers/1')
+      const response = await fetch('/api/teachers/email/teacher1@gmail.com')
       const jsonData = await response.json()
       setTeachers(jsonData.teacher)
       console.log(jsonData)
