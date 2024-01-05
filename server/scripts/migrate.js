@@ -1,26 +1,17 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
-//seperate async function for dropping as it is not possible to drop a table with foreign key
-;(async () => {
+const migrate = async () => {
   try {
-    await db.schema.withSchema('public').dropTable('students')
-    await db.schema.withSchema('public').dropTable('class')
-    await db.schema.withSchema('public').dropTable('teachers')
+    // Drop tables
+    await db.schema.withSchema('public').dropTableIfExists('students')
+    await db.schema.withSchema('public').dropTableIfExists('class')
+    await db.schema.withSchema('public').dropTableIfExists('teachers')
     console.log('Dropped tables!')
-    process.exit(0)
-  } catch (err) {
-    console.log(err)
-    process.exit(1)
-  }
-})()
 
-
-// for teacher table
-;(async () => {
-  try {
+    // Create teachers table
     await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').defaultTo(uuidv4()).primary()
+      table.uuid('teacherID').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -28,37 +19,18 @@ import { v4 as uuidv4 } from 'uuid'
       table.integer('score').notNullable().defaultTo(0)
     })
     console.log('Created teachers table!')
-    process.exit(0)
-  } catch (err) {
-    console.log(err)
-    process.exit(1)
-  }
-})()
 
-// for class table
-;(async () => {
-  try {
-    await db.schema
-      .withSchema('public')
-      .createTable('class', (table) => {
-        table.uuid('teacherID').defaultTo(uuidv4())
-        table.string('classID').notNullable().unique()
-        table.string('subjectID').notNullable().unique()
-        table.primary(['classID', 'subjectID'])
-        table.foreign('teacherID').references('teachers.teacherID')
-      })
+    // Create class table
+    await db.schema.withSchema('public').createTable('class', (table) => {
+      table.uuid('teacherID')
+      table.string('classID').notNullable().unique()
+      table.string('subjectID').notNullable().unique()
+      table.primary(['classID', 'subjectID'])
+      table.foreign('teacherID').references('teachers.teacherID')
+    })
     console.log('Created class table!')
-    process.exit(0)
-  } catch (err) {
-    console.log(err)
-    process.exit(1)
-  }
-})()
 
-
-// for student table
-;(async () => {
-  try {
+    // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
       table.uuid('studentID').primary().defaultTo(uuidv4())
       table.string('name').notNullable()
@@ -72,10 +44,12 @@ import { v4 as uuidv4 } from 'uuid'
       table.foreign('classID').references('class.classID')
     })
     console.log('Created students table!')
+
     process.exit(0)
   } catch (err) {
     console.log(err)
     process.exit(1)
   }
-})()
+}
 
+migrate()
