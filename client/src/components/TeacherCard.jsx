@@ -2,10 +2,23 @@ import React from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import axios from 'axios';
 
 function TeacherCard(props) {
-  // add teacher card prop here
 
+  const handleThumbsUp = async () => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(`/${props.key}`, {
+        score: 5
+      });
+      
+      console.log(response.data); // This might contain the updated score
+    } catch (error) {
+      
+      console.error('Error updating score:', error);
+    }
+  };
 
   return (
     <div className='TeacherCard' key={props.key}>
@@ -15,7 +28,7 @@ function TeacherCard(props) {
         <p>phone: {props.phone}</p>
         <p>Score: {props.score}/5 ⭐</p>
         <div className='responseButtons'>
-          <button>
+          <button onClick={handleThumbsUp}>
             <ThumbUpIcon />
           </button>
           <button>
