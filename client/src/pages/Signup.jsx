@@ -12,7 +12,7 @@ function Signup() {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [role, setRole] = useState({ student: false, teacher: false })
-    const [username, setUsername] = useState("")
+    const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
 
     const navigate = useNavigate();
@@ -22,27 +22,34 @@ function Signup() {
 
         try {
 
-            if (password != confirmPassword) {
+            if (password != confirmPassword){
                 throw new Error("Confirm password does not match password")
             }
 
-            const data = { email: email, password: password, role: (role.teacher ? 'teacher' : 'student'), phone: parseInt(phone), username: username }
+            const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student'), phone: phone, name: name }
 
-            const response = await fetch('/api/auth/register', {
+            let res = await fetch(`http://localhost:5000/api/auth/signup`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(res => res.json());
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
 
-            if (response.status === 'success') {
-                if (data.role === 'teacher') {
-                    navigate("/teacherdashboard");
-                } else {
-                    navigate("/studentdashboard");
-                }
-            } else {
-                console.log(response);
-                navigate("/");
+            let response = await res.json();
+
+            setEmail('')
+            setPassword('')
+
+            // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
+            // navigate("/studentdashboard")
+            if (response.success) {
+                console.log(response)
+                navigate((role.teacher ? "/teacherdashboard" : "/studentdashboard"))
+            }
+            else {
+                console.log(response)
+                navigate("/")
             }
         }
         catch (error) {
@@ -67,8 +74,8 @@ function Signup() {
         else if (e.target.name == 'teacher') {
             setRole({ teacher: true, student: false })
         }
-        else if (e.target.name == 'username') {
-            setUsername(e.target.value)
+        else if (e.target.name == 'name') {
+            setName(e.target.value)
         }
         else if (e.target.name == 'phone') {
             setPhone(e.target.value)
@@ -103,8 +110,8 @@ function Signup() {
                 </div>
                 <form action="#" onSubmit={handleSubmit} className='loginForm'>
                     <div className='inputSection'>
-                        <label htmlFor="username" >Name</label>
-                        <input value={username} onChange={handleChange} type="text" name="username" id="username" placeholder="John Doe" required="" />
+                        <label htmlFor="name" >Name</label>
+                        <input value={name} onChange={handleChange} type="text" name="name" id="name" placeholder="John Doe" required="" />
                     </div>
                     <div className='inputSection'>
                         <label htmlFor="email" >Email</label>
@@ -134,4 +141,4 @@ function Signup() {
     )
 }
 
-export default Signup;
+export default Signup

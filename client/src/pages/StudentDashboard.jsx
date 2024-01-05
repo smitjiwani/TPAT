@@ -12,6 +12,7 @@ function StudentDashboard() {
       const response = await fetch('/api/teachers')
       const jsonData = await response.json()
       setTeachers(jsonData.teachers)
+      console.log(jsonData)
     } catch (err) {
       console.error(err.message)
     }
@@ -28,15 +29,16 @@ function StudentDashboard() {
       <p>Rate Your Teachers</p>
       {
         teachers.map(teacher => {
+          console.log(teacher.teacherID)
           return (
             <TeacherCard
-              key={teacher.id}
+              key={teacher.teacherID}
               name={teacher.name}
               email={teacher.email}
               phone={teacher.phone}
               score={teacher.score}
             />
-          )
+            )
         })
       }
     </div>

@@ -16,7 +16,9 @@ export const updateTeacher = (teacherID, teacher) =>
 export const deleteTeacher = (teacherID) =>
   db('teachers').where({ teacherID}).del().returning('*')
 
-export const getScoreById = (teacherID) => db('teachers').where({ teacherID }).select('score')
+export const getScoreById = (teacherID) => db('teachers').where({ teacherID }).select('score').first().then(result => result.score)
 
-export const updateScoreById = (teacherID, score) =>
-  db('teachers').where({ teacherID }).update(score).returning('score')
+export const updateScoreById = (teacherID, newScore) => {
+  const score = parseInt(newScore);
+  return db('teachers').where({ teacherID }).update({ score }).returning('score');
+}

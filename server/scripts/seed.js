@@ -1,9 +1,11 @@
 import db from '../db.js'
+import { v4 as uuidv4 } from 'uuid'
 
-// for teacher table
-;(async () => {
+const seed = async () => {
   try {
+    // Insert into teachers table
     await db('teachers').insert({
+      teacherID: uuidv4(),
       name: `teacher1`,
       email: 'teacher1@gmail.com',
       password: 'password1',
@@ -11,6 +13,7 @@ import db from '../db.js'
       score: 0,
     })
     await db('teachers').insert({
+      teacherID: uuidv4(),
       name: `teacher2`,
       email: 'teacher2@gmail.com',
       password: 'password2',
@@ -18,17 +21,22 @@ import db from '../db.js'
       score: 0,
     })
     console.log('Added sample teachers!')
-    process.exit(0)
-  } catch (err) {
-    console.log(1)
-    process.exit(1)
-  }
-})()
 
-// for student table
-;(async () => {
-  try {
+    
+    // Insert into class table
+    await db('class').insert({
+      classID: 'sample-class-1',
+      subjectID: 'sample-subject-1',
+    })
+    await db('class').insert({
+      classID: 'sample-class-2',
+      subjectID: 'sample-subject-2',
+    })
+    console.log('Added sample class!')
+
+    // Insert into students table
     await db('students').insert({
+      studentID: uuidv4(),
       name: `student1`,
       email: 'student1@gmail.com',
       password: 'password1',
@@ -37,6 +45,7 @@ import db from '../db.js'
       classID: 'sample-class-1',
     })
     await db('students').insert({
+      studentID: uuidv4(),
       name: `student2`,
       email: 'student2@gmail.com',
       password: 'password2',
@@ -45,29 +54,12 @@ import db from '../db.js'
       classID: 'sample-class-2',
     })
     console.log('Added sample students!')
-    process.exit(0)
-  } catch (err) {
-    console.log(1)
-    process.exit(1)
-  }
-})()
 
-;(async () => {
-  try {
-    await db('studDashboard').insert({
-        teacherID: 'sample-uuid-1', 
-        classID: 'sample-class-1',
-        subjectID: 'sample-subject-1',
-    })
-    await db('studDashboard').insert({
-      teacherID: 'sample-uuid-2', 
-      classID: 'sample-class-2',
-      subjectID: 'sample-subject-2',
-  })
-    console.log('Added sample studDashboard!')
     process.exit(0)
   } catch (err) {
-    console.log(1)
+    console.log(err)
     process.exit(1)
   }
-})()
+}
+
+seed()
