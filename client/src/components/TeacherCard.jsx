@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -8,37 +8,48 @@ function TeacherCard(props) {
 
   const handleThumbsUp = async (e) => {
     e.preventDefault();
-    console.log('Thumbs up clicked ' + props.key);
     try {
-      const response = await axios.patch(`/${props.key}`, {
-        score: "5"
+      const response = await fetch(`api/teachers/${props.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          score: "5"
+        })
       });
       
-      console.log(response.data); // This might contain the updated score
+      const data = await response.json();
+      console.log(data); 
     } catch (error) {
-      
       console.error('Error updating score:', error);
     }
   };
 
   const handleThumbsDown = async (e) => {
     e.preventDefault();
-    console.log("thumbs down " + props.key);
     try {
-      const response = await axios.patch(`/${props.key}`, {
-        score: "0"
+      const response = await fetch(`api/teachers/${props.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          score: "0"
+        })
       });
       
-      console.log(response.data); // This might contain the updated score
+      const data = await response.json();
+      console.log(data); // This might contain the updated score
     } catch (error) {
-      
       console.error('Error updating score:', error);
     }
   }
 
+  // refresh the componenet when the score is updated
 
   return (
-    <div className='TeacherCard' key={props.key}>
+    <div className='TeacherCard' id={props.id}>
       <div className='details'>
         <h2>{props.name}</h2>
         <p>email: {props.email}</p>
