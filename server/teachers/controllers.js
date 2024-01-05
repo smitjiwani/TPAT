@@ -64,10 +64,10 @@ export const deleteTeacher = async (req, res) => {
 export const updateScore = async (req, res) => {
   const { id, score } = req.params
   try {
-    const currentScore = await queries.getScoreById(id)
-    score = (currentScore + score) / 2
-    const changedScore = await queries.updateScoreById(id, score)
-    res.status(200).json({ changedScore })
+    const prevScore = await queries.getScoreById(id)
+    const updatedScore = (prevScore + score) / 2 
+    await queries.updateScoreById(id, updatedScore)
+    res.status(200).json({ updatedScore })
   } catch (err) {
     res.status(400).json({ err })
   }
