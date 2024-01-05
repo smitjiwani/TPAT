@@ -35,8 +35,9 @@ git clone https://github.com/smitjiwani/TPAT.git
 
 ### initialize
 
-
+```
 npm install
+```
 
 > Use build.sh file for initializing the docker for better developer experience on the server side.
 
@@ -44,15 +45,15 @@ npm install
 
 Dev
 
-
+```
 npm run dev
-
+```
 
 Production
 
-
+```
 npm run build
-
+```
 
 you will be able to acesss the frontend at http://localhost:5173/
 
@@ -60,26 +61,31 @@ you will be able to acesss the frontend at http://localhost:5173/
 
 Use
 
-
+```
 ./build.sh
+```
 
 > builds the database schema and runs the migrate and seed files.
 
+```
 ./destroy.sh
+```
 
 > destroys the schema and shuts down the docker
 
 or Use the following commands
 
-
+```
 docker compose up -d --build
 docker exec -it server npm run migrate
 docker exec -it server npm run seed
+```
 
 > for  building.
 
+```
 docker-compose down
-
+```
 > for destroying and shutting down.
 
 you will be able to access the backend at http://localhost:5000/
