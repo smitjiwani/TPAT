@@ -1,10 +1,24 @@
 import db from '../db.js'
 import { v4 as uuidv4 } from 'uuid'
 
+//seperate async function for dropping as it is not possible to drop a table with foreign key
+;(async () => {
+  try {
+    await db.schema.withSchema('public').dropTable('students')
+    await db.schema.withSchema('public').dropTable('class')
+    await db.schema.withSchema('public').dropTable('teachers')
+    console.log('Dropped tables!')
+    process.exit(0)
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
+  }
+})()
+
+
 // for teacher table
 ;(async () => {
   try {
-    await db.schema.dropTableIfExists('teachers')
     await db.schema.withSchema('public').createTable('teachers', (table) => {
       table.uuid('teacherID').defaultTo(uuidv4()).primary()
       table.string('name').notNullable()
@@ -24,7 +38,6 @@ import { v4 as uuidv4 } from 'uuid'
 // for class table
 ;(async () => {
   try {
-    await db.schema.dropTableIfExists('class')
     await db.schema
       .withSchema('public')
       .createTable('class', (table) => {
@@ -46,7 +59,6 @@ import { v4 as uuidv4 } from 'uuid'
 // for student table
 ;(async () => {
   try {
-    await db.schema.dropTableIfExists('students')
     await db.schema.withSchema('public').createTable('students', (table) => {
       table.uuid('studentID').primary().defaultTo(uuidv4())
       table.string('name').notNullable()
