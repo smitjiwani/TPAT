@@ -11,15 +11,15 @@ A mobile and web-based app that can evaluate teachers using student feedback and
 * standardize teaching practices across all boards and universities
 
 ## Techstack
-React
-Express
-Knex 
-Mongoose
-Swagger-ui
-Node
-Postgre
-Docker
-MongoDB
+* React
+* Express
+* Knex 
+* Mongoose
+* Swagger-ui
+* Node
+* Postgre
+* Docker
+* MongoDB
    
 ## Pre-requisites
 
