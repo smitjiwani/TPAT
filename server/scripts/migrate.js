@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('teachers')
-    await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+    await db.schema.withSchema('public').createTable('teachers', (table) => {
+      table.uuid('teacherID').defaultTo(uuidv4()).primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -21,12 +21,34 @@ import { v4 as uuidv4 } from 'uuid'
   }
 })()
 
+// for class table
+;(async () => {
+  try {
+    await db.schema.dropTableIfExists('class')
+    await db.schema
+      .withSchema('public')
+      .createTable('class', (table) => {
+        table.uuid('teacherID').defaultTo(uuidv4())
+        table.string('classID').notNullable().unique()
+        table.string('subjectID').notNullable().unique()
+        table.primary(['classID', 'subjectID'])
+        table.foreign('teacherID').references('teachers.teacherID')
+      })
+    console.log('Created class table!')
+    process.exit(0)
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
+  }
+})()
+
+
 // for student table
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('students')
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+      table.uuid('studentID').primary().defaultTo(uuidv4())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -45,24 +67,3 @@ import { v4 as uuidv4 } from 'uuid'
   }
 })()
 
-// for class table
-;(async () => {
-  try {
-    await db.schema.dropTableIfExists('class')
-    await db.schema
-      .withSchema('public')
-      .createTable('class', (table) => {
-        table.uuid('teacherid').primary().defaultTo(db.raw("uuid_generate_v4()"))
-        table.string('classID').notNullable().unique()
-        table.string('subjectID').notNullable().unique()
-        table.primary(['classID', 'subjectID'])
-
-        table.foreign('teacherID').references('teachers.teacherID')
-      })
-    console.log('Created class table!')
-    process.exit(0)
-  } catch (err) {
-    console.log(err)
-    process.exit(1)
-  }
-})()
