@@ -5,11 +5,12 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import axios from 'axios';
 
 function TeacherCard(props) {
-  const handleRatingClick = async (rating) => {
+
+  const handleThumbsUp = async () => {
+    e.preventDefault();
     try {
-      
-      const response = await axios.post(`/updateScore/${props.teacherId}`, {
-        score: calculateScoreFromRating(rating)
+      const response = await axios.patch(`/${props.key}`, {
+        score: 5
       });
       
       console.log(response.data); // This might contain the updated score
@@ -19,23 +20,6 @@ function TeacherCard(props) {
     }
   };
 
-  const calculateScoreFromRating = (rating) => {
- 
-    switch (rating) {
-      case 5:
-        return 5;
-      case 4:
-        return 4;
-      case 3:
-        return 3;
-      case 2:
-        return 2;
-      case 1:
-        return 1;
-    }
-  };
-
-
   return (
     <div className='TeacherCard' key={props.key}>
       <div className='details'>
@@ -44,7 +28,7 @@ function TeacherCard(props) {
         <p>phone: {props.phone}</p>
         <p>Score: {props.score}/5 ⭐</p>
         <div className='responseButtons'>
-          <button>
+          <button onClick={handleThumbsUp}>
             <ThumbUpIcon />
           </button>
           <button>

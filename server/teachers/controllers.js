@@ -65,18 +65,7 @@ export const updateScore = async (req, res) => {
   const { id, score } = req.params
   try {
     const currentScore = await queries.getScoreById(id)
-    if (score == 5) {
-      score = 200
-    } else if (score == 4) {
-      score = 100
-    } else if (score == 3) {
-      score = 0
-    } else if (score == 2) {
-      score = -100
-    } else if (score == 1) {
-      score = -200
-    }
-    score = currentScore + score
+    score = (currentScore + score) / 2
     const changedScore = await queries.updateScoreById(id, score)
     res.status(200).json({ changedScore })
   } catch (err) {
