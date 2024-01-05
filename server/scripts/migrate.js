@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('teachers')
-    await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary().defaultTo(uuidv4())
+    await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
+      table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -26,16 +26,16 @@ import { v4 as uuidv4 } from 'uuid'
   try {
     await db.schema.dropTableIfExists('students')
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().defaultTo(uuidv4())
+      table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-      table.string('subjectID')
-      table.string('classID')
+      table.string('subjectID').unique()
+      table.string('classID').unique()
 
-      table.foreign('subjectID').references('studDashboard.subjectID')
-      table.foreign('classID').references('studDashboard.classID')
+      table.foreign('subjectID').references('class.subjectID')
+      table.foreign('classID').references('class.classID')
     })
     console.log('Created students table!')
     process.exit(0)
@@ -51,15 +51,15 @@ import { v4 as uuidv4 } from 'uuid'
     await db.schema.dropTableIfExists('class')
     await db.schema
       .withSchema('public')
-      .createTable('studDashboard', (table) => {
-        table.uuid('teacherID').defaultTo(uuidv4())
+      .createTable('class', (table) => {
+        table.uuid('teacherid').primary().defaultTo(db.raw("uuid_generate_v4()"))
         table.string('classID').notNullable().unique()
         table.string('subjectID').notNullable().unique()
         table.primary(['classID', 'subjectID'])
 
         table.foreign('teacherID').references('teachers.teacherID')
       })
-    console.log('Created stud_dashboard table!')
+    console.log('Created class table!')
     process.exit(0)
   } catch (err) {
     console.log(err)
