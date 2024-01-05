@@ -3,7 +3,7 @@ import db from '../db.js'
 // queries for student table
 
 // export const getAllStudents = db('students').select('*');
-export const getAllStudent = () =>
+export const getAllStudents = () =>
   db('students')
     .join('class', function () {
       this.on('students.classID', '=', 'class.classID').andOn(
