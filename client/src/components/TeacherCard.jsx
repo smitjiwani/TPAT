@@ -6,11 +6,12 @@ import axios from 'axios';
 
 function TeacherCard(props) {
 
-  const handleThumbsUp = async () => {
+  const handleThumbsUp = async (e) => {
     e.preventDefault();
+    console.log('Thumbs up clicked ' + props.key);
     try {
       const response = await axios.patch(`/${props.key}`, {
-        score: 5
+        score: "5"
       });
       
       console.log(response.data); // This might contain the updated score
@@ -19,6 +20,22 @@ function TeacherCard(props) {
       console.error('Error updating score:', error);
     }
   };
+
+  const handleThumbsDown = async (e) => {
+    e.preventDefault();
+    console.log("thumbs down " + props.key);
+    try {
+      const response = await axios.patch(`/${props.key}`, {
+        score: "0"
+      });
+      
+      console.log(response.data); // This might contain the updated score
+    } catch (error) {
+      
+      console.error('Error updating score:', error);
+    }
+  }
+
 
   return (
     <div className='TeacherCard' key={props.key}>
@@ -31,7 +48,7 @@ function TeacherCard(props) {
           <button onClick={handleThumbsUp}>
             <ThumbUpIcon />
           </button>
-          <button>
+          <button onClick={handleThumbsDown}>
             <ThumbDownIcon />
           </button>
         </div>
