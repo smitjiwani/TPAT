@@ -1,0 +1,64 @@
+{
+    "intents": [
+        {
+            "tag": "primary greetings",
+            "patterns": [
+                "Hello",
+                "Hi",
+                "Hey",
+                "Good morning",
+                "Good afternoon",
+                "Good evening",
+                "Yo",
+                "How have you been",
+                "What's up",
+                "How are you doing",
+                "It's good to see you"
+            ],
+            "responses": [
+                "Hello! How can I assist you today?",
+                "Hi there! How can I help you?",
+                "Hey! What can I do for you?",
+                "Good day! How may I assist you?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "query_resolution",
+            "patterns": [
+                "Can you help me with something?",
+                "I have a question",
+                "I need information",
+                "Can you assist me?",
+                "I'm looking for help"
+            ],
+            "responses": [
+                "Of course! Feel free to ask your question, and I'll do my best to help you.",
+                "Sure, I'm here to assist you. What do you need help with?",
+                "Certainly! Let me know what information you're looking for, and I'll provide assistance."
+            ],
+            "queries": [
+                "How can I contact an NGO?",
+                "Who are you?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Goodbye",
+                "See you later",
+                "Bye",
+                "Farewell",
+                "Take care"
+            ],
+            "responses": [
+                "Goodbye! If you have more questions, feel free to ask.",
+                "See you later! Don't hesitate to return if you need assistance.",
+                "Bye for now! Have a great day.",
+                "Farewell! If you need any information, just ask."
+            ],
+            "context_set": ""
+        }
+    ]
+ }        
