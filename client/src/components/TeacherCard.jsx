@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import axios from 'axios';
 
 function TeacherCard(props) {
+  const [score, setScore] = useState(props.score);
 
   const handleThumbsUp = async (e) => {
     e.preventDefault();
@@ -20,7 +21,8 @@ function TeacherCard(props) {
       });
       
       const data = await response.json();
-      console.log(data); 
+      console.log(data);
+      setScore(data.updatedScore); // Update the score state
     } catch (error) {
       console.error('Error updating score:', error);
     }
@@ -41,12 +43,12 @@ function TeacherCard(props) {
       
       const data = await response.json();
       console.log(data); // This might contain the updated score
+      setScore(data.updatedScore); // Update the score state
     } catch (error) {
       console.error('Error updating score:', error);
-    }
+    } 
   }
 
-  // refresh the componenet when the score is updated
 
   return (
     <div className='TeacherCard' id={props.id}>
@@ -54,7 +56,7 @@ function TeacherCard(props) {
         <h2>{props.name}</h2>
         <p>email: {props.email}</p>
         <p>phone: {props.phone}</p>
-        <p>Score: {props.score}/5 ⭐</p>
+        <p>Score: {score}/5 ⭐</p>
         <div className='responseButtons'>
           <button onClick={handleThumbsUp}>
             <ThumbUpIcon />
