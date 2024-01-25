@@ -14,7 +14,8 @@ function TeacherDashboard() {
           'Content-Type': 'application/json',
           'authToken': authToken
         }
-      });
+      }).then(res => res.json());
+      
       if (response.status === 200) {
         const data = await response.json();
         setTeachers(data);

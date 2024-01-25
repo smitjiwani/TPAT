@@ -2,6 +2,7 @@ import db from '../db.js'
 import * as queries from './queries.js'
 import jwt from 'jsonwebtoken'
 
+const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 //controllers for student table
 
 export const getAllStudents = async (req, res) => {
@@ -15,16 +16,19 @@ export const getAllStudents = async (req, res) => {
 
 export const getStudentById = async (req, res) => {
   const { authtoken } = req.headers
+
   const data = jwt.verify(authtoken, JWT_SECRET)
   const id = data.user.studentID;
+  console.log("data is : ", data)
   try {
     const student = await queries.getStudentById(id)
     if (!student) {
-      res.sendStatus(404)
+      res.status(404).json({message: "Student not found"})
     }
-    res.sendStatus(200).json({ student })
+    else
+      res.status(200).json({ student })
   } catch (err) {
-    res.sendStatus(400).json({ err })
+    res.status(400).json({ err: err })
   }
 }
 

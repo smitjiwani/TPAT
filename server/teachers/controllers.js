@@ -14,7 +14,10 @@ export const getAllTeachers = async (req, res) => {
 }
 
 export const getTeacherById = async (req, res) => {
-  const { authtoken } = req.headers
+  console.log(req.headers)
+  console.log(typeof(req.headers))
+  const { authtoken } = JSON.parse(req.headers)
+  console.log("authtoken is: ",authtoken)
   const data = jwt.verify(authtoken, JWT_SECRET)
   const id = data.user.teacherID;
   try {

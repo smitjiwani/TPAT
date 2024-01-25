@@ -24,12 +24,6 @@ router.post('/register', async (req, res) => {
     }
 
     console.log(user)
-    
-    const authtoken = jwt.sign({user: user}, JWT_SECRET)
-    res.status(201).json({
-      authtoken: authtoken,
-      status: 'success'
-    });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ error: 'Server error' });
