@@ -1,6 +1,9 @@
 import { Router } from 'express';
 const router = Router();
 import db from '../db.js';
+import jwt from "jsonwebtoken"
+
+const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -13,15 +16,13 @@ router.post('/register', async (req, res) => {
   try {
     let user;
     if (role === 'student') {
-      user = await db('students').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('students').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     } else if (role === 'teacher') {
-      user = await db('teachers').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('teachers').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     }
+
     console.log(user)
     res.json({
-      id: user.id,
-      email: user.email,
-      role: role,
       status: 'success'
     });
     res.status(201).json({ message: 'User created' });
@@ -43,11 +44,15 @@ router.post('/login', async (req, res) => {
     }
     console.log(user)
 
+    const authtoken = jwt.sign(user, JWT_SECRET)
+    const data = {
+      authtoken: authtoken,
+      role: role
+    }
+
     if (user && user.password === password) {
       res.status(200).json({
-        id: user.id,
-        email: user.email,
-        role: role,
+        data: data,
         status: 'success'
       });
     } else {

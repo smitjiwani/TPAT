@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
-import { useNavigate  } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function Login() {
@@ -25,14 +27,37 @@ function Login() {
     }).then(res => res.json());
 
     if (response.status === 'success') {
-      if (data.role === 'teacher') {
-        navigate("/teacherdashboard");
-      } else {
-        navigate("/studentdashboard");
-      }
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ authtoken: response.authtoken, role: data.role }),
+      )
+      toast.success('You are successfully logged in!', {
+        position: 'top-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      setTimeout(() => {
+        if (data.role === 'teacher') {
+          navigate("/teacherdashboard");
+        } else {
+          navigate("/studentdashboard");
+        }
+      }, 2000)
     } else {
-      console.log(response);
-      navigate("/");
+      toast.error(response.error, {
+        position: 'top-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      console.log(response)
     }
   };
 
@@ -54,6 +79,17 @@ function Login() {
 
   return (
     <section className='loginPage'>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className='loginBox'>
         <h2>
           Sign in to your account

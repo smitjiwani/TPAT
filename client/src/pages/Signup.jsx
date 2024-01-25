@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import "../styles/Signup.css"
 import RadioButton from '../components/RadioButton'
 import { useNavigate } from "react-router-dom"
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function Signup() {
@@ -22,7 +24,7 @@ function Signup() {
 
         try {
 
-            if (password != confirmPassword){
+            if (password != confirmPassword) {
                 throw new Error("Confirm password does not match password")
             }
 
@@ -43,13 +45,34 @@ function Signup() {
 
             // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
             // navigate("/studentdashboard")
-            if (response.success) {
+            if (response.status === 'success') {
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({ authtoken: response.authtoken, role: data.role }),
+                )
+                toast.success('You are successfully logged in!', {
+                    position: 'top-left',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000)
+            } else {
+                toast.error(response.error, {
+                    position: 'top-left',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 console.log(response)
-                navigate((role.teacher ? "/teacherdashboard" : "/studentdashboard"))
-            }
-            else {
-                console.log(response)
-                navigate("/")
             }
         }
         catch (error) {
@@ -85,6 +108,17 @@ function Signup() {
 
     return (
         <section className='loginPage'>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className='loginBox'>
                 <h2>
                     Sign Up
