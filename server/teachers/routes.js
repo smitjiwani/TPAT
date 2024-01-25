@@ -95,7 +95,7 @@ router.get('/', controller.getAllTeachers)
  *      404:
  *        description: Teacher not found.
  */
-router.get('/:id', controller.getTeacherById)
+router.get('/getteacherbyid', controller.getTeacherById)
 
 /**
  * @swagger
