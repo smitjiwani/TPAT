@@ -1,10 +1,9 @@
 import { Router } from 'express';
 import db from '../db.js'
 import jwt from 'jsonwebtoken';
-
-const JWT_SECRET = 'secret';
-
 const router = Router();
+
+const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -19,10 +18,11 @@ router.post('/register', async (req, res) => {
   try {
     let user;
     if (role === 'student') {
-      user = await db('students').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('students').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     } else if (role === 'teacher') {
-      user = await db('teachers').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('teachers').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     }
+
     console.log(user)
     
     const authtoken = jwt.sign({user: user}, JWT_SECRET)

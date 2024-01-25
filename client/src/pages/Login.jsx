@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
-import { Link, useNavigate } from "react-router-dom"
-import { toast, ToastContainer } from 'react-toastify'
-import "react-toastify/dist/ReactToastify.css"
-import GoogleTranslateWidget from '../components/googletranslate.jsx'
-
+import { useNavigate  } from "react-router-dom"
 
 
 function Login() {
@@ -36,20 +32,6 @@ function Login() {
     }).then(res => res.json());
 
     if (response.status === 'success') {
-
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ authtoken: response.authtoken, role: data.role }),
-      )
-      toast.success('You are successfully logged in!', {
-        position: 'top-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
       if (data.role === 'teacher') {
         navigate('/teacherdashboard')
       }
@@ -147,7 +129,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <Link to="/signup"><span>Sign up</span></Link>
+            Don’t have an account yet? <a href="#" >Sign up</a>
           </p>
         </form>
       </div>

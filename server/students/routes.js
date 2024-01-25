@@ -87,7 +87,7 @@ router.get('/', controller.getAllStudents)
  *      404:
  *        description: Student not found.
  */
-router.get('/:id', controller.getStudentById)
+router.get('/getstudentbyid', controller.getStudentById)
 
 /**
  * @swagger

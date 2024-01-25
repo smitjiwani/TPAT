@@ -1,5 +1,6 @@
 import db from '../db.js'
 import * as queries from './queries.js'
+import jwt from 'jsonwebtoken'
 
 //controllers for student table
 
@@ -13,7 +14,9 @@ export const getAllStudents = async (req, res) => {
 }
 
 export const getStudentById = async (req, res) => {
-  const { id } = req.params
+  const { authtoken } = req.headers
+  const data = jwt.verify(authtoken, JWT_SECRET)
+  const id = data.user.studentID;
   try {
     const student = await queries.getStudentById(id)
     if (!student) {
