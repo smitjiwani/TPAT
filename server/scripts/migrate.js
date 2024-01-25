@@ -12,7 +12,7 @@ const migrate = async () => {
   try {
     // Drop tables
     await db.schema.withSchema('public').dropTableIfExists('students')
-    await db.schema.withSchema('public').dropTableIfExists('class')
+    await db.schema.withSchema('public').dropTableIfExists('classes')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
     console.log('Dropped tables!')
 
@@ -29,11 +29,11 @@ const migrate = async () => {
     console.log('Created teachers table!')
 
     // Create class table
-    await db.schema.withSchema('public').createTable('class', (table) => {
+    await db.schema.withSchema('public').createTable('classes', (table) => {
       table.uuid('teacherID')
-      table.string('classID').notNullable().unique()
-      table.string('subjectID').notNullable().unique()
-      table.primary(['classID', 'subjectID'])
+      table.uuid('classID').notNullable().unique()
+      table.string('subjectID').notNullable()
+      table.primary('classID')
       table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
@@ -47,17 +47,14 @@ const migrate = async () => {
 // // =======
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary()
-// >>>>>>> 86570ec515e36598aab9f777879875bf7b8acb78
+      table.uuid('studentID').primary().unique()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
       table.string('subjectID').unique()
-      table.string('classID').unique()
-
-      table.foreign('subjectID').references('class.subjectID')
-      table.foreign('classID').references('class.classID')
+      table.uuid('classID').unique()
+      table.foreign('classID').references('classes.classID')
     })
     console.log('Created students table!')
 

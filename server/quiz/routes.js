@@ -3,12 +3,13 @@ import * as controller from './controllers.js'
 
 const router = Router()
 
+router.get('/', controller.getQuiz)
 router.post('/', controller.createQuiz)
-router.get('/:quizID', controller.getQuiz)
-router.put('/', controller.updateQuiz)
+router.get('/:quizID', controller.getQuizById)
+router.put('/:quizID', controller.updateQuiz)
 router.delete('/:quizID', controller.deleteQuiz)
 
 // Publish quiz for students to take
-router.patch('/:quizID', controller.publishQuiz)
+router.patch('/:quizID/publish', controller.publishQuiz)
 
 export default router

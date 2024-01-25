@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import db from '../db.js'
+
 const router = Router();
 import db from '../db.js';
 import jwt from "jsonwebtoken"

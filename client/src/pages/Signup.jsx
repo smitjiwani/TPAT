@@ -30,7 +30,7 @@ function Signup() {
 
             const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student'), phone: phone, name: name }
 
-            let res = await fetch(`http://localhost:5000/api/auth/signup`, {
+            let res = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,6 +42,7 @@ function Signup() {
 
             setEmail('')
             setPassword('')
+            console.log(response)
 
             // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
             // navigate("/studentdashboard")
