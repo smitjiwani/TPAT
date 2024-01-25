@@ -1,5 +1,13 @@
 import db from '../db.js'
 
+// <<<<<<< HEAD
+
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('teachers')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
+//       table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// =======
 const migrate = async () => {
   try {
     // Drop tables
@@ -29,6 +37,13 @@ const migrate = async () => {
     })
     console.log('Created class table!')
 
+// // <<<<<<< HEAD
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('students')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('students', (table) => {
+//       table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// // =======
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
       table.uuid('studentID').primary().defaultTo(db.fn.uuid())

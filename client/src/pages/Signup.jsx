@@ -172,7 +172,7 @@ function Signup() {
                         <button type="submit" className='loginButton' >Sign Up</button>
                     </div>
                     <p >
-                        Already have an account? <a href="#" >Sign in</a>
+                        Already have an account? <a href="/" >Sign in</a>
                     </p>
                 </form>
             </div>
