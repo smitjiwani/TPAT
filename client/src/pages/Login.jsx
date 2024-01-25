@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
 import { useNavigate  } from "react-router-dom"
+import { toast, ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 
 function Login() {
@@ -32,6 +34,15 @@ function Login() {
     }).then(res => res.json());
 
     if (response.status === 'success') {
+      localStorage.setItem('user', JSON.stringify(response.data));
+      toast.success('Logged in successfully', {
+        position: 'top-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
       if (data.role === 'teacher') {
         navigate('/teacherdashboard')
       }
