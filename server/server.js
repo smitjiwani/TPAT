@@ -6,6 +6,7 @@ import swaggerJSDoc from 'swagger-jsdoc'
 
 import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
+import classRoutes from './classes/routes.js'
 // import quizRoutes from './quiz/routes.js'
 // import takingQuizRoutes from './takeQuiz//routes.js'
 
@@ -48,6 +49,7 @@ app.listen(PORT, () => {
 
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
+app.use('/api/classes', classRoutes)
 // app.use('/api/quiz', quizRoutes)
 // app.use('/api/takeQuiz', takingQuizRoutes)
 

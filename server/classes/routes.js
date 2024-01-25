@@ -11,3 +11,5 @@ router.put('/updateclass/:id', controllers.updateClassById);
 router.delete('/deleteclass/:id', controllers.deleteClassById);
 router.post('/addclass', controllers.addClass);
 
+export default router;
+
