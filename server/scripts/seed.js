@@ -24,7 +24,7 @@ const seed = async () => {
 
     
     // Insert into class table
-    await db('class').insert({
+    await db('classes').insert({
       classID: 'sample-class-1',
       subjectID: 'sample-subject-1',
     })

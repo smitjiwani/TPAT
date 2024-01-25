@@ -20,7 +20,7 @@ const migrate = async () => {
     console.log('Created teachers table!')
 
     // Create class table
-    await db.schema.withSchema('public').createTable('class', (table) => {
+    await db.schema.withSchema('public').createTable('classes', (table) => {
       table.uuid('teacherID')
       table.string('classID').notNullable()
       table.string('subjectID').notNullable()
