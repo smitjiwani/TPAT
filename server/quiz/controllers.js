@@ -4,13 +4,22 @@ export const createQuiz = async (req, res) => {
   try {
     const quiz = new Quiz(req.body)
     const result = await quiz.save()
-    res.status(200).send(req.body)
+    res.status(200).send(result)
   } catch (err) {
     res.status(400).json({ err })
   }
 }
 
 export const getQuiz = async (req, res) => {
+  try {
+    const quizzes = await Quiz.find()
+    res.status(200).send(quizzes)
+  } catch (err) {
+    res.status(400).json({ err })
+  }
+}
+
+export const getQuizById = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.quizID, {
       name: 1,
@@ -53,11 +62,12 @@ export const updateQuiz = async (req, res) => {
 
 export const deleteQuiz = async (req, res) => {
   try {
-    await Quiz.deleteOne({ _id: req.params.quizID })
+    const quiz = await Quiz.findById(req.params.quizID)
     if (quiz.isPublished) {
       throw new Error('Can not delete a published quiz!')
     }
-    res.status(200).send(req.body)
+    await Quiz.deleteOne({ _id: req.params.quizID })
+    res.status(200).send('Quiz Deleted Successfully')
   } catch (err) {
     res.status(400).json({ err })
   }

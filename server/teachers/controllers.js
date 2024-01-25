@@ -3,7 +3,7 @@ import * as queries from './queries.js'
 
 export const getAllTeachers = async (req, res) => {
   try {
-    const teachers = await queries.getAllTeachers
+    const teachers = await queries.getAllTeachers()
     res.status(200).json({ teachers })
   } catch (err) {
     res.status(400).json({ err })
@@ -68,7 +68,7 @@ export const updateScore = async (req, res) => {
     const prevScore = await queries.getScoreById(id)
     console.log(prevScore)
     console.log(score)
-    const updatedScore = (prevScore + parseInt(score)) / 2 
+    const updatedScore = (prevScore + parseInt(score)) / 2
     console.log(updatedScore)
     await queries.updateScoreById(id, updatedScore)
     res.status(200).json({ updatedScore })
