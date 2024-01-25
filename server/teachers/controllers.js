@@ -1,5 +1,8 @@
 import db from '../db.js'
 import * as queries from './queries.js'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 
 export const getAllTeachers = async (req, res) => {
   try {
@@ -11,7 +14,9 @@ export const getAllTeachers = async (req, res) => {
 }
 
 export const getTeacherById = async (req, res) => {
-  const { id } = req.params
+  const { authtoken } = req.headers
+  const data = jwt.verify(authtoken, JWT_SECRET)
+  const id = data.user.teacherID;
   try {
     const teacher = await queries.getTeacherById(id)
     res.status(200).json({ teacher })

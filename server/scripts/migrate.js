@@ -1,5 +1,13 @@
 import db from '../db.js'
 
+// <<<<<<< HEAD
+
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('teachers')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
+//       table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// =======
 const migrate = async () => {
   try {
     // Drop tables
@@ -10,7 +18,7 @@ const migrate = async () => {
 
     // Create teachers table
     await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary()
+      table.uuid('teacherID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -22,16 +30,23 @@ const migrate = async () => {
     // Create class table
     await db.schema.withSchema('public').createTable('classes', (table) => {
       table.uuid('teacherID')
-      table.uuid('classID').notNullable().unique()
+      table.uuid('classID').notNullable().defaultTo(db.fn.uuid())
       table.string('subjectID').notNullable()
       table.primary('classID')
       table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
 
+// // <<<<<<< HEAD
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('students')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('students', (table) => {
+//       table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// // =======
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().unique()
+      table.uuid('studentID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
