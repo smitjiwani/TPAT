@@ -2,7 +2,6 @@ import { Router } from 'express';
 import db from '../db.js'
 
 const router = Router();
-import db from '../db.js';
 import jwt from "jsonwebtoken"
 
 const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
