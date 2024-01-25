@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
-import { useNavigate } from "react-router-dom"
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate  } from "react-router-dom"
 
 
 function Login() {
@@ -13,6 +11,14 @@ function Login() {
   const [role, setRole] = useState({ student: false, teacher: false })
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    // console.log(user)
+    if (user) {
+      navigate('/')
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,26 +33,11 @@ function Login() {
     }).then(res => res.json());
 
     if (response.status === 'success') {
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ authtoken: response.authtoken, role: data.role }),
-      )
-      toast.success('You are successfully logged in!', {
-        position: 'top-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
-      setTimeout(() => {
-        if (data.role === 'teacher') {
-          navigate("/teacherdashboard");
-        } else {
-          navigate("/studentdashboard");
-        }
-      }, 2000)
+      if (data.role === 'teacher') {
+        navigate("/teacherdashboard");
+      } else {
+        navigate("/studentdashboard");
+      }
     } else {
       toast.error(response.error, {
         position: 'top-left',
@@ -94,6 +85,7 @@ function Login() {
         <h2>
           Sign in to your account
         </h2>
+        <GoogleTranslateWidget />
         <div className='radioBox'>
           <span>Sign in as :</span>
           <RadioButton
@@ -137,7 +129,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="/signup" >Sign up</a>
+            Don’t have an account yet? <a href="#" >Sign up</a>
           </p>
         </form>
       </div>

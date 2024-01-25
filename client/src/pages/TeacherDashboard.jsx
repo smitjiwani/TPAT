@@ -6,15 +6,7 @@ function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
 
   const getTeacherInfo = async () => {
-    try {
-      // need a user.id here instead of 1
-      const response = await fetch('/api/teachers/email/teacher1@gmail.com')
-      const jsonData = await response.json()
-      setTeachers(jsonData.teacher)
-      console.log(jsonData)
-    } catch (err) {
-      console.error(err.message)
-    }
+    
   }
 
   useEffect(() => {

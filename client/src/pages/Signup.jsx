@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../styles/Signup.css"
 import RadioButton from '../components/RadioButton'
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
+import "react-toastify/dist/ReactToastify.css"
+import GoogleTranslateWidget from '../components/googletranslate.jsx'
 
 function Signup() {
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        // console.log(user)
+        if (user) {
+            navigate('/')
+        }
+    }, [])
+
 
     // const [credentials, setCredentials] = useState({name: "", email: "", phone: "", password: "", cpassword: "" });
 
@@ -21,14 +30,13 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         try {
 
             if (password != confirmPassword) {
                 throw new Error("Confirm password does not match password")
             }
 
-            const data = { username: email, password: password, role: (role.teacher ? 'teacher' : 'student'), phone: phone, name: name }
+            const data = { email: email, password: password, role: (role.teacher ? 'teacher' : 'student'), phone: phone, username: name }
 
             let res = await fetch(`http://localhost:5000/api/auth/register`, {
                 method: 'POST',
@@ -42,16 +50,13 @@ function Signup() {
 
             setEmail('')
             setPassword('')
-            console.log(response)
+            setConfirmPassword('')
+            setName('')
+            setPhone('')
+            setRole({ student: false, teacher: false })
 
-            // I don't know why this works out of the if-else block but not inside it, Fuck it man , almost at it for 1 hour
-            // navigate("/studentdashboard")
             if (response.status === 'success') {
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({ authtoken: response.authtoken, role: data.role }),
-                )
-                toast.success('You are successfully logged in!', {
+                toast.success('Your account is created Successfully !', {
                     position: 'top-left',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -60,9 +65,7 @@ function Signup() {
                     draggable: true,
                     progress: undefined,
                 })
-                setTimeout(() => {
-                    navigate("/")
-                }, 2000)
+                navigate('/')
             } else {
                 toast.error(response.error, {
                     position: 'top-left',
@@ -124,6 +127,7 @@ function Signup() {
                 <h2>
                     Sign Up
                 </h2>
+                <GoogleTranslateWidget />
                 <div className='radioBox'>
                     <span>Sign up as :</span>
                     <RadioButton
