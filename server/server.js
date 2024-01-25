@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-
+import cors from 'cors'
+import mongoose from 'mongoose'
 import swaggerUI from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
 
@@ -8,12 +9,23 @@ import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
 import classRoutes from './classes/routes.js'
 // import quizRoutes from './quiz/routes.js'
+import quizRoutes from './quiz/routes.js'
 // import takingQuizRoutes from './takeQuiz//routes.js'
 
-import auth from "./authentication/auth.js"
-import cors from 'cors'
+import auth from './authentication/auth.js'
 
 const PORT = process.env.PORT || 5000
+const PASS = process.env.PASS || 'password'
+
+const conStr = 'mongodb://admin:password@mongodb:27017/Quiz?authSource=admin'
+mongoose
+  .connect(conStr)
+  .then(() => {
+    console.log('Connected to MongoDB')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 
 const options = {
   definition: {
@@ -50,7 +62,7 @@ app.listen(PORT, () => {
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
-// app.use('/api/quiz', quizRoutes)
+app.use('/api/quiz', quizRoutes)
 // app.use('/api/takeQuiz', takingQuizRoutes)
 
 app.use('/api/auth', auth)

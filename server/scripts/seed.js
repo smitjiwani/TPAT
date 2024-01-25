@@ -30,7 +30,6 @@ const seed = async () => {
     })
     console.log('Added sample teachers!')
 
-    
     // Insert into class table
     await db('classes').insert({
       classID: classID,

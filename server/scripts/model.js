@@ -12,7 +12,10 @@ const quizSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
-        question: String,
+        question: {
+          type: String,
+          required: true,
+        },
         options: {
           // key value pairs of
           // optNum: option
