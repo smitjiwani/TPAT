@@ -17,6 +17,7 @@ const migrate = async () => {
     await db.schema.withSchema('public').dropTableIfExists('students')
     await db.schema.withSchema('public').dropTableIfExists('score')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
+    await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
 
     // Create teachers table
@@ -60,6 +61,7 @@ const migrate = async () => {
     console.log('Created students table!')
 
     await db.schema.withSchema('public').createTable('score', (table) => {
+
       table.uuid('scoreID').primary().defaultTo(db.fn.uuid())
       table.float('reviewScore').defaultTo(0)
       table.float('quizScore').defaultTo(0)

@@ -3,6 +3,7 @@ import * as controller from './controllers.js'
 
 const router = Router()
 
+
 router.get('/', controller.getAllScores)
 router.get('/getscore/review/:id', controller.getReviewScoreById)
 router.get('/getscore/quiz/:id', controller.getQuizScoreById)

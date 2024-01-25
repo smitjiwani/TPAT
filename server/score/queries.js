@@ -24,6 +24,7 @@ export const getCourseScoreById = (scoreID) =>
     .then((result) => result.courseScore)
 
 export const getTotalScoreById = (scoreID) =>
+
   db("score")
     .where({ scoreID })
     .select("totalScore")

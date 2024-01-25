@@ -10,7 +10,6 @@ export const getAllScores = async (req, res) => {
   }
 }
 
-
 export const getReviewScoreById = async (req, res) => {
     const { id } = req.params
     try {
@@ -52,6 +51,7 @@ export const getTotalScoreById = async (req, res) => {
   }
 
 export const updateReviewScoreById = async (req, res) => {
+  
     try {
       const { id } = req.params
       const { score } = req.body.score
