@@ -10,7 +10,7 @@ const migrate = async () => {
 
     // Create teachers table
     await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary()
+      table.uuid('teacherID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -22,7 +22,7 @@ const migrate = async () => {
     // Create class table
     await db.schema.withSchema('public').createTable('classes', (table) => {
       table.uuid('teacherID')
-      table.uuid('classID').notNullable().unique()
+      table.uuid('classID').notNullable().defaultTo(db.fn.uuid())
       table.string('subjectID').notNullable()
       table.primary('classID')
       table.foreign('teacherID').references('teachers.teacherID')
@@ -31,7 +31,7 @@ const migrate = async () => {
 
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary().unique()
+      table.uuid('studentID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
