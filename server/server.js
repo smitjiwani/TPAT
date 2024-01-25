@@ -11,6 +11,7 @@ import classRoutes from './classes/routes.js'
 // import quizRoutes from './quiz/routes.js'
 import quizRoutes from './quiz/routes.js'
 // import takingQuizRoutes from './takeQuiz//routes.js'
+import scoreRoutes from './score/routes.js'
 
 import auth from './authentication/auth.js'
 
@@ -64,6 +65,7 @@ app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
 app.use('/api/quiz', quizRoutes)
 // app.use('/api/takeQuiz', takingQuizRoutes)
+app.use('/api/scores', scoreRoutes)
 
 app.use('/api/auth', auth)
 
