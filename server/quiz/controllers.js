@@ -1,4 +1,4 @@
-import Quiz from '../scripts/model.js'
+import Quiz from '../scripts/quizSchema.js'
 
 export const createQuiz = async (req, res) => {
   try {
@@ -13,6 +13,15 @@ export const createQuiz = async (req, res) => {
 export const getQuiz = async (req, res) => {
   try {
     const quizzes = await Quiz.find()
+    res.status(200).send(quizzes)
+  } catch (err) {
+    res.status(400).json({ err })
+  }
+}
+
+export const getPublishedQuiz = async (req, res) => {
+  try {
+    const quizzes = await Quiz.find({ isPublished: true })
     res.status(200).send(quizzes)
   } catch (err) {
     res.status(400).json({ err })

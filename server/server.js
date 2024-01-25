@@ -9,9 +9,10 @@ import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
 import classRoutes from './classes/routes.js'
 import quizRoutes from './quiz/routes.js'
-// import takingQuizRoutes from './takeQuiz//routes.js'
+import takingQuizRoutes from './takeQuiz/routes.js'
 
 import auth from './authentication/auth.js'
+import seedMongo from './scripts/seedMongo.js'
 
 const PORT = process.env.PORT || 5000
 const PASS = process.env.PASS || 'password'
@@ -21,6 +22,7 @@ mongoose
   .connect(conStr)
   .then(() => {
     console.log('Connected to MongoDB')
+    seedMongo()
   })
   .catch((err) => {
     console.log(err)
@@ -62,7 +64,7 @@ app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
 app.use('/api/quiz', quizRoutes)
-// app.use('/api/takeQuiz', takingQuizRoutes)
+app.use('/api/takeQuiz', takingQuizRoutes)
 
 app.use('/api/auth', auth)
 

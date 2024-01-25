@@ -1,4 +1,5 @@
-import Quiz from './quizSchema'
+import Quiz from './quizSchema.js'
+import Result from './resultSchema.js'
 
 const seedMongo = async () => {
   try {
@@ -30,6 +31,7 @@ const seedMongo = async () => {
         1: 1,
         2: 3,
       },
+      isPublished: true,
     })
 
     const quiz2 = new Quiz({
@@ -62,15 +64,18 @@ const seedMongo = async () => {
       },
     })
 
+    await Quiz.collection.drop()
+    await Result.collection.drop()
     await quiz1.save()
     await quiz2.save()
     console.log('Added sample Quizzes!')
 
-    process.exit(0)
+    // process.exit(0)
   } catch (err) {
     console.log(err)
-    process.exit(1)
+    // process.exit(1)
   }
 }
 
-seedMongo()
+// seedMongo()
+export default seedMongo
