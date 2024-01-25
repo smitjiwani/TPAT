@@ -10,6 +10,7 @@ const studentID2 = uuidv4()
 const scoreID = uuidv4()
 const scoreID2 = uuidv4()
 
+
 const seed = async () => {
   try {
     // Insert into teachers table
@@ -47,7 +48,7 @@ const seed = async () => {
       email: 'student1@gmail.com',
       password: 'password1',
       phone: '1234567890',
-      subjectID: 'sample-subject-1', 
+      subjectID: 'sample-subject-1',
       classID: classID,
     })
     await db('students').insert({
@@ -56,7 +57,7 @@ const seed = async () => {
       email: 'student2@gmail.com',
       password: 'password2',
       phone: '1234567890',
-      subjectID: 'sample-subject-2', 
+      subjectID: 'sample-subject-2',
       classID: classID2,
     })
     console.log('Added sample students!')

@@ -11,6 +11,7 @@ const quizSchema = new mongoose.Schema(
         queNum: {
           type: Number,
           required: true,
+          unique: true,
         },
         question: {
           type: String,

@@ -1,5 +1,5 @@
-import Quiz from '../quiz/model.js'
-import Result from './model.js'
+import Quiz from '../scripts/quizSchema.js'
+import Result from '../scripts/resultSchema.js'
 
 export const startQuiz = async (req, res) => {
   try {
@@ -12,32 +12,36 @@ export const startQuiz = async (req, res) => {
     if (!quiz) {
       throw new Error('Quiz Not Found')
     }
-    if (quiz.isPublished) {
+    if (!quiz.isPublished) {
       throw new Error('Can not take unpublished quizzes!')
     }
 
     res.status(200).send(quiz)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
 export const submitQuiz = async (req, res) => {
   try {
     const quizID = req.params.quizID
-    const userID = req.params.userID
-    const quiz = await Quiz.findById(quizID, { answerList: 1 })
+    // const userID = req.params.userID // get this from the auth
     const attemptedQues = req.body.attemptedQues
+    const quiz = await Quiz.findById(quizID, { answerList: 1 })
+    const answers = quiz.answerList
 
-    allQues = Object.keys(attemptedQues)
+    const allQues = Object.keys(answers)
     const total = allQues.length
 
     let score = 0
     for (let i = 0; i < total; i++) {
       let quesNum = allQues[i]
+      console.log(attemptedQues)
+      console.log(quesNum)
+      console.log(attemptedQues[quesNum])
       if (
         !!attemptedQues[quesNum] &&
-        attemptedQues[quesNum] == attemptedQues[quesNum]
+        attemptedQues[quesNum] == answers[quesNum]
       ) {
         score = score + 1
       }
@@ -48,6 +52,7 @@ export const submitQuiz = async (req, res) => {
 
     res.status(200).send({ score, total, resultID: data._id })
   } catch (err) {
-    res.status(400).json({ err })
+    console.log(err)
+    res.status(400).json({ error: err.message })
   }
 }

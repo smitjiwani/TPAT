@@ -7,7 +7,7 @@ const resultSchema = new mongoose.Schema(
       required: true,
     },
     quizID: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: true,
     },
     score: {
