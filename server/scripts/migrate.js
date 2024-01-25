@@ -22,9 +22,9 @@ const migrate = async () => {
     // Create class table
     await db.schema.withSchema('public').createTable('class', (table) => {
       table.uuid('teacherID')
-      table.string('classID').notNullable().unique()
-      table.string('subjectID').notNullable().unique()
-      table.primary(['classID', 'subjectID'])
+      table.string('classID').notNullable()
+      table.string('subjectID').notNullable()
+      table.primary(['classID', 'subjectID']).unique()
       table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
