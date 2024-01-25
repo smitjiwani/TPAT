@@ -2,7 +2,7 @@ import db from '../db.js'
 
 // queries for student table
 
-export const getAllStudents = db('students').select('*')
+export const getAllStudents = () => db('students').select('*')
 // export const getAllStudent = (studentID) =>
 //   db('students')
 //     .join('class', function () {
