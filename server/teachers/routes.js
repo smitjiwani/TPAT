@@ -237,7 +237,6 @@ router.delete('/:id', controller.deleteTeacher)
  *      400:
  *        description: Bad Request
  */
-router.patch('/:id', controller.updateScore)
 
 // router.use('/auth', auth);
 

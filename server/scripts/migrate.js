@@ -11,8 +11,11 @@ import db from '../db.js'
 const migrate = async () => {
   try {
     // Drop tables
-    await db.schema.withSchema('public').dropTableIfExists('students')
+    await db.raw('DROP TABLE IF EXISTS public.teachers CASCADE');
+    await db.raw('DROP TABLE IF EXISTS public.classes CASCADE');
     await db.schema.withSchema('public').dropTableIfExists('classes')
+    await db.schema.withSchema('public').dropTableIfExists('students')
+    await db.schema.withSchema('public').dropTableIfExists('score')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
     await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
@@ -58,11 +61,12 @@ const migrate = async () => {
     console.log('Created students table!')
 
     await db.schema.withSchema('public').createTable('score', (table) => {
-      table.uuid('scoreID').primary()
-      table.float('reviewScore').notNullable().byDefault(0)
-      table.float('quizScore').notNullable().byDefault(0)
-      table.float('courseScore').notNullable().byDefault(0)
-      table.float('totalScore').notNullable().byDefault(0)
+
+      table.uuid('scoreID').primary().defaultTo(db.fn.uuid())
+      table.float('reviewScore').defaultTo(0)
+      table.float('quizScore').defaultTo(0)
+      table.float('courseScore').defaultTo(0)
+      table.float('totalScore').defaultTo(0)
     })
     console.log('Created score table!')
 

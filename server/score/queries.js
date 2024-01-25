@@ -1,63 +1,64 @@
-import db from '../db.js'
+import db from "../db.js";
+
+export const getAllScores = () => db("score").select("*")
 
 export const getReviewScoreById = (scoreID) =>
-  db('score')
+  db("score")
     .where({ scoreID })
-    .select('reviewScore')
+    .select("reviewScore")
     .first()
-    .then((result) => result.ReviewScore)
+    .then((result) => result.reviewScore)
 
 export const getQuizScoreById = (scoreID) =>
-  db('score')
+  db("score")
     .where({ scoreID })
-    .select('quizScore')
+    .select("quizScore")
     .first()
     .then((result) => result.quizScore)
-  
+
 export const getCourseScoreById = (scoreID) =>
-  db('score')
+  db("score")
     .where({ scoreID })
-    .select('courseScore')
+    .select("courseScore")
     .first()
     .then((result) => result.courseScore)
 
 export const getTotalScoreById = (scoreID) =>
-    db('score')
-      .where({ scoreID })
-      .select('totalScore')
-      .first()
-      .then((result) => result.totalScore)    
+
+  db("score")
+    .where({ scoreID })
+    .select("totalScore")
+    .first()
+    .then((result) => result.totalScore)
 
 export const updateReviewScoreById = (scoreID, newScore) => {
-  const score = parseFloat(newScore);
-  return db('score')
-      .where({ scoreID })
-      .update({ reviewScore: score })  
-      .returning('reviewScore');
+  const score = parseFloat(newScore)
+  return db("score")
+    .where({ scoreID })
+    .update({ reviewScore: score })
+    .returning("reviewScore")
 }
 
 export const updateQuizScoreById = (scoreID, newScore) => {
-  const score = parseFloat(newScore);
-  return db('score')
-      .where({ scoreID })
-      .update({ quizScore: score })  
-      .returning('quizScore');
-}
+  const score = parseFloat(newScore)
+  return db("score")
+    .where({ scoreID })
+    .update({ quizScore: score })
+    .returning("quizScore")
+};
 
 export const updateCourseScoreById = (scoreID, newScore) => {
-  const score = parseFloat(newScore);
-  return db('score')
-      .where({ scoreID })
-      .update({ courseScore: score })  
-      .returning('courseScore');
-}
+  const score = parseFloat(newScore)
+  return db("score")
+    .where({ scoreID })
+    .update({ courseScore: score })
+    .returning("courseScore")
+};
 
 export const updateTotalScoreById = (scoreID, newScore) => {
-  const score = parseFloat(newScore);
-  return db('score')
-      .where({ scoreID })
-      .update({ totalScore: score })  
-      .returning('totalScore');
-}
-  
-       
+  const score = parseFloat(newScore)
+  return db("score")
+    .where({ scoreID })
+    .update({ totalScore: score })
+    .returning("totalScore")
+};
