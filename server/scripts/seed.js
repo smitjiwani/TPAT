@@ -22,7 +22,6 @@ const seed = async () => {
     })
     console.log('Added sample teachers!')
 
-    
     // Insert into class table
     await db('classes').insert({
       classID: 'sample-class-1',
@@ -41,7 +40,7 @@ const seed = async () => {
       email: 'student1@gmail.com',
       password: 'password1',
       phone: '1234567890',
-      subjectID: 'sample-subject-1', 
+      subjectID: 'sample-subject-1',
       classID: 'sample-class-1',
     })
     await db('students').insert({
@@ -50,7 +49,7 @@ const seed = async () => {
       email: 'student2@gmail.com',
       password: 'password2',
       phone: '1234567890',
-      subjectID: 'sample-subject-2', 
+      subjectID: 'sample-subject-2',
       classID: 'sample-class-2',
     })
     console.log('Added sample students!')

@@ -5,7 +5,7 @@ import * as queries from './queries.js'
 
 export const getAllStudents = async (req, res) => {
   try {
-    const students = await queries.getAllStudents
+    const students = await queries.getAllStudents()
     res.status(200).json({ students })
   } catch (err) {
     res.status(400).json({ err })
