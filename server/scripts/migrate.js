@@ -1,17 +1,25 @@
 import db from '../db.js'
 
+// <<<<<<< HEAD
+
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('teachers')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('teachers', (table) => {
+//       table.uuid('teacherID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// =======
 const migrate = async () => {
   try {
     // Drop tables
     await db.schema.withSchema('public').dropTableIfExists('students')
-    await db.schema.withSchema('public').dropTableIfExists('class')
+    await db.schema.withSchema('public').dropTableIfExists('classes')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
     await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
 
     // Create teachers table
     await db.schema.withSchema('public').createTable('teachers', (table) => {
-      table.uuid('teacherID').primary()
+      table.uuid('teacherID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
@@ -22,25 +30,30 @@ const migrate = async () => {
     // Create class table
     await db.schema.withSchema('public').createTable('classes', (table) => {
       table.uuid('teacherID')
-      table.string('classID').notNullable()
+      table.uuid('classID').notNullable().defaultTo(db.fn.uuid())
       table.string('subjectID').notNullable()
-      table.primary(['classID', 'subjectID']).unique()
+      table.primary('classID')
       table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
 
+// // <<<<<<< HEAD
+// ;(async () => {
+//   try {
+//     await db.schema.dropTableIfExists('students')
+//     await db.schema.withSchema('public').raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"').createTable('students', (table) => {
+//       table.uuid('studentID').primary().defaultTo(db.raw("uuid_generate_v4()"))
+// // =======
     // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
-      table.uuid('studentID').primary()
+      table.uuid('studentID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
       table.string('subjectID').unique()
-      table.string('classID').unique()
-
-      table.foreign('subjectID').references('class.subjectID')
-      table.foreign('classID').references('class.classID')
+      table.uuid('classID').unique()
+      table.foreign('classID').references('classes.classID')
     })
     console.log('Created students table!')
 

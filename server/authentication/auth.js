@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import db from '../db.js'
-
+import jwt from 'jsonwebtoken';
 const router = Router();
+
+const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 
 router.get('/login', (req, res) => {
   res.send('Hello from auth');
@@ -10,22 +12,24 @@ router.get('/login', (req, res) => {
 router.post('/register', async (req, res) => {
 
   const { username, email, password, role, phone } = req.body;
+  console.log(process.env.JWT_SECRET)
 
+  
   try {
     let user;
     if (role === 'student') {
-      user = await db('students').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('students').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     } else if (role === 'teacher') {
-      user = await db('teachers').insert({name: username, email: email, password: password, phone: phone}).returning('*');
+      user = await db('teachers').insert({ name: username, email: email, password: password, phone: phone }).returning('*');
     }
+
     console.log(user)
-    res.json({
-      id: user.id,
-      email: user.email,
-      role: role,
+    
+    const authtoken = jwt.sign({user: user}, JWT_SECRET)
+    res.status(201).json({
+      authtoken: authtoken,
       status: 'success'
     });
-    res.status(201).json({ message: 'User created' });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ error: 'Server error' });
@@ -44,11 +48,10 @@ router.post('/login', async (req, res) => {
     }
     console.log(user)
 
+    const authtoken = jwt.sign({user: user}, JWT_SECRET)
     if (user && user.password === password) {
       res.status(200).json({
-        id: user.id,
-        email: user.email,
-        role: role,
+        authtoken: authtoken,
         status: 'success'
       });
     } else {
