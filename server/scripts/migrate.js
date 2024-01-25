@@ -14,6 +14,7 @@ const migrate = async () => {
     await db.schema.withSchema('public').dropTableIfExists('students')
     await db.schema.withSchema('public').dropTableIfExists('classes')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
+    await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
 
     // Create teachers table
@@ -23,7 +24,6 @@ const migrate = async () => {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-      table.integer('score').notNullable().defaultTo(0)
     })
     console.log('Created teachers table!')
 
@@ -56,6 +56,15 @@ const migrate = async () => {
       table.foreign('classID').references('classes.classID')
     })
     console.log('Created students table!')
+
+    await db.schema.withSchema('public').createTable('score', (table) => {
+      table.uuid('scoreID').primary()
+      table.float('reviewScore').notNullable().byDefault(0)
+      table.float('quizScore').notNullable().byDefault(0)
+      table.float('courseScore').notNullable().byDefault(0)
+      table.float('totalScore').notNullable().byDefault(0)
+    })
+    console.log('Created score table!')
 
     process.exit(0)
   } catch (err) {
