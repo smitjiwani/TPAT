@@ -15,7 +15,7 @@ import auth from './authentication/auth.js'
 const PORT = process.env.PORT || 5000
 const PASS = process.env.PASS || 'password'
 
-const conStr = 'mongodb://admin:password@mongodb:27017/Quiz?authSource=admin'
+const conStr = `mongodb://admin:${PASS}@mongodb:27017/Quiz?authSource=admin`
 mongoose
   .connect(conStr)
   .then(() => {

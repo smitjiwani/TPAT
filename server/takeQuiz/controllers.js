@@ -1,5 +1,5 @@
-import Quiz from '../quiz/model.js'
-import Result from './model.js'
+import Quiz from '../quiz/quizSchema.js'
+import Result from './quiz/resultSchema.js'
 
 export const startQuiz = async (req, res) => {
   try {
