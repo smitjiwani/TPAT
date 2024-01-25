@@ -66,19 +66,3 @@ export const deleteTeacher = async (req, res) => {
   }
 }
 
-export const updateScore = async (req, res) => {
-  const { id } = req.params
-  const { score } = req.body
-  try {
-    const prevScore = await queries.getScoreById(id)
-    console.log(prevScore)
-    console.log(score)
-    const updatedScore = (prevScore + parseInt(score)) / 2
-    console.log(updatedScore)
-    await queries.updateScoreById(id, updatedScore)
-    res.status(200).json({ updatedScore })
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({ error: err.message })
-  }
-}
