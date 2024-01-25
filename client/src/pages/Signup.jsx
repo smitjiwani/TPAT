@@ -48,6 +48,8 @@ function Signup() {
 
             let response = await res.json();
 
+            
+
             setEmail('')
             setPassword('')
             setConfirmPassword('')

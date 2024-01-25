@@ -27,7 +27,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     const data = { email: email, password: password, role: (role.teacher ? 'teacher' : 'student') };
 
     const response = await fetch('/api/auth/login', {
@@ -52,10 +51,10 @@ function Login() {
         progress: undefined,
       })
       if (data.role === 'teacher') {
-        navigate('/teacher')
+        navigate('/teacherdashboard')
       }
       else {
-        navigate('/student')
+        navigate('/studentdashboard')
       }
     } else {
       toast.error(response.error, {
