@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import GoogleTranslateWidget from '../components/googletranslate'
+import GoogleTranslateWidget from '../components/Googletranslate'
 import "../styles/TeacherDashboard.css"
 
 function TeacherDashboard() {
