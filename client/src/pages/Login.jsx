@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import "../styles/Login.css"
 import RadioButton from '../components/RadioButton'
-import { useNavigate  } from "react-router-dom"
-import { toast, ToastContainer} from 'react-toastify'
+import { useNavigate } from "react-router-dom"
+import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import GoogleTranslateWidget from '../components/GoogleTranslate.jsx'
 
@@ -15,7 +15,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  
+
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -39,118 +39,118 @@ function Login() {
     console.log(response)
 
     if (response.status === 'success') {
-      localStorage.setItem('user',JSON.stringify({authtoken: response.authtoken}));
-      toast.success('Logged in successfully', {
-        position: 'top-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
-      if (data.role === 'teacher') {
-        navigate('/teacherdashboard')
-      }
-      else {
-        navigate('/studentdashboard')
-      }
-    } else {
-      toast.error(response.error, {
-        position: 'top-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
-      console.log(response)
+      localStorage.setItem('user', JSON.stringify({ authtoken: response.authtoken}));
+    toast.success('Logged in successfully', {
+      position: 'top-left',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    })
+    if (data.role === 'teacher') {
+      navigate('/teacherdashboard')
     }
+    else {
+      navigate('/studentdashboard')
+    }
+  } else {
+    toast.error(response.error, {
+      position: 'top-left',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+  console.log(response)
+}
   };
 
 
-  const handleChange = (e) => {
-    if (e.target.name == 'email') {
-      setEmail(e.target.value)
-    }
-    else if (e.target.name == 'password') {
-      setPassword(e.target.value)
-    }
-    else if (e.target.name == 'student') {
-      setRole({ teacher: false, student: true })
-    }
-    else if (e.target.name == 'teacher') {
-      setRole({ teacher: true, student: false })
-    }
+const handleChange = (e) => {
+  if (e.target.name == 'email') {
+    setEmail(e.target.value)
   }
+  else if (e.target.name == 'password') {
+    setPassword(e.target.value)
+  }
+  else if (e.target.name == 'student') {
+    setRole({ teacher: false, student: true })
+  }
+  else if (e.target.name == 'teacher') {
+    setRole({ teacher: true, student: false })
+  }
+}
 
-  return (
-    <section className='loginPage'>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className='loginBox'>
-        <h2>
-          Sign in to your account
-        </h2>
-        <GoogleTranslateWidget />
-        <div className='radioBox'>
-          <span>Sign in as :</span>
-          <RadioButton
-            name="student"
-            id="studentRadio"
-            value="student"
-            onChange={handleChange}
-            checked={role.student}
-            text="student"
-          />
-          <RadioButton
-            name="teacher"
-            id="teahcerRadio"
-            value="teacher"
-            onChange={handleChange}
-            checked={role.teacher}
-            text="teacher"
-          />
-        </div>
-        <form action="#" onSubmit={handleSubmit} className='loginForm'>
-          <div className='inputSection'>
-            <label htmlFor="email" >Email</label>
-            <input value={email} onChange={handleChange} type="email" name="email" id="email" placeholder="abc@eng.rizvi.edu.in" required="" />
-          </div>
-          <div className='inputSection'>
-            <label htmlFor="password" >Password</label>
-            <input value={password} onChange={handleChange} type="password" name="password" id="password" placeholder="••••••••" required="" />
-          </div>
-          <div>
-            <div className='rememberBox'>
-              <div >
-                <input id="remember" aria-describedby="remember" type="checkbox" required="" />
-              </div>
-              <div >
-                <label htmlFor="remember" >Remember me</label>
-              </div>
-            </div>
-            <a href="#" >Forgot password?</a>
-          </div>
-          <div className='buttonContainer'>
-            <button type="submit" className='loginButton' >Sign in</button>
-          </div>
-          <p >
-            Don’t have an account yet? <a href="/signup" >Sign up</a>
-          </p>
-        </form>
+return (
+  <section className='loginPage'>
+    <ToastContainer
+      position="bottom-left"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+    <div className='loginBox'>
+      <h2>
+        Sign in to your account
+      </h2>
+      <GoogleTranslateWidget />
+      <div className='radioBox'>
+        <span>Sign in as :</span>
+        <RadioButton
+          name="student"
+          id="studentRadio"
+          value="student"
+          onChange={handleChange}
+          checked={role.student}
+          text="student"
+        />
+        <RadioButton
+          name="teacher"
+          id="teahcerRadio"
+          value="teacher"
+          onChange={handleChange}
+          checked={role.teacher}
+          text="teacher"
+        />
       </div>
-    </section>
-  )
+      <form action="#" onSubmit={handleSubmit} className='loginForm'>
+        <div className='inputSection'>
+          <label htmlFor="email" >Email</label>
+          <input value={email} onChange={handleChange} type="email" name="email" id="email" placeholder="abc@eng.rizvi.edu.in" required="" />
+        </div>
+        <div className='inputSection'>
+          <label htmlFor="password" >Password</label>
+          <input value={password} onChange={handleChange} type="password" name="password" id="password" placeholder="••••••••" required="" />
+        </div>
+        <div>
+          <div className='rememberBox'>
+            <div >
+              <input id="remember" aria-describedby="remember" type="checkbox" required="" />
+            </div>
+            <div >
+              <label htmlFor="remember" >Remember me</label>
+            </div>
+          </div>
+          <a href="#" >Forgot password?</a>
+        </div>
+        <div className='buttonContainer'>
+          <button type="submit" className='loginButton' >Sign in</button>
+        </div>
+        <p >
+          Don’t have an account yet? <a href="/signup" >Sign up</a>
+        </p>
+      </form>
+    </div>
+  </section>
+)
 }
 
 export default Login

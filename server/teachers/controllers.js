@@ -14,12 +14,7 @@ export const getAllTeachers = async (req, res) => {
 }
 
 export const getTeacherById = async (req, res) => {
-  console.log(req.headers)
-  console.log(typeof(req.headers))
-  const { authtoken } = JSON.parse(req.headers)
-  console.log("authtoken is: ",authtoken)
-  const data = jwt.verify(authtoken, JWT_SECRET)
-  const id = data.user.teacherID;
+  const id = req.user.teacherID;
   try {
     const teacher = await queries.getTeacherById(id)
     res.status(200).json({ teacher })
@@ -49,7 +44,7 @@ export const createTeacher = async (req, res) => {
 }
 
 export const updateTeacher = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.id
   const { teacher } = req.body
   try {
     const updatedTeacher = await queries.updateTeacher(id, teacher)
@@ -70,7 +65,7 @@ export const deleteTeacher = async (req, res) => {
 }
 
 export const getReviewScoreById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.teacherID
   try {
     const score = await queries.getReviewScoreById(id)
     res.status(200).json({ score })
@@ -80,7 +75,7 @@ export const getReviewScoreById = async (req, res) => {
 }
 
 export const getQuizScoreById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.teacherID
   try {
     const score = await queries.getQuizScoreById(id)
     res.status(200).json({ score })
@@ -90,7 +85,7 @@ export const getQuizScoreById = async (req, res) => {
 }
 
 export const getCourseScoreById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.teacherID
   try {
     const score = await queries.getCourseScoreById(id)
     res.status(200).json({ score })
@@ -100,7 +95,7 @@ export const getCourseScoreById = async (req, res) => {
 }
 
 export const getTotalScoreById = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.teacherID
   try {
     const score = await queries.getTotalScoreById(id)
     res.status(200).json({ score })
