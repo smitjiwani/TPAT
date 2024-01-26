@@ -16,6 +16,7 @@ const migrate = async () => {
     await db.schema.withSchema('public').dropTableIfExists('classes')
     await db.schema.withSchema('public').dropTableIfExists('students')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
+    await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
 
     // Create teachers table
