@@ -8,20 +8,25 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import teacherRoutes from './teachers/routes.js'
 import studentRoutes from './students/routes.js'
 import classRoutes from './classes/routes.js'
-// import quizRoutes from './quiz/routes.js'
 import quizRoutes from './quiz/routes.js'
-// import takingQuizRoutes from './takeQuiz//routes.js'
+
+import takingQuizRoutes from './takeQuiz/routes.js'
+
+import scoreRoutes from './score/routes.js'
+
 
 import auth from './authentication/auth.js'
+import seedMongo from './scripts/seedMongo.js'
 
 const PORT = process.env.PORT || 5000
 const PASS = process.env.PASS || 'password'
 
-const conStr = 'mongodb://admin:password@mongodb:27017/Quiz?authSource=admin'
+const conStr = `mongodb://admin:${PASS}@mongodb:27017/Quiz?authSource=admin`
 mongoose
   .connect(conStr)
   .then(() => {
     console.log('Connected to MongoDB')
+    seedMongo()
   })
   .catch((err) => {
     console.log(err)
@@ -63,7 +68,10 @@ app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
 app.use('/api/quiz', quizRoutes)
-// app.use('/api/takeQuiz', takingQuizRoutes)
+
+app.use('/api/takeQuiz', takingQuizRoutes)
+app.use('/api/scores', scoreRoutes)
+
 
 app.use('/api/auth', auth)
 

@@ -11,5 +11,6 @@ router.delete('/:quizID', controller.deleteQuiz)
 
 // Publish quiz for students to take
 router.patch('/:quizID/publish', controller.publishQuiz)
+router.get('/published/', controller.getPublishedQuiz)
 
 export default router
