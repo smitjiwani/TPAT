@@ -36,8 +36,10 @@ function Login() {
       body: JSON.stringify(data)
     }).then(res => res.json());
 
+    console.log(response)
+
     if (response.status === 'success') {
-      localStorage.setItem('user', JSON.stringify(response.data));
+      localStorage.setItem('user',JSON.stringify({authtoken: response.authtoken}));
       toast.success('Logged in successfully', {
         position: 'top-left',
         autoClose: 5000,
@@ -143,7 +145,7 @@ function Login() {
             <button type="submit" className='loginButton' >Sign in</button>
           </div>
           <p >
-            Don’t have an account yet? <a href="#" >Sign up</a>
+            Don’t have an account yet? <a href="/signup" >Sign up</a>
           </p>
         </form>
       </div>
