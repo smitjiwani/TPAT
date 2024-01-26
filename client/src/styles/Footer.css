@@ -1,0 +1,16 @@
+.footer {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    padding:0;
+    margin:0;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.footer p {
+    font-size: 14px;
+    color: var(--font-color);
+    text-align: center;
+    padding: 2rem;
+}

@@ -4,7 +4,7 @@ import RadioButton from '../components/RadioButton'
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import GoogleTranslateWidget from '../components/googletranslate.jsx'
+import GoogleTranslateWidget from '../components/GoogleTranslate.jsx'
 
 function Signup() {
 
