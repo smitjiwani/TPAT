@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import GoogleTranslateWidget from '../components/GoogleTranslate.jsx'
-import '../styles/TeacherDashboard.css'
+
+import GoogleTranslateWidget from '../components/Googletranslate'
+import "../styles/TeacherDashboard.css"
+
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])

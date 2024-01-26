@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/Navbar.css'
-import GoogleTranslateWidget from './GoogleTranslate'
+import GoogleTranslateWidget from './Googletranslate'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
@@ -15,7 +15,7 @@ function Navbar() {
                     <li className="nav__item">
                         <a href="#" className="nav__link">Contact</a>
                     </li>
-                    <Link to="/signin"><button className='login__button'>Sign In</button></Link>
+                    <Link to="/login"><button className='login__button'>Sign In</button></Link>
                     <li className="google__widget">
                         <GoogleTranslateWidget />
                     </li>
