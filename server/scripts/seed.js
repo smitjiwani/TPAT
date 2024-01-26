@@ -8,7 +8,6 @@ const classID2 = uuidv4()
 const studentID = uuidv4()
 const studentID2 = uuidv4()
 const scoreID = uuidv4()
-const scoreID2 = uuidv4()
 
 const seed = async () => {
   try {
@@ -40,13 +39,19 @@ const seed = async () => {
     // Insert into class table
     await db('classes').insert({
       classID: classID,
-      subjectID: 'sample-subject-1',
+      subjectName: 'Sample Subject 1',
+      year: '1',
+      semester: '1',
+      course: 'AI',
     })
     await db('classes').insert({
       classID: classID2,
-      subjectID: 'sample-subject-2',
+      subjectName: 'Sample Subject 2',
+      year: '2',
+      semester: '2',
+      course: 'CompSci',
     })
-    console.log('Added sample class!')
+    console.log('Added sample classes!')
 
     // Insert into students table
     await db('students').insert({
@@ -68,6 +73,7 @@ const seed = async () => {
       classID: classID2,
     })
     console.log('Added sample students!')
+
     process.exit(0)
   } catch (err) {
     console.log(err)
