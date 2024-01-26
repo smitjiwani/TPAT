@@ -1,4 +1,4 @@
-import Quiz from '../scripts/quizSchema.js'
+import Quiz from '../scripts/quizSchema.cjs'
 import Result from '../scripts/resultSchema.js'
 
 export const startQuiz = async (req, res) => {
@@ -36,9 +36,6 @@ export const submitQuiz = async (req, res) => {
     let score = 0
     for (let i = 0; i < total; i++) {
       let quesNum = allQues[i]
-      console.log(attemptedQues)
-      console.log(quesNum)
-      console.log(attemptedQues[quesNum])
       if (
         !!attemptedQues[quesNum] &&
         attemptedQues[quesNum] == answers[quesNum]

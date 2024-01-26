@@ -4,9 +4,11 @@ import TeacherDashboard from './pages/TeacherDashboard'
 import StudentDashboard from './pages/StudentDashboard'
 import Login from './pages/Login'
 import Home from './pages/Home'
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
+import TakeQuiz from './pages/Quiz'
 import Leaderboard from './pages/Leaderboard'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
 
   return (
     <>
+
       <BrowserRouter >
         <Routes >
           {user.role ? (
@@ -34,6 +37,7 @@ function App() {
           <Route path='/studentdashboard' element={<StudentDashboard />} />
           <Route path='/teacherdashboard' element={<TeacherDashboard />} />
           <Route path='/Leaderboard' element={<Leaderboard />} />
+          <Route path="/quiz" element={<TakeQuiz />} />
         </Routes>
       </BrowserRouter>
     </>
