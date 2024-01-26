@@ -1,8 +1,5 @@
 import db from '../db.js'
 import * as queries from './queries.js'
-import jwt from 'jsonwebtoken'
-
-const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
 //controllers for student table
 
 export const getAllStudents = async (req, res) => {
@@ -15,11 +12,8 @@ export const getAllStudents = async (req, res) => {
 }
 
 export const getStudentById = async (req, res) => {
-  const { authtoken } = req.headers
 
-  const data = jwt.verify(authtoken, JWT_SECRET)
-  const id = data.user.studentID;
-  console.log("data is : ", data)
+  const id = req.user.studentID;
   try {
     const student = await queries.getStudentById(id)
     if (!student) {
@@ -56,7 +50,7 @@ export const createStudent = async (req, res) => {
 }
 
 export const updateStudent = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.user.studentID
   const { student } = req.body
   try {
     const updatedStudent = await queries.updateStudent(id, student)

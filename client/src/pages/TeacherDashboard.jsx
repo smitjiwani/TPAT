@@ -7,15 +7,15 @@ function TeacherDashboard() {
 
   const getTeacherInfo = async () => {
     try {
-      const authToken = JSON.parse(localStorage.getItem('user')).authToken;
+      const authtoken = JSON.parse(localStorage.getItem('user')).authtoken;
       const response = await fetch('http://localhost:5000/api/teachers/getteacherbyid', {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
-          'authToken': authToken
+          'authtoken': authtoken
         }
       }).then(res => res.json());
-      
+
       if (response.status === 200) {
         const data = await response.json();
         setTeachers(data);

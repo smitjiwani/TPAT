@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import * as controller from './controllers.js'
+import fetchuser from '../middleware/fetchuser.js'
 
 const router = Router()
 // const auth = require('../authentication/auth.js');
@@ -95,7 +96,7 @@ router.get('/', controller.getAllTeachers)
  *      404:
  *        description: Teacher not found.
  */
-router.get('/getteacherbyid', controller.getTeacherById)
+router.get('/getteacherbyid', fetchuser, controller.getTeacherById)
 
 /**
  * @swagger
@@ -179,7 +180,7 @@ router.post('/', controller.createTeacher)
  *      400:
  *        description: Bad Request
  */
-router.put('/:id', controller.updateTeacher)
+router.put('/:id', fetchuser, controller.updateTeacher)
 
 /**
  * @swagger
@@ -237,10 +238,10 @@ router.delete('/:id', controller.deleteTeacher)
  *      400:
  *        description: Bad Request
  */
-router.get('/getscore/review/:id', controller.getReviewScoreById)
-router.get('/getscore/quiz/:id', controller.getQuizScoreById)
-router.get('/getscore/course/:id', controller.getCourseScoreById)
-router.get('/getscore/total/:id', controller.getTotalScoreById)
+router.get('/getscore/review', fetchuser, controller.getReviewScoreById)
+router.get('/getscore/quiz', fetchuser, controller.getQuizScoreById)
+router.get('/getscore/course', fetchuser, controller.getCourseScoreById)
+router.get('/getscore/total', fetchuser, controller.getTotalScoreById)
 router.patch('/updatescore/review/:id', controller.updateReviewScoreById)
 
 // router.use('/auth', auth);
