@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
+import Leaderboard from './pages/Leaderboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +28,7 @@ function App() {
           <Route path='/signup' element= {<Signup />} />
           <Route path='/studentdashboard' element= {<StudentDashboard />} />
           <Route path='/teacherdashboard' element= {<TeacherDashboard />} />
+          <Route path='/Leaderboard' element= {<Leaderboard />} />
         </Routes>
       </BrowserRouter>
 

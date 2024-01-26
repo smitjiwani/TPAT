@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import * as controller from './controllers.js'
+import fetchuser from '../middleware/fetchuser.js'
 
 const router = Router()
 // const auth = require('../authentication/auth.js');
@@ -60,7 +61,7 @@ const router = Router()
  *      400:
  *        description: Bad Request
  */
-router.get('/', controller.getAllStudents)
+router.get('/', fetchuser, controller.getAllStudents)
 
 /**
  * @swagger
@@ -87,7 +88,7 @@ router.get('/', controller.getAllStudents)
  *      404:
  *        description: Student not found.
  */
-router.get('/getstudentbyid', controller.getStudentById)
+router.get('/getstudentbyid', fetchuser, controller.getStudentById)
 
 /**
  * @swagger
@@ -114,7 +115,7 @@ router.get('/getstudentbyid', controller.getStudentById)
  *      404:
  *        description: Student not found.
  */
-router.get('/email/:email', controller.getStudentByEmail)
+router.get('/email/:email', fetchuser, controller.getStudentByEmail)
 
 /**
  * @swagger
@@ -171,7 +172,7 @@ router.post('/', controller.createStudent)
  *      400:
  *        description: Bad Request
  */
-router.put('/:id', controller.updateStudent)
+router.put('/:id', fetchuser, controller.updateStudent)
 
 /**
  * @swagger

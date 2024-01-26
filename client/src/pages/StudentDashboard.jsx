@@ -9,12 +9,12 @@ function StudentDashboard() {
 
   const getStudentInfo = async () => {
     try {
-      const authToken = JSON.parse(localStorage.getItem('user')).authtoken;
+      const authtoken = JSON.parse(localStorage.getItem('user')).authtoken;
       const response = await fetch('http://localhost:5000/api/students/getstudentbyid', {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
-          'authtoken': authToken
+          'authtoken': authtoken
         }
       })
       if (response.status === 200) {
