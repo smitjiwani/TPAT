@@ -10,6 +10,7 @@ import Signup from './pages/Signup'
 
 import TakeQuiz from './pages/Quiz'
 import Leaderboard from './pages/Leaderboard'
+import AllQuiz from './pages/AllQuiz'
 
 function App() {
 
@@ -37,7 +38,8 @@ function App() {
           <Route path='/studentdashboard' element={<StudentDashboard />} />
           <Route path='/teacherdashboard' element={<TeacherDashboard />} />
           <Route path='/Leaderboard' element={<Leaderboard />} />
-          <Route path="/quiz" element={<TakeQuiz />} />
+          <Route path="/allquiz/:id" element={<TakeQuiz />} />
+          <Route path="/allquiz" element={<AllQuiz />} />
 
         </Routes>
       </BrowserRouter>
