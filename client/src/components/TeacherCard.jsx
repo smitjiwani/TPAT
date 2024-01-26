@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import axios from 'axios';
 
 function TeacherCard(props) {
   const [score, setScore] = useState(props.score);
