@@ -7,6 +7,7 @@ import Home from './pages/Home'
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Signup from './pages/Signup'
+
 import TakeQuiz from './pages/Quiz'
 import Leaderboard from './pages/Leaderboard'
 
@@ -19,6 +20,7 @@ function App() {
 
       <BrowserRouter >
         <Routes >
+
           {user.role ? (
             <>
               {user.role === 'teacher' ? (
@@ -36,6 +38,7 @@ function App() {
           <Route path='/teacherdashboard' element={<TeacherDashboard />} />
           <Route path='/Leaderboard' element={<Leaderboard />} />
           <Route path="/quiz" element={<TakeQuiz />} />
+
         </Routes>
       </BrowserRouter>
     </>
