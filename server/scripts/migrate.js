@@ -15,9 +15,7 @@ const migrate = async () => {
     await db.raw('DROP TABLE IF EXISTS public.classes CASCADE');
     await db.schema.withSchema('public').dropTableIfExists('classes')
     await db.schema.withSchema('public').dropTableIfExists('students')
-    await db.schema.withSchema('public').dropTableIfExists('score')
     await db.schema.withSchema('public').dropTableIfExists('teachers')
-    await db.schema.withSchema('public').dropTableIfExists('score')
     console.log('Dropped tables!')
 
     // Create teachers table
@@ -27,6 +25,10 @@ const migrate = async () => {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
+      table.float('reviewScore').defaultTo(0)
+      table.float('quizScore').defaultTo(0)
+      table.float('courseScore').defaultTo(0)
+      table.float('totalScore').defaultTo(0)
     })
     console.log('Created teachers table!')
 
@@ -59,16 +61,6 @@ const migrate = async () => {
       table.foreign('classID').references('classes.classID')
     })
     console.log('Created students table!')
-
-    await db.schema.withSchema('public').createTable('score', (table) => {
-
-      table.uuid('scoreID').primary().defaultTo(db.fn.uuid())
-      table.float('reviewScore').defaultTo(0)
-      table.float('quizScore').defaultTo(0)
-      table.float('courseScore').defaultTo(0)
-      table.float('totalScore').defaultTo(0)
-    })
-    console.log('Created score table!')
 
     process.exit(0)
   } catch (err) {

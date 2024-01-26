@@ -237,6 +237,11 @@ router.delete('/:id', controller.deleteTeacher)
  *      400:
  *        description: Bad Request
  */
+router.get('/getscore/review/:id', controller.getReviewScoreById)
+router.get('/getscore/quiz/:id', controller.getQuizScoreById)
+router.get('/getscore/course/:id', controller.getCourseScoreById)
+router.get('/getscore/total/:id', controller.getTotalScoreById)
+router.patch('/updatescore/review/:id', controller.updateReviewScoreById)
 
 // router.use('/auth', auth);
 
