@@ -10,7 +10,7 @@ function TeacherCard(props) {
   const handleThumbsUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`api/teachers/${props.id}`, {
+      const response = await fetch(`api/teachers/updatescore/review/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function TeacherCard(props) {
   const handleThumbsDown = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`api/teachers/${props.id}`, {
+      const response = await fetch(`api/teachers/updatescore/review/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

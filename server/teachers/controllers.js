@@ -107,11 +107,11 @@ export const getTotalScoreById = async (req, res) => {
 export const updateReviewScoreById = async (req, res) => {
   try {
     const { id } = req.params
-    const { score } = req.body.score
+    const { score } = req.body
     const prevScore = await queries.getReviewScoreById(id)
     console.log(prevScore)
     console.log(score)
-    const updatedScore = (prevScore + parseInt(score)) / 2
+    const updatedScore = ((prevScore + parseFloat(score)) / 2).toFixed(2)
     console.log(updatedScore)
     await queries.updateReviewScoreById(id, updatedScore)
     res.status(200).json({ updatedScore })
