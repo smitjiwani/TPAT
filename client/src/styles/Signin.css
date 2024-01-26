@@ -1,0 +1,38 @@
+.signin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--font-color);
+    width: 100vw;
+}
+
+.signin h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button{
+    width: 100%;
+    margin: 0 1rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    border: 3px solid var(--primary-color);
+}
+
+.buttons button:hover{
+    background-color: var(--font-color);
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+}

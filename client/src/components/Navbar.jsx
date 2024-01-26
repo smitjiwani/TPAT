@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/Navbar.css'
 import GoogleTranslateWidget from './GoogleTranslate'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
@@ -14,7 +15,7 @@ function Navbar() {
                     <li className="nav__item">
                         <a href="#" className="nav__link">Contact</a>
                     </li>
-                    <button className='login__button'>Sign In</button>
+                    <Link to="/signin"><button className='login__button'>Sign In</button></Link>
                     <li className="google__widget">
                         <GoogleTranslateWidget />
                     </li>
