@@ -4,7 +4,7 @@ import RadioButton from '../components/RadioButton'
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import GoogleTranslateWidget from '../components/GoogleTranslate.jsx'
+import GoogleTranslateWidget from '../components/Googletranslate.jsx'
 
 function Signup() {
 
@@ -174,7 +174,7 @@ function Signup() {
                         <button type="submit" className='loginButton' >Sign Up</button>
                     </div>
                     <p >
-                        Already have an account? <a href="/" >Sign in</a>
+                        Already have an account? <a href="/login" >Sign in</a>
                     </p>
                 </form>
             </div>

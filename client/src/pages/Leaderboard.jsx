@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import '../styles/LeaderBoard.css'
 
@@ -45,6 +46,7 @@ const Leaderboard = () => {
                 </table>
             </div>
         </div>
+
     )
 }
 

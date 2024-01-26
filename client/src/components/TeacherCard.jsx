@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import axios from 'axios';
 
 function TeacherCard(props) {
   const [score, setScore] = useState(props.score);
@@ -10,7 +9,7 @@ function TeacherCard(props) {
   const handleThumbsUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`api/teachers/${props.id}`, {
+      const response = await fetch(`api/teachers/updatescore/review/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +30,7 @@ function TeacherCard(props) {
   const handleThumbsDown = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`api/teachers/${props.id}`, {
+      const response = await fetch(`api/teachers/updatescore/review/${props.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

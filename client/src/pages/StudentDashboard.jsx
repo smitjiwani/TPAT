@@ -63,7 +63,7 @@ function StudentDashboard() {
             name={teacher.name}
             email={teacher.email}
             phone={teacher.phone}
-            score={teacher.score}
+            score={teacher.reviewScore}
           />
         );
       })}
