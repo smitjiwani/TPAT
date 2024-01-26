@@ -7,8 +7,6 @@ const classID = uuidv4()
 const classID2 = uuidv4()
 const studentID = uuidv4()
 const studentID2 = uuidv4()
-const scoreID = uuidv4()
-const scoreID2 = uuidv4()
 
 const seed = async () => {
   try {
@@ -19,6 +17,10 @@ const seed = async () => {
       email: 'teacher1@gmail.com',
       password: 'password1',
       phone: '1234567890',
+      reviewScore: 4,
+      quizScore: 8,
+      courseScore: 17,
+      totalScore: 29,
     })
     await db('teachers').insert({
       teacherID: teacherID2,
@@ -26,6 +28,10 @@ const seed = async () => {
       email: 'teacher2@gmail.com',
       password: 'password2',
       phone: '1234567890',
+      reviewScore: 5,
+      quizScore: 10,
+      courseScore: 15,
+      totalScore: 30,
     })
     console.log('Added sample teachers!')
 
@@ -60,22 +66,6 @@ const seed = async () => {
       classID: classID2,
     })
     console.log('Added sample students!')
-
-    await db('score').insert({
-      scoreID: scoreID,
-      reviewScore: 5,
-      quizScore: 10,
-      courseScore: 15,
-      totalScore: 30,
-    })
-    await db('score').insert({
-      scoreID: scoreID2,
-      reviewScore: 4,
-      quizScore: 8,
-      courseScore: 17,
-      totalScore: 29,
-    })
-    console.log('Added sample scores!')
 
     process.exit(0)
   } catch (err) {
