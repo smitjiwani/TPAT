@@ -2,12 +2,14 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import '../styles/Home.css'
+import Footer from '../components/Footer'
 
 function Home() {
   return (
-    <div id='home'>
+    <div>
         <Navbar />
         <Hero />
+        <Footer />
     </div>
   )
 }
