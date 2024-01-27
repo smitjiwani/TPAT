@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 
-import GoogleTranslateWidget from '../components/Googletranslate'
-import "../styles/TeacherDashboard.css"
-
+import GoogleTranslateWidget from '../components/GoogleTranslate'
+import '../styles/TeacherDashboard.css'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
 
   const getTeacherInfo = async () => {
     try {
-
-      const authtoken = JSON.parse(localStorage.getItem('user')).authtoken;
-      const response = await fetch('http://localhost:5000/api/teachers/getteacherbyid', {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          'authtoken': authtoken
-        }
-      }).then(res => res.json());
-
+      const authtoken = JSON.parse(localStorage.getItem('user')).authtoken
+      const response = await fetch(
+        'http://localhost:5000/api/teachers/getteacherbyid',
+        {
+          method: 'get',
+          headers: {
+            'Content-Type': 'application/json',
+            authtoken: authtoken,
+          },
+        },
+      ).then((res) => res.json())
 
       if (response.status === 200) {
         const data = await response.json()
