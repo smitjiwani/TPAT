@@ -1,4 +1,4 @@
-import Quiz from '../scripts/quizSchema.js'
+import Quiz from '../scripts/quizSchema.cjs'
 
 export const createQuiz = async (req, res) => {
   try {
@@ -6,16 +6,17 @@ export const createQuiz = async (req, res) => {
     const result = await quiz.save()
     res.status(200).send(result)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
 export const getQuiz = async (req, res) => {
   try {
     const quizzes = await Quiz.find()
+    console.log(quizzes)
     res.status(200).send(quizzes)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -24,7 +25,7 @@ export const getPublishedQuiz = async (req, res) => {
     const quizzes = await Quiz.find({ isPublished: true })
     res.status(200).send(quizzes)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -43,7 +44,7 @@ export const getQuizById = async (req, res) => {
 
     res.status(200).send(quiz)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -65,7 +66,7 @@ export const updateQuiz = async (req, res) => {
 
     res.status(200).send(quiz)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -78,7 +79,7 @@ export const deleteQuiz = async (req, res) => {
     await Quiz.deleteOne({ _id: req.params.quizID })
     res.status(200).send('Quiz Deleted Successfully')
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -95,6 +96,6 @@ export const publishQuiz = async (req, res) => {
 
     res.status(200).send(quiz)
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }

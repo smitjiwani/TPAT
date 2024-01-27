@@ -1,4 +1,4 @@
-import Quiz from './quizSchema.js'
+import Quiz from './quizSchema.cjs'
 import Result from './resultSchema.js'
 
 const seedMongo = async () => {

@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose)
 
 const quizSchema = new mongoose.Schema(
   {
@@ -11,7 +12,6 @@ const quizSchema = new mongoose.Schema(
         queNum: {
           type: Number,
           required: true,
-          unique: true,
         },
         question: {
           type: String,
@@ -35,6 +35,8 @@ const quizSchema = new mongoose.Schema(
   { timestamnp: true },
 )
 
+quizSchema.plugin(AutoIncrement, { inc_field: 'queNum' })
+
 const Quiz = mongoose.model('Quiz', quizSchema)
 
-export default Quiz
+module.exports = Quiz
