@@ -3,11 +3,9 @@ import db from '../db.js'
 const migrate = async () => {
   try {
     // Drop tables
-    await db.raw('DROP TABLE IF EXISTS public.teachers CASCADE');
-    await db.raw('DROP TABLE IF EXISTS public.classes CASCADE');
-    await db.schema.withSchema('public').dropTableIfExists('classes')
-    await db.schema.withSchema('public').dropTableIfExists('students')
-    await db.schema.withSchema('public').dropTableIfExists('teachers')
+    await db.raw('DROP TABLE IF EXISTS public.teachers CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.classes CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.students CASCADE')
     console.log('Dropped tables!')
 
     // Create teachers table
