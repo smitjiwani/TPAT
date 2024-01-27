@@ -59,11 +59,6 @@ const QuestionCard = (props) => {
         Selected option is : {options[selectedOption]}
       </div>
       <br />
-
-      {/* Submit button */}
-      <button className="btn btn-default" type="submit">
-        Submit
-      </button>
     </form>
   )
 }
