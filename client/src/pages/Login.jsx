@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GoogleTranslateWidget from '../components/GoogleTranslate'
+import Navbar from '../components/Navbar'
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -83,92 +84,95 @@ function Login() {
   }
 
   return (
-    <section className="loginPage">
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="loginBox">
-        <h2>Sign in to your account</h2>
-        <GoogleTranslateWidget />
-        <div className="radioBox">
-          <span>Sign in as :</span>
-          <RadioButton
-            name="student"
-            id="studentRadio"
-            value="student"
-            onChange={handleChange}
-            checked={role.student}
-            text="student"
-          />
-          <RadioButton
-            name="teacher"
-            id="teahcerRadio"
-            value="teacher"
-            onChange={handleChange}
-            checked={role.teacher}
-            text="teacher"
-          />
-        </div>
-        <form action="#" onSubmit={handleSubmit} className="loginForm">
-          <div className="inputSection">
-            <label htmlFor="email">Email</label>
-            <input
-              value={email}
+    <>
+      <Navbar />
+      <section className="loginPage">
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <div className="loginBox">
+          <h2>Sign in to your account</h2>
+          <GoogleTranslateWidget />
+          <div className="radioBox">
+            <span>Sign in as :</span>
+            <RadioButton
+              name="student"
+              id="studentRadio"
+              value="student"
               onChange={handleChange}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="abc@eng.rizvi.edu.in"
-              required=""
+              checked={role.student}
+              text="student"
+            />
+            <RadioButton
+              name="teacher"
+              id="teahcerRadio"
+              value="teacher"
+              onChange={handleChange}
+              checked={role.teacher}
+              text="teacher"
             />
           </div>
-          <div className="inputSection">
-            <label htmlFor="password">Password</label>
-            <input
-              value={password}
-              onChange={handleChange}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              required=""
-            />
-          </div>
-          <div>
-            <div className="rememberBox">
-              <div>
-                <input
-                  id="remember"
-                  aria-describedby="remember"
-                  type="checkbox"
-                  required=""
-                />
-              </div>
-              <div>
-                <label htmlFor="remember">Remember me</label>
-              </div>
+          <form action="#" onSubmit={handleSubmit} className="loginForm">
+            <div className="inputSection">
+              <label htmlFor="email">Email</label>
+              <input
+                value={email}
+                onChange={handleChange}
+                type="email"
+                name="email"
+                id="email"
+                placeholder="abc@eng.rizvi.edu.in"
+                required=""
+              />
             </div>
-            <a href="#">Forgot password?</a>
-          </div>
-          <div className="buttonContainer">
-            <button type="submit" className="loginButton">
-              Sign in
-            </button>
-          </div>
-          <p>
-            Don’t have an account yet? <a href="/signup">Sign up</a>
-          </p>
-        </form>
-      </div>
-    </section>
+            <div className="inputSection">
+              <label htmlFor="password">Password</label>
+              <input
+                value={password}
+                onChange={handleChange}
+                type="password"
+                name="password"
+                id="password"
+                placeholder="••••••••"
+                required=""
+              />
+            </div>
+            <div>
+              <div className="rememberBox">
+                <div>
+                  <input
+                    id="remember"
+                    aria-describedby="remember"
+                    type="checkbox"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label htmlFor="remember">Remember me</label>
+                </div>
+              </div>
+              <a href="#">Forgot password?</a>
+            </div>
+            <div className="buttonContainer">
+              <button type="submit" className="loginButton">
+                Sign in
+              </button>
+            </div>
+            <p>
+              Don’t have an account yet? <a href="/signup">Sign up</a>
+            </p>
+          </form>
+        </div>
+      </section>
+    </>
   )
 }
 
