@@ -6,23 +6,31 @@ import '../styles/TeacherDashboard.css'
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
 
+
+    if (!localStorage.getItem('user')) {
+      window.location.replace('/login')
+    }
+    
+    if (JSON.parse(localStorage.getItem('user')).role !== 'teacher') {
+      window.location.replace('/')
+    }
+  
+
+ 
   const getTeacherInfo = async () => {
     try {
       const authtoken = JSON.parse(localStorage.getItem('user')).authtoken
-      const response = await fetch(
-        'http://localhost:5000/api/teachers/getteacherbyid',
-        {
+      const response = await fetch('/api/teachers/getteacherbyid',{
           method: 'get',
           headers: {
             'Content-Type': 'application/json',
             authtoken: authtoken,
           },
-        },
-      ).then((res) => res.json())
+      })
 
       if (response.status === 200) {
         const data = await response.json()
-        setTeachers(data)
+        setTeachers(data.teacher[0])
       } else {
         console.error('Error:', response.status)
       }
@@ -40,17 +48,13 @@ function TeacherDashboard() {
       <Navbar />
       <div>
         <GoogleTranslateWidget />
-        <h1>Teacher Dashboard</h1>
-        {teachers.map((teacher) => {
-          return (
-            <div className="profile" key={teacher.id}>
-              <h2>{teacher.name}</h2>
-              <p>{teacher.email}</p>
-              <p>{teacher.phone}</p>
-              <p>{teacher.score}/5</p>
+        <h1>Teacher Dashboard</h1>          
+            <div className="profile" key={teachers.id}>
+              <h2>{teachers.name}</h2>
+              <p>{teachers.email}</p>
+              <p>{teachers.phone}</p>
+              <p>{teachers.score}/5</p>
             </div>
-          )
-        })}
       </div>
     </>
   )

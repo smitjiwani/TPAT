@@ -7,6 +7,16 @@ function StudentDashboard() {
   const [teachers, setTeachers] = useState([])
   const [student, setStudent] = useState({})
 
+  if (!localStorage.getItem('user')) {
+    window.location.replace('/login')
+  }
+
+  if (JSON.parse(localStorage.getItem('user')).role !== 'student') {
+    window.location.replace('/')
+  }
+
+
+
   const getStudentInfo = async () => {
     try {
       const authtoken = JSON.parse(localStorage.getItem('user')).authtoken
@@ -17,6 +27,7 @@ function StudentDashboard() {
           authtoken: authtoken,
         },
       })
+
       if (response.status === 200) {
         const data = await response.json()
         setStudent(data.student[0])
