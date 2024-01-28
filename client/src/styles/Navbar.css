@@ -56,6 +56,15 @@
     cursor: pointer;
 }
 
+.dashboard__button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.6rem 2rem;
+    margin: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
 .login__button:hover {
     background-color: var(--font-color);
     color: var(--tertiary-color);

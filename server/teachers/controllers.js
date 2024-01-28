@@ -2,7 +2,8 @@ import db from '../db.js'
 import * as queries from './queries.js'
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET = "31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842"
+const JWT_SECRET =
+  '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
 
 export const getAllTeachers = async (req, res) => {
   try {
@@ -14,7 +15,7 @@ export const getAllTeachers = async (req, res) => {
 }
 
 export const getTeacherById = async (req, res) => {
-  const id = req.user.teacherID;
+  const id = req.user.teacherID
   try {
     const teacher = await queries.getTeacherById(id)
     res.status(200).json({ teacher })
@@ -117,6 +118,34 @@ export const updateReviewScoreById = async (req, res) => {
     res.status(200).json({ updatedScore })
   } catch (err) {
     console.error(err)
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export const getLeaderboard = async (req, res) => {
+  try {
+    const LeaderBoard = await queries.getLeaderboard()
+    res.status(200).json({ LeaderBoard })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export const getStudentGrades = async (req, res) => {
+  try {
+    const scores = await queries.getStudentGrades(req.params.teacherID)
+    let s = []
+    for (let score of scores) {
+      s.push({
+        subjectID: score.subjectID,
+        classID: score.classID,
+        studentID: score.studentID,
+        grade: score.grade,
+      })
+    }
+    res.status(200).json({ teacherID: req.params.teacherID, subjects: s })
+  } catch (err) {
     res.status(400).json({ error: err.message })
   }
 }
