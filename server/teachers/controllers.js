@@ -149,3 +149,35 @@ export const getStudentGrades = async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 }
+
+export const updateExamScoreById = async (req, res) => {
+  try {
+    const { teacherID } = req.params;
+    const grade = await queries.getOnlyGrades(teacherID);
+
+    const gradeMap = {
+      'O': 3,
+      'D+': 2,
+      'D': 1,
+      'A+': -1,
+      'A': -2,
+      'B': -3,
+      'C': -4,
+      'U': -5,
+    };
+
+    let totalScore = 0;
+    for (let score of scores) {
+      totalScore += gradeMap[grade] || 0;
+    }
+
+    totalScore = Math.max(Math.min(totalScore, 20), -20);
+
+    // Update exam score for the teacher in the database
+    await queries.updateExamScorebyID(teacherID, totalScore);
+    res.status(200).json({ teacherID, examScore: totalScore });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ error: err.message });
+  }
+};

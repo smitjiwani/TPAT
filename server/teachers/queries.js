@@ -61,7 +61,7 @@ export const updateQuizScoreById = (teacherID, newScore) => {
     .returning('quizScore')
 }
 
-export const updateCourseScoreById = (teacherID, newScore) => {
+export const updateExamScoreById = (teacherID, newScore) => {
   const score = parseFloat(newScore)
   return db('teachers')
     .where({ teacherID })
@@ -83,3 +83,6 @@ export const getLeaderboard = () => {
 
 export const getStudentGrades = (teacherID) =>
   db('grades').where({ teacherID }).select('*')
+
+export const getOnlyGrades = (teacherID) =>
+  db('grades').where({ teacherID }).select('grade')
