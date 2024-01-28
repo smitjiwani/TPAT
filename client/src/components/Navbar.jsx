@@ -17,20 +17,21 @@ function Navbar() {
         TPAT
       </a>
       <ul className="navbar__nav">
-        <li className="nav__item">
-          <a href="#" className="nav__link">
-            About
-          </a>
-        </li>
-        <li className="nav__item">
-          <a href="#" className="nav__link">
-            Contact
-          </a>
-        </li>
         {user ? (
-          <button className="login__button" onClick={handleClick}>
-            Log out
-          </button>
+          <>
+            <button className="login__button" onClick={handleClick}>
+              Log out
+            </button>
+            {user.role === 'student' && window.location.pathname !== '/studentdashboard' ? (
+              <Link to="/studentdashboard">
+                <button className="dashboard__button">Go to dashboard</button>
+              </Link>
+            ) : user.role === 'teacher' && window.location.pathname !== '/teacherdashboard' ? (
+              <Link to="/teacherdashboard">
+                <button className="dashboard__button">Go to dashboard</button>
+              </Link>
+            ) : null}
+          </>
         ) : (
           <Link to="/login">
             <button className="login__button">Log In</button>

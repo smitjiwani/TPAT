@@ -3,6 +3,7 @@ import Result from '../scripts/resultSchema.js'
 import { updateQuizScoreById } from '../teachers/queries.js'
 import { getQuizScoreById } from '../teachers/queries.js'
 
+
 export const startQuiz = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.quizID, {
