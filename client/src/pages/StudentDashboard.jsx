@@ -8,11 +8,19 @@ function StudentDashboard() {
 
   const options = [
     {
-      path: '/dashboard',
-      label: 'Dashboard'
+      path: '/',
+      label: 'My classes'
     },
     {
-      path: '/profile',
+      path: '/',
+      label: 'My teachers'
+    },
+    {
+      path: '/',
+      label: 'My grades'
+    },
+    {
+      path: '/',
       label: 'Profile'
     },
     {
@@ -55,7 +63,6 @@ function StudentDashboard() {
     }
   }
 
-
   useEffect(() => {
     getStudentInfo()
   }, [])
@@ -66,7 +73,7 @@ function StudentDashboard() {
       <div className="dashboard__main">
         <div className="dashboard__main__left">
           <Sidebar
-            // avatar={student.name[0]}
+            avatar='S'
             userName={student.name}
             userEmail={student.email}
             options={options}

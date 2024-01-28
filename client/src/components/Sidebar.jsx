@@ -7,7 +7,7 @@ function Sidebar(props) {
 
     return (
         <div className='sidebar'>
-            <img className="sidebar__avatar" src={avatar} alt="User Avatar" />
+            <h1 className="sidebar__avatar">{avatar}</h1>
             <h3 className="sidebar__name">{userName}</h3>
             <p className="sidebar__email">{userEmail}</p>
             <ul className="sidebar__options">

@@ -85,7 +85,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       <section className="loginPage">
         <ToastContainer
           position="bottom-left"
