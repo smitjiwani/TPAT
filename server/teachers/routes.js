@@ -244,6 +244,8 @@ router.get('/getscore/course', fetchuser, controller.getCourseScoreById)
 router.get('/getscore/total', fetchuser, controller.getTotalScoreById)
 router.patch('/updatescore/review/:id', controller.updateReviewScoreById)
 
+router.get('/leaderboard', controller.getLeaderboard)
+
 // router.use('/auth', auth);
 
 export default router
