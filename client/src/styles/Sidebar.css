@@ -1,12 +1,11 @@
 .sidebar {
     width: 14rem;
     height: 100vh;
-    background-color: var(--font-color);
+    background-color: var(--primary-color);
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid var(--font-color-dark);
 }
 
 .sidebar__avatar {
@@ -19,7 +18,7 @@
 .sidebar__name {
     font-size: 18px;
     margin-bottom: 5px;
-    color: var(--font-color-dark);
+    color: var(--font-color);
 }
 
 .sidebar__email {
@@ -39,10 +38,12 @@
 }
 
 .sidebar__options li a {
+    width: 14rem;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--font-color);
 }
 
 .sidebar__options li a:hover {
-    color: var(--secondary-color);
+    background-color: var(--font-color);
+    color: var(--font-color-dark);
 }
