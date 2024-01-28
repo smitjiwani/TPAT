@@ -12,6 +12,8 @@ import quizRoutes from './quiz/routes.js'
 
 import takingQuizRoutes from './takeQuiz/routes.js'
 
+import chatbotRoutes from './chatbot/routes.js'
+
 
 import auth from './authentication/auth.js'
 import seedMongo from './scripts/seedMongo.js'
@@ -69,6 +71,7 @@ app.use('/api/quiz', quizRoutes)
 
 app.use('/api/takeQuiz', takingQuizRoutes)
 
+app.use('/api/chatbot', chatbotRoutes)
 
 app.use('/api/auth', auth)
 

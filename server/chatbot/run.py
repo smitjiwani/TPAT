@@ -46,7 +46,8 @@ def reply(inp):
         for tg in data["intents"]:
             if tg["tag"] == tag:
                 responses = tg["responses"]
-                return (random.choice(responses), list(tg["queries"]))
+                queries = tg.get("queries", []) 
+                return (random.choice(responses), queries)
     else:
         return (
             "I apologise but I can't quite get you, could you please repeat your query",
