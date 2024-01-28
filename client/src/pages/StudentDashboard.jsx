@@ -5,28 +5,27 @@ import RateYourTeachers from '../components/RateYourTeachers'
 import Sidebar from '../components/sidebar'
 
 function StudentDashboard() {
-
   const options = [
     {
       path: '/',
-      label: 'My classes'
+      label: 'My classes',
     },
     {
       path: '/',
-      label: 'My teachers'
+      label: 'My teachers',
     },
     {
       path: '/',
-      label: 'My grades'
+      label: 'My grades',
     },
     {
       path: '/',
-      label: 'Profile'
+      label: 'Profile',
     },
     {
       path: '/settings',
-      label: 'Settings'
-    }
+      label: 'Settings',
+    },
   ]
 
   const [student, setStudent] = useState({})
@@ -38,8 +37,6 @@ function StudentDashboard() {
   if (JSON.parse(localStorage.getItem('user')).role !== 'student') {
     window.location.replace('/')
   }
-
-
 
   const getStudentInfo = async () => {
     try {
@@ -73,7 +70,7 @@ function StudentDashboard() {
       <div className="dashboard__main">
         <div className="dashboard__main__left">
           <Sidebar
-            avatar='S'
+            avatar="S"
             userName={student.name}
             userEmail={student.email}
             options={options}

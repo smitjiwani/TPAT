@@ -8,10 +8,10 @@ import Chatbot from '../components/chatbot'
 function Home() {
   return (
     <div>
-        <Navbar />
-        <Hero />
-        <Chatbot />
-        <Footer />
+      <Navbar />
+      <Hero />
+      <Chatbot />
+      <Footer />
     </div>
   )
 }
