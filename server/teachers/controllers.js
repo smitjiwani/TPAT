@@ -120,3 +120,14 @@ export const updateReviewScoreById = async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 }
+
+export const getLeaderboard = async (req, res) => {
+  try{
+    const LeaderBoard = await queries.getLeaderboard()
+    res.status(200).json({ LeaderBoard })
+  }
+  catch (err) {
+    console.error(err)
+    res.status(400).json({ error: err.message })
+  }
+}
