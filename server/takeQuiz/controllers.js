@@ -1,7 +1,11 @@
 import Quiz from '../scripts/quizSchema.cjs'
 import Result from '../scripts/resultSchema.js'
-import updateQuizScoreById from '../teachers/queries.js'
-import getQuizScoreById  from '../teachers/queries.js'
+// import updateQuizScoreById from '../teachers/queries.js'
+import * as queries from '../teachers/queries.js'
+// import getQuizScoreById  from '../teachers/queries.js'
+
+const getQuizScoreById = queries.getQuizScoreById
+const updateQuizScoreById = queries.updateQuizScoreById
 
 export const startQuiz = async (req, res) => {
   try {
