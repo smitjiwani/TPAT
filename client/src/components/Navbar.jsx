@@ -17,16 +17,6 @@ function Navbar() {
         TPAT
       </a>
       <ul className="navbar__nav">
-        <li className="nav__item">
-          <a href="#" className="nav__link">
-            About
-          </a>
-        </li>
-        <li className="nav__item">
-          <a href="#" className="nav__link">
-            Contact
-          </a>
-        </li>
         {user ? (
           <>
             <button className="login__button" onClick={handleClick}>
