@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import '../styles/Home.css'
 import Footer from '../components/Footer'
 import Chatbot from '../components/chatbot'
-import Chatbot from '../components/chatbot'
+
 
 function Home() {
   return (
