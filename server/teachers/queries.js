@@ -18,65 +18,68 @@ export const deleteTeacher = (teacherID) =>
   db('teachers').where({ teacherID }).del().returning('*')
 
 export const getReviewScoreById = (teacherID) =>
-  db("teachers")
+  db('teachers')
     .where({ teacherID })
-    .select("reviewScore")
+    .select('reviewScore')
     .first()
     .then((result) => result.reviewScore)
 
 export const getQuizScoreById = (teacherID) =>
-  db("teachers")
+  db('teachers')
     .where({ teacherID })
-    .select("quizScore")
+    .select('quizScore')
     .first()
     .then((result) => result.quizScore)
 
 export const getCourseScoreById = (teacherID) =>
-  db("teachers")
+  db('teachers')
     .where({ teacherID })
-    .select("courseScore")
+    .select('courseScore')
     .first()
     .then((result) => result.courseScore)
 
 export const getTotalScoreById = (teacherID) =>
-  db("teachers")
+  db('teachers')
     .where({ teacherID })
-    .select("totalScore")
+    .select('totalScore')
     .first()
     .then((result) => result.totalScore)
 
 export const updateReviewScoreById = (teacherID, newScore) => {
   const score = parseFloat(newScore)
-  return db("teachers")
+  return db('teachers')
     .where({ teacherID })
     .update({ reviewScore: score })
-    .returning("reviewScore")
+    .returning('reviewScore')
 }
 
 export const updateQuizScoreById = (teacherID, newScore) => {
   const score = parseFloat(newScore)
-  return db("teachers")
+  return db('teachers')
     .where({ teacherID })
     .update({ quizScore: score })
-    .returning("quizScore")
-};
+    .returning('quizScore')
+}
 
 export const updateCourseScoreById = (teacherID, newScore) => {
   const score = parseFloat(newScore)
-  return db("teachers")
+  return db('teachers')
     .where({ teacherID })
     .update({ courseScore: score })
-    .returning("courseScore")
-};
+    .returning('courseScore')
+}
 
 export const updateTotalScoreById = (teacherID, newScore) => {
   const score = parseFloat(newScore)
-  return db("teachers")
+  return db('teachers')
     .where({ teacherID })
     .update({ totalScore: score })
-    .returning("totalScore")
-};
+    .returning('totalScore')
+}
 
 export const getLeaderboard = () => {
-  return db("teachers").orderBy("totalScore", "desc", "last")
+  return db('teachers').orderBy('totalScore', 'desc', 'last')
 }
+
+export const getStudentGrades = (teacherID) =>
+  db('grades').where({ teacherID }).select('*')
