@@ -53,7 +53,8 @@ def reply(inp):
     if use_pre_trained_model and pre_trained_model:
         results = pre_trained_model.predict([bag_of_words(inp, words)])[0]
     else:
-        results = model.predict([bag_of_words(inp, words)], verbose=0)[0]
+
+        results = model.predict([bag_of_words(inp, words)], verbose = 0)[0]
 
     results_index = np.argmax(results)
     tag = labels[results_index]
@@ -62,10 +63,11 @@ def reply(inp):
         for tg in data["intents"]:
             if tg["tag"] == tag:
                 responses = tg["responses"]
-                return (random.choice(responses), list(tg["queries"]))
+                queries = tg.get("queries", [])  
+                return (random.choice(responses), queries)
     else:
         return (
-            "I apologise but I can't quite get you, could you please repeat your query",
+            "I apologize but I can't quite get you, could you please repeat your query",
             [],
         )
 

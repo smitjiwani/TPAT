@@ -1,5 +1,7 @@
 import Quiz from '../scripts/quizSchema.cjs'
 import Result from '../scripts/resultSchema.js'
+import updateQuizScoreById from '../teachers/queries.js'
+import getQuizScoreById  from '../teachers/queries.js'
 
 export const startQuiz = async (req, res) => {
   try {
@@ -44,6 +46,14 @@ export const submitQuiz = async (req, res) => {
       }
     }
 
+    const existingScore = await getQuizScoreById(userID)
+
+    const quizScore = parseFloat(score);
+    const oldAverage = parseFloat(existingScore);
+    const newTotal = parseFloat(total);
+    const newAverage = ((oldAverage * newTotal) + quizScore) / (newTotal + 1)
+
+    await updateQuizScoreById(userID, newAverage.toFixed(2))
     const result = new Result({ userID, quizID, score, total })
     const data = await result.save()
 

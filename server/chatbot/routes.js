@@ -3,6 +3,6 @@ import { Router } from 'express'
 
 const router = Router()
 
-router.get('/', controller.getReply)
+router.post('/', controller.getReply)
 
 export default router
