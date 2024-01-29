@@ -2,9 +2,33 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import GoogleTranslateWidget from '../components/GoogleTranslate'
 import '../styles/TeacherDashboard.css'
+import Sidebar from '../components/Sidebar'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
+
+  const options = [
+    {
+      path: '/',
+      label: 'My Classes',
+      active: true,
+    },
+    {
+      path: '/',
+      label: 'My Reviews',
+      active: false,
+    },
+    {
+      path: '/',
+      label: 'Profile',
+      active: false,
+    },
+    {
+      path: '/settings',
+      label: 'Settings',
+      active: false,
+    },
+  ]
 
   if (!localStorage.getItem('user')) {
     window.location.replace('/login')
@@ -41,19 +65,21 @@ function TeacherDashboard() {
   }, [])
 
   return (
-    <>
+    <div className='teacher__dashboard'>
       <Navbar />
-      <div>
-        <GoogleTranslateWidget />
-        <h1>Teacher Dashboard</h1>
-        <div className="profile" key={teachers.id}>
-          <h2>{teachers.name}</h2>
-          <p>{teachers.email}</p>
-          <p>{teachers.phone}</p>
-          <p>{teachers.score}/5</p>
-        </div>
+      <div className='teacher__dashboard__left
+      '>
+        <Sidebar
+          avatar="T"
+          userName={teachers.name}
+          userEmail={teachers.email}
+          options={options}
+        />
       </div>
-    </>
+      <div className='teacher__dashboard__right'>
+        <GoogleTranslateWidget />
+      </div>
+    </div>
   )
 }
 

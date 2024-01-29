@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/StudentDashboard.css'
 import Navbar from '../components/Navbar'
 import RateYourTeachers from '../components/RateYourTeachers'
-import Sidebar from '../components/sidebar'
+import Sidebar from '../components/Sidebar'
 
 function StudentDashboard() {
   const options = [
