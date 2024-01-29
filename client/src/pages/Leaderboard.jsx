@@ -7,10 +7,10 @@ import '../styles/LeaderBoard.css'
 const Leaderboard = () => {
     const [teachers, setTeachers] = useState([])
     const getTeachers = async () => {
-        const data = await fetch(`/api/teachers`).then(res => res.json())
+        const data = await fetch(`/api/teachers/leaderboard`).then(res => res.json())
         console.log(data)
-        setTeachers(data.teachers)
-        console.log(typeof(data.teachers))
+        setTeachers(data.LeaderBoard)
+        console.log(typeof(data.LeaderBoard))
     }
 
     useEffect(() => {

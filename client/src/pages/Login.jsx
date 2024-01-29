@@ -42,7 +42,7 @@ function Login() {
     if (response.status === 'success') {
       localStorage.setItem(
         'user',
-        JSON.stringify({ authtoken: response.authtoken }),
+        JSON.stringify({ authtoken: response.authtoken, role: data.role }),
       )
       toast.success('Logged in successfully', {
         position: 'top-left',
@@ -85,7 +85,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
       <section className="loginPage">
         <ToastContainer
           position="bottom-left"

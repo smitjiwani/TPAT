@@ -1,11 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/StudentDashboard.css'
-import TeacherCard from '../components/TeacherCard'
 import Navbar from '../components/Navbar'
+import RateYourTeachers from '../components/RateYourTeachers'
+import Sidebar from '../components/sidebar'
 
 function StudentDashboard() {
-  const [teachers, setTeachers] = useState([])
+  const options = [
+    {
+      path: '/',
+      label: 'My classes',
+    },
+    {
+      path: '/',
+      label: 'My teachers',
+    },
+    {
+      path: '/',
+      label: 'My grades',
+    },
+    {
+      path: '/',
+      label: 'Profile',
+    },
+    {
+      path: '/settings',
+      label: 'Settings',
+    },
+  ]
+
   const [student, setStudent] = useState({})
+
+  if (!localStorage.getItem('user')) {
+    window.location.replace('/login')
+  }
+
+  if (JSON.parse(localStorage.getItem('user')).role !== 'student') {
+    window.location.replace('/')
+  }
 
   const getStudentInfo = async () => {
     try {
@@ -17,6 +48,7 @@ function StudentDashboard() {
           authtoken: authtoken,
         },
       })
+
       if (response.status === 200) {
         const data = await response.json()
         setStudent(data.student[0])
@@ -28,44 +60,28 @@ function StudentDashboard() {
     }
   }
 
-  const getTeachers = async () => {
-    try {
-      const response = await fetch('/api/teachers')
-      const jsonData = await response.json()
-      setTeachers(jsonData.teachers)
-    } catch (err) {
-      console.error(err.message)
-    }
-  }
-
   useEffect(() => {
-    getTeachers()
     getStudentInfo()
   }, [])
 
   return (
-    <>
+    <div className="student__dashboard">
       <Navbar />
-      <div>
-        <h1>Student Dashboard</h1>
-        <h2>{student.name}</h2>
-        <p>{student.email}</p>
-        <p>{student.phone}</p>
-        <p>Rate Your Teachers</p>
-        {teachers.map((teacher) => {
-          return (
-            <TeacherCard
-              key={teacher.teacherID}
-              id={teacher.teacherID}
-              name={teacher.name}
-              email={teacher.email}
-              phone={teacher.phone}
-              score={teacher.reviewScore}
-            />
-          )
-        })}
+      <div className="dashboard__main">
+        <div className="dashboard__main__left">
+          <Sidebar
+            avatar="S"
+            userName={student.name}
+            userEmail={student.email}
+            options={options}
+          />
+        </div>
+        <div className="dashboard__main__right">
+          <h1>Student Dashboard</h1>
+          <RateYourTeachers />
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

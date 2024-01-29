@@ -3,11 +3,10 @@ import db from '../db.js'
 const migrate = async () => {
   try {
     // Drop tables
-    await db.raw('DROP TABLE IF EXISTS public.teachers CASCADE');
-    await db.raw('DROP TABLE IF EXISTS public.classes CASCADE');
-    await db.schema.withSchema('public').dropTableIfExists('classes')
-    await db.schema.withSchema('public').dropTableIfExists('students')
-    await db.schema.withSchema('public').dropTableIfExists('teachers')
+    await db.raw('DROP TABLE IF EXISTS public.teachers CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.classes CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.students CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.grades CASCADE')
     console.log('Dropped tables!')
 
     // Create teachers table
@@ -31,12 +30,23 @@ const migrate = async () => {
       table.string('subjectName').notNullable()
       table.enum('year', ['1', '2', '3', '4'])
       table.enum('semester', ['1', '2'])
-      table.enum('course', ['AI', 'CompSci', 'Electronics', 'Mechanical', 'Civil', 'Chemical', 'Electrical', 'IT', 'Biotech', 'BioMed'])
+      table.enum('course', [
+        'AI',
+        'CompSci',
+        'Electronics',
+        'Mechanical',
+        'Civil',
+        'Chemical',
+        'Electrical',
+        'IT',
+        'Biotech',
+        'BioMed',
+      ])
       table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
 
-
+    // Create students table
     await db.schema.withSchema('public').createTable('students', (table) => {
       table.uuid('studentID').primary().defaultTo(db.fn.uuid())
       table.string('name').notNullable()
@@ -46,6 +56,19 @@ const migrate = async () => {
       table.string('subjectID').unique()
       table.uuid('classID').unique()
       table.foreign('classID').references('classes.classID')
+    })
+    console.log('Created students table!')
+
+    // Create grades table
+    await db.schema.withSchema('public').createTable('grades', (table) => {
+      table.uuid('teacherID')
+      table.uuid('studentID')
+      table.uuid('classID')
+      table.string('subjectID')
+      table.string('grade')
+      table.foreign('classID').references('classes.classID')
+      table.foreign('studentID').references('students.studentID')
+      table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created students table!')
 
