@@ -74,6 +74,22 @@ const seed = async () => {
     })
     console.log('Added sample students!')
 
+    await db('grades').insert({
+      teacherID: teacherID,
+      studentID: studentID,
+      classID: classID2,
+      subjectID: 'sample-subject-2',
+      grade: 'A',
+    })
+    await db('grades').insert({
+      teacherID: teacherID,
+      studentID: studentID2,
+      classID: classID2,
+      subjectID: 'sample-subject-2',
+      grade: 'B',
+    })
+    console.log('Added sample students!')
+
     process.exit(0)
   } catch (err) {
     console.log(err)

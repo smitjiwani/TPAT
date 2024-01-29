@@ -22,11 +22,13 @@ function Navbar() {
             <button className="login__button" onClick={handleClick}>
               Log out
             </button>
-            {user.role === 'student' && window.location.pathname !== '/studentdashboard' ? (
+            {user.role === 'student' &&
+            window.location.pathname !== '/studentdashboard' ? (
               <Link to="/studentdashboard">
                 <button className="dashboard__button">Go to dashboard</button>
               </Link>
-            ) : user.role === 'teacher' && window.location.pathname !== '/teacherdashboard' ? (
+            ) : user.role === 'teacher' &&
+              window.location.pathname !== '/teacherdashboard' ? (
               <Link to="/teacherdashboard">
                 <button className="dashboard__button">Go to dashboard</button>
               </Link>
