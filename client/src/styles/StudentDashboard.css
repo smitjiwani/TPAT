@@ -11,7 +11,7 @@
 .dashboard__main__left {
     width: 15rem;
     height: 100vh;
-    background-color: var(--font-color);
+    background-color: var(--primary-color);
     padding: 1px 20px;
     display: flex;
     flex-direction: column;
