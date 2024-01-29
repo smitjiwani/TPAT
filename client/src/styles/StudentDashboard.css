@@ -4,11 +4,11 @@
     width: 100vw;
 }
 
-.dashboard__main {
+.student__dashboard__main {
     display: flex;
 }
 
-.dashboard__main__left {
+.student__dashboard__left {
     width: 15rem;
     height: 100vh;
     background-color: var(--primary-color);
@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-.dashboard__main__right {
+.student__dashboard__right {
     width: 85rem;
     height: 100vh;
     background-color: var(--font-color);

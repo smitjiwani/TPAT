@@ -5,30 +5,37 @@ import RateYourTeachers from '../components/RateYourTeachers'
 import Sidebar from '../components/Sidebar'
 
 function StudentDashboard() {
+  const [student, setStudent] = useState({})
+  const [active, setActive] = useState('')
+
   const options = [
     {
-      path: '/',
-      label: 'My classes',
+      onclick: () => setActive('My Classes'),
+      label: 'My Classes',
+      active: true,
     },
     {
-      path: '/',
-      label: 'My teachers',
+      onclick: () => setActive('My Teachers'),
+      label: 'My Teachers',
+      active: false,
     },
     {
-      path: '/',
-      label: 'My grades',
+      onclick: () => setActive('My Grades'),
+      label: 'My Grades',
+      active: false,
     },
     {
-      path: '/',
+      onclick: () => setActive('Profile'),
       label: 'Profile',
+      active: false,
     },
     {
-      path: '/settings',
+      onclick: () => setActive('Settings'),
       label: 'Settings',
+      active: false,
     },
   ]
 
-  const [student, setStudent] = useState({})
 
   if (!localStorage.getItem('user')) {
     window.location.replace('/login')
@@ -64,11 +71,29 @@ function StudentDashboard() {
     getStudentInfo()
   }, [])
 
+  const renderRightContent = () => {
+    switch (active) {
+      case 'My Classes':
+        return <h1>My Classes Content</h1>
+      case 'My Teachers':
+        return <h1>My Teachers Content</h1>
+      case 'My Grades':
+        return <h1>My Grades Content</h1>
+      case 'Profile':
+        return <h1>Profile Content</h1>
+      case 'Settings':
+        return <h1>Settings Content</h1>
+      default:
+        return null
+    }
+  }
+
+
   return (
     <div className="student__dashboard">
       <Navbar />
-      <div className="dashboard__main">
-        <div className="dashboard__main__left">
+      <div className="student__dashboard__main">
+        <div className="student__dashboard__left">
           <Sidebar
             avatar="S"
             userName={student.name}
@@ -76,9 +101,8 @@ function StudentDashboard() {
             options={options}
           />
         </div>
-        <div className="dashboard__main__right">
-          <h1>Student Dashboard</h1>
-          <RateYourTeachers />
+        <div className="student__dashboard__right">
+          {renderRightContent()}
         </div>
       </div>
     </div>

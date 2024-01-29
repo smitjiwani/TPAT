@@ -6,25 +6,26 @@ import Sidebar from '../components/Sidebar'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
+  const [active, setActive] = useState('')
 
   const options = [
     {
-      path: '/',
+      onclick: () => setActive('My Classes'),
       label: 'My Classes',
       active: true,
     },
     {
-      path: '/',
+      onclick: () => setActive('My Reviews'),
       label: 'My Reviews',
       active: false,
     },
     {
-      path: '/',
+      onclick: () => setActive('Profile'),
       label: 'Profile',
       active: false,
     },
     {
-      path: '/settings',
+      onclick: () => setActive('Settings'),
       label: 'Settings',
       active: false,
     },
@@ -64,20 +65,36 @@ function TeacherDashboard() {
     getTeacherInfo()
   }, [])
 
+  const renderActive = () => {
+    switch (active) {
+      case 'My Classes':
+        return <h1>My Classes</h1>
+      case 'My Reviews':
+        return <h1>My Reviews</h1>
+      case 'Profile':
+        return <h1>Profile</h1>
+      case 'Settings':
+        return <h1>Settings</h1>
+      default:
+        return <h1>My Classes</h1>
+    }
+  }
+
   return (
     <div className='teacher__dashboard'>
       <Navbar />
-      <div className='teacher__dashboard__left
-      '>
-        <Sidebar
-          avatar="T"
-          userName={teachers.name}
-          userEmail={teachers.email}
-          options={options}
-        />
-      </div>
-      <div className='teacher__dashboard__right'>
-        <GoogleTranslateWidget />
+      <div className="teacher__dashboard__main">
+        <div className='teacher__dashboard__left'>
+          <Sidebar
+            avatar="T"
+            userName={teachers.name}
+            userEmail={teachers.email}
+            options={options}
+          />
+        </div>
+        <div className='teacher__dashboard__right'>
+          {renderActive()}
+        </div>
       </div>
     </div>
   )
