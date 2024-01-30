@@ -1,0 +1,49 @@
+.teacher-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 85rem;
+}
+.teacher-profile h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.teacher-profile input {
+    padding: 20px;
+    margin: 10px;
+    width: 50%;
+}
+
+.updateButton {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+
+.updateButton:hover {
+    background-color: var(--secondary-color);
+    color: var(--font-color-dark);
+    cursor: pointer;
+}
+
+.deleteButton{
+    padding: 10px;
+    background-color: red;
+    color: var(--font-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+.deleteButton:hover {
+    background-color: var(--secondary-color);
+    color: var(--font-color-dark);
+    cursor: pointer;
+}

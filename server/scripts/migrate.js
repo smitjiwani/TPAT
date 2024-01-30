@@ -16,10 +16,15 @@ const migrate = async () => {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
+      table.specificType('classID', 'uuid ARRAY')
       table.float('reviewScore').defaultTo(0)
       table.float('quizScore').defaultTo(0)
       table.float('courseScore').defaultTo(0)
       table.float('totalScore').defaultTo(0)
+      table.specificType('prevReviewScore', 'float ARRAY')
+      table.specificType('prevQuizScore', 'float ARRAY')
+      table.specificType('prevCourseScore', 'float ARRAY')
+      table.specificType('prevTotalScore', 'float ARRAY')
     })
     console.log('Created teachers table!')
 
@@ -42,7 +47,6 @@ const migrate = async () => {
         'Biotech',
         'BioMed',
       ])
-      table.foreign('teacherID').references('teachers.teacherID')
     })
     console.log('Created class table!')
 
@@ -53,9 +57,8 @@ const migrate = async () => {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone')
-      table.string('subjectID').unique()
-      table.uuid('classID').unique()
-      table.foreign('classID').references('classes.classID')
+      table.string('subjectID')
+      table.specificType('classID', 'uuid ARRAY')
     })
     console.log('Created students table!')
 
@@ -66,9 +69,18 @@ const migrate = async () => {
       table.uuid('classID')
       table.string('subjectID')
       table.string('grade')
-      table.foreign('classID').references('classes.classID')
-      table.foreign('studentID').references('students.studentID')
-      table.foreign('teacherID').references('teachers.teacherID')
+    })
+    console.log('Created students table!')
+
+    // Create reviews table
+    await db.schema.withSchema('public').createTable('reviews', (table) => {
+      table.uuid('reviewID').primary()
+      table.uuid('teacherID')
+      table.uuid('studentID')
+      table.text('review')
+      table.integer('likes')
+      table.integer('dislikes')
+      table.label('label')
     })
     console.log('Created students table!')
 
