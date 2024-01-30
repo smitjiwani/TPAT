@@ -59,3 +59,9 @@ export const updateStudent = (studentID, student) =>
 
 export const deleteStudent = (studentID) =>
   db('students').where({ studentID }).del().returning('*')
+
+export const getMyClasses = (teacherID) => {
+  return db('classes')
+    .where({ teacherID })
+    .select('*');
+}
