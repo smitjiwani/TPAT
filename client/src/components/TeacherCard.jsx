@@ -61,7 +61,19 @@ function TeacherCard(props) {
   const onSubmit = async () => {
     try {
       const authToken = JSON.parse(localStorage.getItem('user')).authtoken // Get the auth token from local storage
-      const response = await fetch('/api/students/addreview', {
+      const response1 = await fetch('/api/sentiment/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // authToken : authToken
+        },
+        body: JSON.stringify({
+          text: review
+        })
+      })
+      const label = await response1.json()
+      console.log(label)
+      const response2 = await fetch('/api/students/addreview', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,11 +81,12 @@ function TeacherCard(props) {
         },
         body: JSON.stringify({
           review: review,
-          teacherID: props.id
+          teacherI: props.id,
+          label: label.sentiment
         })
       });
       
-      const data = await response.json();
+      const data = await response2.json();
       console.log(data);
     } catch (error) {
       console.error('Error creating review:', error);
