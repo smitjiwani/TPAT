@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar'
 import GoogleTranslateWidget from '../components/GoogleTranslate'
 import '../styles/TeacherDashboard.css'
 import Sidebar from '../components/Sidebar'
+import Leaderboard from '../pages/Leaderboard'
+import Dashboard from '../components/Dashboard'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
@@ -10,24 +12,24 @@ function TeacherDashboard() {
 
   const options = [
     {
+      onclick: () => setActive('Dashboard'),
+      label: 'Dashboard',
+    },
+    {
       onclick: () => setActive('My Classes'),
       label: 'My Classes',
-      active: true,
     },
     {
       onclick: () => setActive('My Reviews'),
       label: 'My Reviews',
-      active: false,
     },
     {
       onclick: () => setActive('Profile'),
       label: 'Profile',
-      active: false,
     },
     {
       onclick: () => setActive('Settings'),
       label: 'Settings',
-      active: false,
     },
   ]
 
@@ -67,6 +69,8 @@ function TeacherDashboard() {
 
   const renderActive = () => {
     switch (active) {
+      case 'Dashboard':
+        return <Dashboard />
       case 'My Classes':
         return <h1>My Classes</h1>
       case 'My Reviews':
@@ -76,7 +80,7 @@ function TeacherDashboard() {
       case 'Settings':
         return <h1>Settings</h1>
       default:
-        return <h1>My Classes</h1>
+        return <Dashboard />
     }
   }
 
