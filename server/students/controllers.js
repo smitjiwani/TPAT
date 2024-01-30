@@ -50,7 +50,7 @@ export const createStudent = async (req, res) => {
 }
 
 export const updateStudent = async (req, res) => {
-  const { id } = req.user.studentID
+  const id = req.user.studentID
   const { student } = req.body
   try {
     const updatedStudent = await queries.updateStudent(id, student)
