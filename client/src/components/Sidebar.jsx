@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/sidebar.css';
 
 function Sidebar(props) {
@@ -13,7 +12,7 @@ function Sidebar(props) {
             <ul className="sidebar__options">
                 {options.map((option, index) => (
                     <li key={index}>
-                        <Link to={option.path}>{option.label}</Link>
+                        <div onClick={option.onclick}>{option.label}</div>
                     </li>
                 ))}
             </ul>

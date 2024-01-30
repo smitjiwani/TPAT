@@ -1,10 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { Profiler, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import GoogleTranslateWidget from '../components/GoogleTranslate'
 import '../styles/TeacherDashboard.css'
+import Sidebar from '../components/Sidebar'
+import Dashboard from '../components/Dashboard'
+import MyTeacherClasses from '../components/MyTeacherClasses'
+import MyReviews from '../components/MyReviews'
+import TeacherProfile from '../components/TeacherProfile'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
+  const [active, setActive] = useState('')
+
+  const options = [
+    {
+      onclick: () => setActive('Dashboard'),
+      label: 'Dashboard',
+    },
+    {
+      onclick: () => setActive('My Classes'),
+      label: 'My Classes',
+    },
+    {
+      onclick: () => setActive('My Reviews'),
+      label: 'My Reviews',
+    },
+    {
+      onclick: () => setActive('Profile'),
+      label: 'Profile',
+    },
+    {
+      onclick: () => setActive('Settings'),
+      label: 'Settings',
+    },
+  ]
 
   if (!localStorage.getItem('user')) {
     window.location.replace('/login')
@@ -40,20 +69,40 @@ function TeacherDashboard() {
     getTeacherInfo()
   }, [])
 
+  const renderActive = () => {
+    switch (active) {
+      case 'Dashboard':
+        return <Dashboard />
+      case 'My Classes':
+        return <MyTeacherClasses />
+      case 'My Reviews':
+        return <MyReviews />
+      case 'Profile':
+        return <TeacherProfile />
+      case 'Settings':
+        return <h1>Settings</h1>
+      default:
+        return <Dashboard />
+    }
+  }
+
   return (
-    <>
+    <div className='teacher__dashboard'>
       <Navbar />
-      <div>
-        <GoogleTranslateWidget />
-        <h1>Teacher Dashboard</h1>
-        <div className="profile" key={teachers.id}>
-          <h2>{teachers.name}</h2>
-          <p>{teachers.email}</p>
-          <p>{teachers.phone}</p>
-          <p>{teachers.score}/5</p>
+      <div className="teacher__dashboard__main">
+        <div className='teacher__dashboard__left'>
+          <Sidebar
+            avatar="T"
+            userName={teachers.name}
+            userEmail={teachers.email}
+            options={options}
+          />
+        </div>
+        <div className='teacher__dashboard__right'>
+          {renderActive()}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

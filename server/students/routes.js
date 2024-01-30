@@ -201,6 +201,8 @@ router.put('/:id', fetchuser, controller.updateStudent)
  */
 router.delete('/:id', controller.deleteStudent)
 
+router.get("/getmyclasses", fetchuser, controller.getMyClasses);
+
 // router.use('/', auth);
 
 export default router
