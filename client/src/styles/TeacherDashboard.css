@@ -20,7 +20,6 @@
 
 .teacher__dashboard__right {
     width: 85rem;
-    height: 100vh;
     background-color: var(--font-color);
     display: flex;
     flex-direction: column;

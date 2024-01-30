@@ -99,3 +99,223 @@ export const publishQuiz = async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 }
+
+// export const getAllMbtiQuestions = async (req, res) => {
+//   try {
+//     const { questionList } = await Quiz.findOne({ name: 'Personality finder' }); 
+//     res.status(200).json(questionList);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// }
+
+
+export const submitMbtiAnswers = async (req, res) => {
+  try {
+    const answers = req.body.answers
+
+    let I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
+
+    for (const answer of answers) {
+      switch (answer) {
+        case 'I':
+          I++;
+          break;
+        case 'E':
+          E++;
+          break;
+        case 'S':
+          S++;
+          break;
+        case 'N':
+          N++;
+          break;
+        case 'T':
+          T++;
+          break;
+        case 'F':
+          F++;
+          break;
+        case 'J':
+          J++;
+          break;
+        case 'P':
+          P++;
+          break;
+        default:
+          break;
+      }
+    }
+
+    const mbtiType = `${E > I ? 'E' : 'I'}${S > N ? 'S' : 'N'}${T > F ? 'T' : 'F'}${J > P ? 'J' : 'P'}`;
+
+    const personalityInfo = {
+      'ISTJ': {
+        type: 'ISTJ',
+        description: 'Introversion, Sensing, Thinking, Judging',
+        traits: [
+          'Tend to be more quiet and serious',
+          'Realistic, responsible and practical',
+          'Earns success by being dependable and thorough',
+          'Enjoys order and organization'
+        ]
+      },
+      'ISFJ': {
+        type: 'ISFJ',
+        description: 'Introversion, Sensing, Feeling, Judging',
+        traits: [
+          'Quiet and conscientious',
+          'Committed to meeting obligations',
+          'Friendly, loyal and considerate of others’ feelings',
+          'Values order and harmony in their home and work environments'
+        ]
+      },
+      'INFJ': {
+        type: 'INFJ',
+        description: 'Introversion, Intuition, Feeling, Judging',
+        traits: [
+          'Concerned with serving the common good',
+          'Insightful and eager to learn others’ motivations',
+          'Tends to seek meaning and connection in relationships and ideas',
+          'Committed to their values'
+        ]
+      },
+      'INTJ': {
+        type: 'INTJ',
+        description: 'Introversion, Intuition, Thinking, Judging',
+        traits: [
+          'Original thinkers who are motivated to achieve their goals',
+          'Identifies patterns in events to determine an explanatory perspective',
+          'Skeptical and independent',
+          'Maintains high standards for themselves and others'
+        ]
+      },
+      'ISTP': {
+        type: 'ISTP',
+        description: 'Introversion, Sensing, Thinking, Perceiving',
+        traits: [
+          'Quiet, sensitive and kind',
+          'Committed to their values and people who are important to them',
+          'Enjoys being alone and working at their own pace',
+          'Conflict-averse'
+        ]
+      },
+      'ISFP': {
+        type: 'ISFP',
+        description: 'Introversion, Sensing, Feeling, Perceiving',
+        traits: [
+          'Tolerant, flexible and logical',
+          'Quick to find workable solutions for problems',
+          'Interested in cause and effect',
+          'Values efficiency'
+        ]
+      },
+      'INFP': {
+        type: 'INFP',
+        description: 'Introversion, Intuition, Feeling, Perceiving',
+        traits: [
+          'Idealistic, curious and adaptable',
+          'Loyal to their values and people who are important to them',
+          'Eager to understand others and help them reach their full potential',
+          'Seeks to live a life that aligns with their values'
+        ]
+      },
+      'INTP': {
+        type: 'INTP',
+        description: 'Introversion, Intuition, Thinking, Perceiving',
+        traits: [
+          'Theoretical, analytical and skeptical',
+          'Interested in developing logical explanations for things that interest them',
+          'Values ideas over social interaction',
+          'Problem solvers'
+        ]
+      },
+      'ESTP': {
+        type: 'ESTP',
+        description: 'Extraversion, Sensing, Thinking, Perceiving',
+        traits: [
+          'Spontaneous, lives in the moment',
+          'Prefer action when problem-solving over theoretical explanations',
+          'Enjoys aesthetics and material comfort',
+          'Learns by doing'
+        ]
+      },
+      'ESFP': {
+        type: 'ESFP',
+        description: 'Extraversion, Sensing, Thinking, Perceiving',
+        traits: [
+          'Enjoys working with others',
+          'Spontaneous and easily adapts to new people and environments',
+          'Realistic, outgoing and accepting',
+          'Learns best while trying a new skill with other people'
+        ]
+      },
+      'ENFP': {
+        type: 'ENFP',
+        description: 'Extraversion, Intuition, Feeling, Perceiving',
+        traits: [
+          'Warm, enthusiastic and imaginative',
+          'Desires affirmation from others',
+          'Eager to offer appreciation and support',
+          'Spontaneous, flexible, able to improvise'
+        ]
+      },
+      'ENTP': {
+        type: 'ENTP',
+        description: 'Extraversion, Intuition, Thinking, Perceiving',
+        traits: [
+          'Smart, outspoken and stimulating',
+          'Resourceful when solving problems',
+          'Good at reading other people',
+          'Finds routine boring, often finds new ways of doing things'
+        ]
+      },
+      'ESTJ': {
+        type: 'ESTJ',
+        description: 'Extraversion, Sensing, Thinking, Judging',
+        traits: [
+          'Practical, decisive and organized',
+          'Values achieving results in the most efficient way possible',
+          'Quick and forceful in implementing plans and decisions',
+          'Maintains clear and logical standards for themselves and others'
+        ]
+      },
+      'ESFJ': {
+        type: 'ESFJ',
+        description: 'Extraversion, Sensing, Feeling, Judging',
+        traits: [
+          'Cooperative, conscientious and kind',
+          'Values harmony in their environment',
+          'Desires appreciation for their contributions',
+          'Enjoys working with others to complete tasks efficiently and accurately'
+        ]
+      },
+      'ENFJ': {
+        type: 'ENFJ',
+        description: 'Extraversion, Intuition, Feeling, Judging',
+        traits: [
+          'Empathetic, responsible and loyal',
+          'Attuned to others’ emotions, needs and motivations',
+          'Often acts as a catalyst for individual and community growth',
+          'Responsive to praise and criticism'
+        ]
+      },
+      'ENTJ': {
+        type: 'ENTJ',
+        description: 'Extraversion, Intuition, Thinking, Judging',
+        traits: [
+          'Enjoys long-term planning and goal-setting',
+          'Often well-informed, well-read and eager to share their knowledge with others',
+          'Skilled problem-solvers',
+          'Readily assumes leadership, forceful in sharing their ideas'
+        ]
+      }
+    }
+
+    const personality = personalityInfo[mbtiType]
+    
+    res.status(200).json({ mbtiType , personality });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

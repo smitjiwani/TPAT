@@ -196,8 +196,17 @@ export const getMyClasses = async (req, res) => {
 
 export const getReviews = async (req, res) => {
   try {
-    const teacherID = req.user.id
-    const reviews = await queries.getRewviews(teacherID)
+    const teacherID = req.user.teacherID
+    const reviews = await queries.getReviews(teacherID)
+    res.status(200).json({ reviews })
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+
+export const getAllReviews = async (req, res) => {
+  try {
+    const reviews = await queries.getAllReviews()
     res.status(200).json({ reviews })
   } catch (err) {
     res.status(400).json({ error: err.message });
