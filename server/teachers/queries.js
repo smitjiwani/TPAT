@@ -93,7 +93,12 @@ export const getMyClasses = (teacherID) => {
     .select('*');
 }
 
-export const getRewviews = (teacherID) =>
+export const getReviews = (teacherID) =>
   db('reviews')
     .where({ teacherID })
+    .select('*')
+
+  
+export const getAllReviews = () =>
+  db('reviews')
     .select('*')
