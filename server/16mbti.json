@@ -334,6 +334,342 @@
         "Disagree": "I",
         "Agree": "E"
       }
+    },
+    {
+        "qnum": 43,
+        "question": "I believe people should be punished for their mistakes",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 44,
+        "question": "I enjoy having a daily routine",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 45,
+        "question": "I spend time seeking out new experiences",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 46,
+        "question": "I am on the go",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 47,
+        "question": "I wish other people would be more logical",
+        "options": {
+        "Agree": "T",
+        "Disagree": "F"
+        }
+    },
+    {
+        "qnum": 48,
+        "question": "I like to tidy up",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 49,
+        "question": "I enjoy imagining the future",
+        "options": {
+        "Agree": "N",
+        "Disagree": "S"
+        }
+    },
+    {
+        "qnum": 50,
+        "question": "I find it difficult to express my opinions",
+        "options": {
+        "Agree": "I",
+        "Disagree": "E"
+        }
+    },
+    {
+        "qnum": 51,
+        "question": "I like to help others with their personal problems",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 52,
+        "question": "I finish assignments before they are due",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 53,
+        "question": "I like thinking about the mysteries of the universe",
+        "options": {
+        "Agree": "N",
+        "Disagree": "S"
+        }
+    },
+    {
+        "qnum": 54,
+        "question": "I have a lot of energy",
+        "options": {
+        "Agree": "E",
+        "Disagree": "I"
+        }
+    },
+    {
+        "qnum": 55,
+        "question": "I can't stand when someone doesn't like me",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 56,
+        "question": "I follow my impulses",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 57,
+        "question": "I enjoy trying to understand complicated ideas",
+        "options": {
+        "Agree": "N",
+        "Disagree": "S"
+        }
+    },
+    {
+        "qnum": 58,
+        "question": "I feel very happy",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 59,
+        "question": "I spend time trying to understand myself",
+        "options": {
+        "Agree": "I",
+        "Disagree": "E"
+        }
+    },
+    {
+        "qnum": 60,
+        "question": "I get a thrill out of meeting new people",
+        "options": {
+        "Agree": "E",
+        "Disagree": "I"
+        }
+    },
+    {
+        "qnum": 61,
+        "question": "I need support from other people",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 62,
+        "question": "I am not bothered by disorder",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 63,
+        "question": "I enjoy going to museums",
+        "options": {
+        "Agree": "S",
+        "Disagree": "N"
+        }
+    },
+    {
+        "qnum": 64,
+        "question": "I avoid noisy crowds",
+        "options": {
+        "Agree": "I",
+        "Disagree": "E"
+        }
+    },
+    {
+        "qnum": 65,
+        "question": "I forgive others’ mistakes, even when they harm me personally",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 66,
+        "question": "I make plans and stick to them",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 67,
+        "question": "I like to do things differently, even if I am not sure it will work",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 68,
+        "question": "I do not like to sit still for long",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 69,
+        "question": "I make important decisions based on my gut feelings",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 70,
+        "question": "I start tasks in advance, so that I have plenty of time to finish",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 71,
+        "question": "I hold back my opinions",
+        "options": {
+        "Agree": "I",
+        "Disagree": "E"
+        }
+    },
+    {
+        "qnum": 72,
+        "question": "I am sensitive to the feelings of others",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 73,
+        "question": "I am easily distracted",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 74,
+        "question": "I enjoy learning about scientific theories",
+        "options": {
+        "Agree": "N",
+        "Disagree": "S"
+        }
+    },
+    {
+        "qnum": 75,
+        "question": "I love life",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 76,
+        "question": "I work hard to please others",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 77,
+        "question": "I have a zest for life",
+        "options": {
+        "Agree": "E",
+        "Disagree": "I"
+        }
+    },
+    {
+        "qnum": 78,
+        "question": "I give to people who are less fortunate than I",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 79,
+        "question": "I like to have a detailed plan before starting a task",
+        "options": {
+        "Agree": "J",
+        "Disagree": "P"
+        }
+    },
+    {
+        "qnum": 80,
+        "question": "I wonder why I am the way I am",
+        "options": {
+        "Agree": "N",
+        "Disagree": "S"
+        }
+    },
+    {
+        "qnum": 81,
+        "question": "I love to make new friends",
+        "options": {
+        "Agree": "E",
+        "Disagree": "I"
+        }
+    },
+    {
+        "qnum": 82,
+        "question": "It’s important to me that other people like me",
+        "options": {
+        "Agree": "F",
+        "Disagree": "T"
+        }
+    },
+    {
+        "qnum": 83,
+        "question": "I have trouble sticking to a routine",
+        "options": {
+        "Agree": "P",
+        "Disagree": "J"
+        }
+    },
+    {
+        "qnum": 84,
+        "question": "I appreciate the beauty of nature",
+        "options": {
+        "Agree": "S",
+        "Disagree": "N"
+        }
     }
-  ]
-  
+    ]
+    

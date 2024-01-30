@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PersonalityQues from '../components/PersonalityQues'
+import Modal from '../components/Modal'
 
 const PersonalityQuiz = () => {
     const [quiz, setQuiz] = useState({})
@@ -10,17 +11,24 @@ const PersonalityQuiz = () => {
     const handleAnswer = (qnum, ans) => {
         answers[qnum-1] = ans
     }
+
+    const [mbti, setMbti] = useState("")
+    const [personality, setPersonality] = useState("")
+    const [showModal, setShowModal] = useState(false)
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await fetch(`http://localhost:5000/api/quizzes/mbti`,{
+        const response = await fetch(`http://localhost:5000/api/quizzes/mbti`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({answers})
-        });
-        console.log(res.json())
+        }).then(res => res.json());
+        console.log(response)
+        setMbti(response.mbtiType)
+        setPersonality(response.personality)
+        setShowModal(true);
     }
 
     let answers = []
@@ -52,6 +60,7 @@ const PersonalityQuiz = () => {
         <>
             {/* <Navbar /> */}
             <div>
+                {showModal && <Modal showModal={showModal} mbti={mbti} personality={personality} />}
                 <h1>Quiz</h1>
                 <form action="">
                     {questions.map((question) => {

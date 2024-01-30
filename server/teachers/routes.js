@@ -251,7 +251,10 @@ router.post('/updateexamscorebyid', controller.updateExamScoreById)
 
 router.get('/getmyclasses', fetchuser, controller.getMyClasses);
 router.get("/getReviews", fetchuser, controller.getReviews);
+router.get("/getallreviews", controller.getAllReviews);
 
 // router.use('/auth', auth);
 
 export default router
+
+
