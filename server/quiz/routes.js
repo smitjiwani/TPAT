@@ -8,6 +8,8 @@ router.post('/', controller.createQuiz)
 router.get('/:quizID', controller.getQuizById)
 router.put('/:quizID', controller.updateQuiz)
 router.delete('/:quizID', controller.deleteQuiz)
+// router.get('/mbti', controller.getAllMbtiQuestions)
+router.post('/mbti', controller.submitMbtiAnswers)
 
 // Publish quiz for students to take
 router.patch('/:quizID/publish', controller.publishQuiz)
