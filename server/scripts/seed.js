@@ -43,12 +43,14 @@ const seed = async () => {
     // Insert into class table
     await db('classes').insert({
       classID: classID,
+      teacherID: teacherID,
       subjectName: 'Sample Subject 1',
       year: '1',
       semester: '1',
       course: 'AI',
     })
     await db('classes').insert({
+      teacherID: teacherID2,
       classID: classID2,
       subjectName: 'Sample Subject 2',
       year: '2',
