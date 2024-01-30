@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import Modal from 'react-modal';
 import "../styles/TeacherCard.css"
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 function TeacherCard(props) {
   const [score, setScore] = useState(props.score);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [review, setReview] = useState('');
 
   const handleThumbsUp = async (e) => {
     e.preventDefault();
@@ -21,7 +24,7 @@ function TeacherCard(props) {
       
       const data = await response.json();
       console.log(data);
-      setScore(data.updatedScore); // Update the score state
+      setScore(data.updatedScore); 
     } catch (error) {
       console.error('Error updating score:', error);
     }
@@ -48,7 +51,34 @@ function TeacherCard(props) {
     } 
   }
 
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    console.log(`Review submitted for teacher ${props.id}: ${review}`);
+    setModalIsOpen(false); 
+  }
 
+  
+  const onSubmit = async () => {
+    try {
+      const authToken = JSON.parse(localStorage.getItem('user')).authtoken // Get the auth token from local storage
+      const response = await fetch('/api/students/addreview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authToken : authToken
+        },
+        body: JSON.stringify({
+          review: review,
+          teacherID: props.id
+        })
+      });
+      
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error creating review:', error);
+    }
+  }
   return (
     <div className='TeacherCard' id={props.id}>
       <div className='details'>
@@ -63,11 +93,29 @@ function TeacherCard(props) {
           <button onClick={handleThumbsDown}>
             <ThumbDownIcon />
           </button>
+          <button onClick={() => setModalIsOpen(true)}>
+            Leave a Review
+          </button>
         </div>
       </div>
       <div className='imageSection'>
         <img className='profileImage' src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="teacher image" />
       </div>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Leave a Review Modal"
+      >
+        <h2>Leave a Review</h2>
+        <form onSubmit={handleReviewSubmit}>
+          <label htmlFor="review">Review:</label>
+          <textarea id="review" value={review} onChange={(e) => setReview(e.target.value)} />
+          <button type="submit" onClick={onSubmit}>Submit</button>
+          <button type='submit' onClick={() => setModalIsOpen(false)}>close</button>
+        </form>
+      </Modal>
     </div>
   )
 }
