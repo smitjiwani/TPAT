@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/sidebar.css';
+import '../styles/Sidebar.css';
 
 function Sidebar(props) {
     const { avatar, userName, userEmail, options } = props;

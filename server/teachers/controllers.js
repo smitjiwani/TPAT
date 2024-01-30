@@ -45,13 +45,14 @@ export const createTeacher = async (req, res) => {
 }
 
 export const updateTeacher = async (req, res) => {
-  const { id } = req.user.id
+  const teacherID = req.user.teacherID
   const { teacher } = req.body
   try {
-    const updatedTeacher = await queries.updateTeacher(id, teacher)
+    console.log(teacher)
+    const updatedTeacher = await queries.updateTeacher(teacherID, teacher)
     res.status(200).json({ updatedTeacher })
   } catch (err) {
-    res.status(400).json({ err })
+    res.status(400).json({ error: err.message })
   }
 }
 
@@ -152,7 +153,7 @@ export const getStudentGrades = async (req, res) => {
 
 export const updateExamScoreById = async (req, res) => {
   try {
-    const teacherID = req.user.id;
+    const teacherID = req.user.teacherID;
     const grades = await queries.getOnlyGrades(teacherID);
 
     const gradeMap = {

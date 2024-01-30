@@ -6,7 +6,7 @@ function Dashboard() {
 
     return (
         <div className='dashboard__component'>
-            <h1>Dahsboard</h1>
+            <h1>Dashboard</h1>
             <div className="component__dashboard__main">
                 <div className="component__dashboard__left">
                     <Leaderboard />

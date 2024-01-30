@@ -3,6 +3,7 @@ import '../styles/TeacherProfile.css'
 
 function TeacherProfile() {
     const [teachers, setTeachers] = useState([])
+    const [teacherName, setTeacherName] = useState()
     const [teacherInfo, setTeacherInfo] = useState([])
 
     const getTeacherInfo = async () => {
@@ -18,6 +19,7 @@ function TeacherProfile() {
 
             if (response.status === 200) {
                 const data = await response.json()
+                console.log(data)
                 setTeachers(data.teacher[0])
             } else {
                 console.error('Error:', response.status)
@@ -61,7 +63,7 @@ function TeacherProfile() {
     return (
         <div className="teacher-profile">
             <h1>Teacher Profile</h1>
-            <input type="text" name="name" placeholder={teachers.name} alt='username' onChange={handleInputChange} />
+            <input type="text" name="name" placeholder={teachers.name} alt='username' onChange={() => {setTeacherName(value); console.log(teachers)}} />
             <input type="email" name="email" placeholder={teachers.email} alt='email' onChange={handleInputChange} />
             <input type="number" name="phone" placeholder={teachers.phone} alt='phone' onChange={handleInputChange} />
             <button onClick={updateTeacherInfo} className='updateButton'>Update info</button>
