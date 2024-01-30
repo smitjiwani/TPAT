@@ -7,6 +7,7 @@ const migrate = async () => {
     await db.raw('DROP TABLE IF EXISTS public.classes CASCADE')
     await db.raw('DROP TABLE IF EXISTS public.students CASCADE')
     await db.raw('DROP TABLE IF EXISTS public.grades CASCADE')
+    await db.raw('DROP TABLE IF EXISTS public.reviews CASCADE')
     console.log('Dropped tables!')
 
     // Create teachers table
@@ -70,7 +71,7 @@ const migrate = async () => {
       table.string('subjectID')
       table.string('grade')
     })
-    console.log('Created students table!')
+    console.log('Created grades table!')
 
     // Create reviews table
     await db.schema.withSchema('public').createTable('reviews', (table) => {
@@ -80,9 +81,9 @@ const migrate = async () => {
       table.text('review')
       table.integer('likes').defaultTo(0)
       table.integer('dislikes').defaultTo(0)
-      table.label('label')
+      table.string('label')
     })
-    console.log('Created students table!')
+    console.log('Created reviews table!')
 
     process.exit(0)
   } catch (err) {
