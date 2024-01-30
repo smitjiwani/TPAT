@@ -1,0 +1,35 @@
+.class__card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.class__card__left {
+    flex: 1;
+}
+
+.class__card__right {
+    flex: 0;
+}
+
+.class__card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--font-color-dark);
+}
+
+.class__card button{
+    background-color: var(--primary-color);
+    color: var(--font-color-light);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+

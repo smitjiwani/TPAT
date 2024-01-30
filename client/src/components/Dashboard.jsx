@@ -12,9 +12,20 @@ function Dashboard() {
                     <Leaderboard />
                 </div>
                 <div className="component__dashboard__right">
-                    <h1>Right</h1>
+                    <h3>Most Positive Keywords</h3>
+                    <h3>Most negative keywords</h3>
+                    <h3>Most Used Emojis</h3>
                 </div>
             </div>
+
+
+            <div className="line__chartforscore">
+                <h1>Line Chart for Scores</h1>
+            </div>
+
+
+
+
         </div>
     );
 }
