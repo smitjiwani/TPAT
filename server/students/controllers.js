@@ -70,6 +70,18 @@ export const deleteStudent = async (req, res) => {
   }
 }
 
+export const getMyClasses = async (req, res) => {
+  const id = req.user.studentID
+  try{
+    const classes = await queries.getMyClasses(id)
+    res.status(200).json({classes: classes})
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
+
 export default {
   getAllStudents,
   getStudentById,

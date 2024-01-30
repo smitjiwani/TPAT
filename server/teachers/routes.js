@@ -245,7 +245,11 @@ router.get('/getscore/total', fetchuser, controller.getTotalScoreById)
 router.patch('/updatescore/review/:id', controller.updateReviewScoreById)
 
 router.get('/leaderboard', controller.getLeaderboard)
-router.get('/score/:teacherID', controller.getStudentGrades)
+router.get('/score/:teacherID', fetchuser, controller.getStudentGrades)
+router.post('/updateexamscorebyid', controller.updateExamScoreById)
+
+
+router.get('/getmyclasses', fetchuser, controller.getMyClasses);
 
 // router.use('/auth', auth);
 
