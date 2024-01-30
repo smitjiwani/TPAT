@@ -1,0 +1,102 @@
+[
+  {
+    "qnum": 1,
+    "question": "Situation: Imagine a challenging day where everything seems to go wrong in the classroom. How likely are you to recognize and acknowledge your own emotions in such a situation?",
+    "options": {
+      "A": "Unlikely",
+      "B": "Somewhat likely",
+      "C": "Likely",
+      "D": "Very likely"
+    }
+  },
+  {
+    "qnum": 2,
+    "question": "Situation: If a disruptive event occurs during a lesson, how well can you maintain composure and continue teaching effectively?",
+    "options": {
+      "A": "Poorly",
+      "B": "Moderately well",
+      "C": "Well",
+      "D": "Exceptionally well"
+    }
+  },
+  {
+    "qnum": 3,
+    "question": "Situation: During a period of educational challenges, how motivated are you to continue striving for excellence in your teaching?",
+    "options": {
+      "A": "Not motivated",
+      "B": "Somewhat motivated",
+      "C": "Very motivated",
+      "D": "Extremely motivated"
+    }
+  },
+  {
+    "qnum": 4,
+    "question": "Situation: If a student is visibly upset, how likely are you to empathize and address their emotional needs before continuing with the lesson?",
+    "options": {
+      "A": "Unlikely",
+      "B": "Somewhat likely",
+      "C": "Likely",
+      "D": "Very likely"
+    }
+  },
+  {
+    "qnum": 5,
+    "question": "Situation: In a collaborative project, how effectively can you work with other teachers to achieve common goals and maintain a positive working relationship?",
+    "options": {
+      "A": "Ineffectively",
+      "B": "Moderately effectively",
+      "C": "Effectively",
+      "D": "Highly effectively"
+    }
+  },
+  {
+    "qnum": 6,
+    "question": "Situation: If conflicts arise between students in your class, how skilled are you in mediating and resolving the issues while fostering a positive atmosphere?",
+    "options": {
+      "A": "Ineffective",
+      "B": "Moderately effective",
+      "C": "Effective",
+      "D": "Highly effective"
+    }
+  },
+  {
+    "qnum": 7,
+    "question": "Situation: Suppose a misunderstanding arises with a parent about their child's progress. How well can you communicate and resolve the issue to maintain a positive parent-teacher relationship?",
+    "options": {
+      "A": "Poorly",
+      "B": "Fairly well",
+      "C": "Well",
+      "D": "Excellently"
+    }
+  },
+  {
+    "qnum": 8,
+    "question": "Situation: If your lesson plan doesn’t go as expected due to unforeseen circumstances, how well can you adapt and ensure the learning objectives are still met?",
+    "options": {
+      "A": "Poorly",
+      "B": "Moderately well",
+      "C": "Well",
+      "D": "Very well"
+    }
+  },
+  {
+    "qnum": 9,
+    "question": "Situation: Imagine a scenario where you have students from diverse cultural backgrounds. How would you ensure your teaching approach is sensitive and inclusive?",
+    "options": {
+      "A": "Not sensitive",
+      "B": "Somewhat sensitive",
+      "C": "Very sensitive",
+      "D": "Extremely sensitive"
+    }
+  },
+  {
+    "qnum": 10,
+    "question": "Situation: If a disagreement arises between you and a colleague, how likely are you to approach the situation constructively to find a resolution?",
+    "options": {
+      "A": "Unlikely",
+      "B": "Somewhat likely",
+      "C": "Likely",
+      "D": "Very likely"
+    }
+  }
+]
