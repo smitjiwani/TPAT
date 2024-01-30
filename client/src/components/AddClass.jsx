@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react'
 import "./../styles/addtailwind.css"
 
 import { year, semester, course } from "./../enums/enums.js"
 
 const AddClass = () => {
+
 
     const [showModal, setShowModal] = useState(false);
     const [ClassName, setClassName] = useState("");
@@ -56,6 +58,7 @@ const AddClass = () => {
                     Add Class
                 </button>
             </div>
+
             {showModal ? (
                 <>
                     <div
@@ -67,12 +70,15 @@ const AddClass = () => {
                                 <p className='text-red-500' onClick={() => { setShowModal(false) }}>X</p>
                             </div>
                             <form onSubmit={handleCreateClass} className="w-full max-w-lg">
+
                                 <div className="flex flex-wrap -mx-3 mb-6">
                                     <div className="w-full md:w-1/2 px-3">
                                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
                                             Class Name
                                         </label>
+
                                         <input name='subjectName' value={ClassName} onChange={handleChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Algorithms" />
+
                                     </div>
                                 </div>
                                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -82,7 +88,9 @@ const AddClass = () => {
                                         </label>
                                         <div className="relative">
                                             {/* <Select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" options={yearOptions} /> */}
+
                                             <select name='year' value={ClassYear} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+
                                                 {year.map(y => <option key={y}>{y}</option>)}
                                             </select>
                                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -95,7 +103,9 @@ const AddClass = () => {
                                             Semester
                                         </label>
                                         <div className="relative">
+
                                             <select name='semester' value={ClassSemester} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+
                                                 {semester.map(y => <option key={y}>{y}</option>)}
                                             </select>
                                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -108,7 +118,9 @@ const AddClass = () => {
                                             Course
                                         </label>
                                         <div className="relative">
+
                                             <select name='course' value={ClassCourse} onChange={handleChange} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+
                                                 {course.map(y => <option key={y}>{y}</option>)}
                                             </select>
                                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -117,11 +129,14 @@ const AddClass = () => {
                                         </div>
                                     </div>
                                 </div>
+
                                 <button className='rounded-xl bg-green-400 hover:bg-green-800 px-4 py-2'  >Create</button>
+
                             </form>
                         </div>
                     </div>
                     <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
                 </>
             ) : null}
         </>
