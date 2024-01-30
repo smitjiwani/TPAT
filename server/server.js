@@ -68,7 +68,7 @@ app.listen(PORT, () => {
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
-app.use('/api/quiz', quizRoutes)
+app.use('/api/quizzes', quizRoutes)
 
 app.use('/api/takeQuiz', takingQuizRoutes)
 
