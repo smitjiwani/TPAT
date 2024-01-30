@@ -71,8 +71,7 @@ export const getReviews = (studentID) =>
     .where({ studentID })
     .select('*')
 
-export const addReview = (studentID, review) =>
+export const addReview = (studentID, review, teacherID, label) =>
   db('reviews')
-    .where({ studentID })
-    .update({ review })
+    .insert({ studentID, review, teacherID, label })
     .returning('*')
