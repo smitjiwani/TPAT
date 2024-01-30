@@ -2,8 +2,7 @@ import db from '../db.js'
 import * as queries from './queries.js'
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET =
-  '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
+const JWT_SECRET = '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
 
 export const getAllTeachers = async (req, res) => {
   try {
@@ -46,10 +45,13 @@ export const createTeacher = async (req, res) => {
 
 export const updateTeacher = async (req, res) => {
   const teacherID = req.user.teacherID
-  const { teacher } = req.body
+  const name = req.body.name
+  const email = req.body.email
+  const phone = req.body.phone
+  console.log(teacherID, name, email, phone)
   try {
-    console.log(teacher)
-    const updatedTeacher = await queries.updateTeacher(teacherID, teacher)
+    console.log()
+    const updatedTeacher = await queries.updateTeacher(teacherID, name, email, phone)
     res.status(200).json({ updatedTeacher })
   } catch (err) {
     res.status(400).json({ error: err.message })
