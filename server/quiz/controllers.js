@@ -148,6 +148,59 @@ export const submitMbtiAnswers = async (req, res) => {
 
     const mbtiType = `${E > I ? 'E' : 'I'}${S > N ? 'S' : 'N'}${T > F ? 'T' : 'F'}${J > P ? 'J' : 'P'}`;
 
+    res.status(200).json({ mbtiType });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+// export const getAllMbtiQuestions = async (req, res) => {
+//   try {
+//     const { questionList } = await Quiz.findOne({ name: 'Personality finder' }); 
+//     res.status(200).json(questionList);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// }
+
+export const submitMbtiAnswers = async (req, res) => {
+  try {
+    const answers = req.body.answers
+
+    let I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
+
+    for (const answer of answers) {
+      switch (answer) {
+        case 'I':
+          I++;
+          break;
+        case 'E':
+          E++;
+          break;
+        case 'S':
+          S++;
+          break;
+        case 'N':
+          N++;
+          break;
+        case 'T':
+          T++;
+          break;
+        case 'F':
+          F++;
+          break;
+        case 'J':
+          J++;
+          break;
+        case 'P':
+          P++;
+          break;
+        default:
+          break;
+      }
+    }
+
+    const mbtiType = `${E > I ? 'E' : 'I'}${S > N ? 'S' : 'N'}${T > F ? 'T' : 'F'}${J > P ? 'J' : 'P'}`;
+
     const personalityInfo = {
       'ISTJ': {
         type: 'ISTJ',

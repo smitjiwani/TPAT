@@ -84,9 +84,20 @@ export const getMyClasses = async (req, res) => {
 
 export const getReviews = async (req, res) => {
   try {
-    const studentID = req.user.id
-    const reviews = await queries.getRewviews(studentID)
+    const studentID = req.user.studentID
+    const reviews = await queries.getReviews(studentID)
     res.status(200).json({ reviews })
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+
+export const addReview = async (req, res) => {
+  try {
+    const studentID = req.user.studentID
+    const review = req.body.review
+    const addReview = await queries.addReview(studentID, review)
+    res.status(200).json(addReview)
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
