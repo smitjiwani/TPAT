@@ -22,17 +22,7 @@ function App() {
       <BrowserRouter >
         <Routes >
 
-          {user.role ? (
-            <>
-              {user.role === 'teacher' ? (
-                <Route path='/' element={<Navigate to='/teacherdashboard' />} />
-              ) : (
-                <Route path='/' element={<Navigate to='/studentdashboard' />} />
-              )}
-            </>
-          ) : (
-            <Route path='/' element={<Home />} />
-          )}
+          <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/studentdashboard' element={<StudentDashboard />} />
