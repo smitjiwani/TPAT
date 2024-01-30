@@ -1,54 +1,55 @@
-import express from 'express';
-import fs from 'fs';
-import { SentimentIntensityAnalyzer } from 'node-nlp';
-import bodyParser from 'body-parser';
+import { Router } from 'express'
+import fs from 'fs'
+import pkg from 'node-nlp'
+const { SentimentAnalyzer } = pkg
 
-const api = express();
-const sia = new SentimentIntensityAnalyzer();
+const sia = new SentimentAnalyzer();
 
-// Load the pre-trained model
-const df = JSON.parse(fs.readFileSync('sentiment_model.json', 'utf-8'));
+const df = JSON.parse(await fs.promises.readFile('sentiment/model.json', 'utf-8'))
 
-// Middleware for parsing JSON requests
-api.use(bodyParser.json());
-
-// Function to analyze sentiment
 function analyzeSentiment(tweet) {
-    const polarity = sia.getSentiment(tweet).score;
+  const polarity = sia.getSentiment(tweet).score;
 
-    if (polarity > 0.05) {
-        return "Positive";
-    } else if (polarity < -0.05) {
-        return "Negative";
-    } else {
-        return "Neutral";
-    }
+  if (polarity > 0.05) {
+    return "Positive";
+  } else if (polarity < -0.05) {
+    return "Negative";
+  } else {
+    return "Neutral";
+  }
 }
 
+const router = Router()
 
-api.get('/sentiment_data', (req, res) => {
+export const predictSentiment = async (req, res) => {
+  try {
+    const { text } = req.body;
+    const sentiment = analyzeSentiment(text);
+    res.status(200).json({ text, sentiment })
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+}
+
+export const getSentimentData = async (req, res) => {
+  try {
     const sentimentCounts = df.sentiment.reduce((counts, sentiment) => {
-        counts[sentiment] = (counts[sentiment] || 0) + 1;
-        return counts;
-    }, {});
+      counts[sentiment] = (counts[sentiment] || 0) + 1;
+      return counts;
+    }, {})
 
     const sentimentData = Object.entries(sentimentCounts).map(([sentiment, count]) => ({
-        sentiment,
-        count
-    }));
+      sentiment,
+      count
+    }))
 
-    res.json(sentimentData);
-});
+    res.status(200).json(sentimentData)
+  } catch (err) {
+    res.status(400).json({ error: err.message })
+  }
+}
 
-api.post('/predict', (req, res) => {
-    const { text } = req.body;
+router.get('/sentimentdata', getSentimentData)
+router.post('/predict', predictSentiment)
 
-    if (text) {
-        const sentiment = analyzeSentiment(text);
-        res.json({ text, sentiment });
-    } else {
-        res.status(400).json({ error: 'No text provided' });
-    }
-});
-
-
+export default router

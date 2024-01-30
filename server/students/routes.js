@@ -202,6 +202,7 @@ router.put('/:id', fetchuser, controller.updateStudent)
 router.delete('/:id', controller.deleteStudent)
 
 router.get("/getmyclasses", fetchuser, controller.getMyClasses);
+router.get("/getReviews", fetchuser, controller.getReviews);
 
 // router.use('/', auth);
 

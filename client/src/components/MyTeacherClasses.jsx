@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import TeacherClassCard from './TeacherClassCard'
 import '../styles/MyTeacherClasses.css'
+import AddClass from "./AddClass"
 
 function MyTeacherClasses() {
-    const [teacherClasses, setTeacherClasses] = useState([
-        {
-            classID: 1,
-            SubjectName: "Math",
-            year: 1,
-            semester: 1,
-            Course: "AI", 
-        },  
-    ])
+    const [teacherClasses, setTeacherClasses] = useState([])
 
-    // const getClasses = async () => {
-    //     try {
-    //         const response = await fetch('/api/classes')
-    //         const jsonData = await response.json()
-    //         setTeacherClasses(jsonData.classes)
-    //     } catch (err) {
-    //         console.error(err.message)
-    //     }
-    // }
+    const getClasses = async () => {
+        try {
+            const authtoken = JSON.parse(localStorage.getItem('user')).authtoken
+            const response = await fetch('/api/teachers/getmyclasses', {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    authtoken: authtoken,
+                },
+            })
 
-    // useEffect(() => {
-    //     getClasses()
-    // }, [])
+            if (response.status === 200) {
+                const data = await response.json()
+                console.log(data)
+                setTeacherClasses(data.classes)
+            } else {
+                console.log('Error')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+    useEffect(() => {
+        getClasses()
+    }, [])
     return (
         <div className="my-teacher-classes">
             <h1 className="my-classes-heading">My Classes</h1>
+            <AddClass />
             <div className="my-classes">
                 {
                     teacherClasses.map((teacherClass) => {
