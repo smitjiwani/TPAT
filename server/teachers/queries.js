@@ -86,3 +86,9 @@ export const getStudentGrades = (teacherID) =>
 
 export const getOnlyGrades = (teacherID) =>
   db('grades').where({ teacherID }).select('grade')
+
+export const getMyClasses = (teacherID) => {
+  return db('classes')
+    .where({ teacherID })
+    .select('*');
+}

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { Profiler, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import GoogleTranslateWidget from '../components/GoogleTranslate'
 import '../styles/TeacherDashboard.css'
 import Sidebar from '../components/Sidebar'
-import Leaderboard from '../pages/Leaderboard'
 import Dashboard from '../components/Dashboard'
+import MyTeacherClasses from '../components/MyTeacherClasses'
+import MyReviews from '../components/MyReviews'
+import TeacherProfile from '../components/TeacherProfile'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
@@ -72,11 +74,11 @@ function TeacherDashboard() {
       case 'Dashboard':
         return <Dashboard />
       case 'My Classes':
-        return <h1>My Classes</h1>
+        return <MyTeacherClasses />
       case 'My Reviews':
-        return <h1>My Reviews</h1>
+        return <MyReviews />
       case 'Profile':
-        return <h1>Profile</h1>
+        return <TeacherProfile />
       case 'Settings':
         return <h1>Settings</h1>
       default:

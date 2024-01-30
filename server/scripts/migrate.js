@@ -80,6 +80,7 @@ const migrate = async () => {
       table.text('review')
       table.integer('likes')
       table.integer('dislikes')
+      table.label('label')
     })
     console.log('Created students table!')
 

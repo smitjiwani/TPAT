@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/StudentDashboard.css'
 import Navbar from '../components/Navbar'
-import RateYourTeachers from '../components/RateYourTeachers'
 import Sidebar from '../components/Sidebar'
+import RateYourTeachers from '../components/RateYourTeachers'
 
 function StudentDashboard() {
   const [student, setStudent] = useState({})
@@ -76,7 +76,7 @@ function StudentDashboard() {
       case 'My Classes':
         return <h1>My Classes Content</h1>
       case 'My Teachers':
-        return <h1>My Teachers Content</h1>
+        return <RateYourTeachers />
       case 'My Grades':
         return <h1>My Grades Content</h1>
       case 'Profile':

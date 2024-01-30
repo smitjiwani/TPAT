@@ -152,8 +152,8 @@ export const getStudentGrades = async (req, res) => {
 
 export const updateExamScoreById = async (req, res) => {
   try {
-    const { teacherID } = req.params;
-    const grade = await queries.getOnlyGrades(teacherID);
+    const teacherID = req.user.id;
+    const grades = await queries.getOnlyGrades(teacherID);
 
     const gradeMap = {
       'O': 3,
@@ -167,17 +167,29 @@ export const updateExamScoreById = async (req, res) => {
     };
 
     let totalScore = 0;
-    for (let score of scores) {
-      totalScore += gradeMap[grade] || 0;
+    for (let grade of grades) {
+      totalScore += gradeMap[score] || 0;
     }
 
     totalScore = Math.max(Math.min(totalScore, 20), -20);
 
     // Update exam score for the teacher in the database
-    await queries.updateExamScorebyID(teacherID, totalScore);
+    await queries.updateExamScoreById(teacherID, totalScore);
     res.status(200).json({ teacherID, examScore: totalScore });
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: err.message });
   }
 };
+
+export const getMyClasses = async (req, res) => {
+  const id = req.user.teacherID
+  try{
+    const classes = await queries.getMyClasses(id)
+    res.status(200).json({classes: classes})
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
