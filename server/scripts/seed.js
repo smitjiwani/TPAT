@@ -94,7 +94,7 @@ const seed = async () => {
       subjectID: 'sample-subject-2',
       grade: 'B',
     })
-    console.log('Added sample students!')
+    console.log('Added sample grades!')
 
     await db('reviews').insert({
       reviewID: reviewID,
@@ -102,13 +102,13 @@ const seed = async () => {
       studentID: studentID,
       review: "Great teacher!, With his way of teaching I could grasp the concepts better!"
     })
-    await db('grades').insert({
+    await db('reviews').insert({
       reviewID: reviewID2,
       teacherID: teacherID2,
       studentID: studentID2,
       review: "Great teacher!, With his way of teaching I could grasp the concepts better!"
     })
-    console.log('Added sample students!')
+    console.log('Added sample reviews!')
 
     process.exit(0)
   } catch (err) {
