@@ -1,0 +1,339 @@
+[
+    {
+      "qnum": 1,
+      "question": "I try not to draw attention to myself",
+      "options": {
+        "Agree": "I",
+        "Disagree": "E"
+      }
+    },
+    {
+      "qnum": 2,
+      "question": "I feel uncomfortable when I disagree with someone",
+      "options": {
+        "Agree": "I",
+        "Disagree": "E"
+      }
+    },
+    {
+      "qnum": 3,
+      "question": "I lose my belongings",
+      "options": {
+        "Disagree": "S",
+        "Agree": "N"
+      }
+    },
+    {
+      "qnum": 4,
+      "question": "I have a vivid imagination",
+      "options": {
+        "Agree": "S",
+        "Disagree": "N"
+      }
+    },
+    {
+      "qnum": 5,
+      "question": "I would enjoy attending a large party in my honor",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 6,
+      "question": "I dislike being in competition with others",
+      "options": {
+        "Agree": "I",
+        "Disagree": "E"
+      }
+    },
+    {
+      "qnum": 7,
+      "question": "I prefer to follow a schedule",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 8,
+      "question": "I question the wisdom of my elders",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 9,
+      "question": "I enjoy being the center of attention",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 10,
+      "question": "I try to avoid conflict",
+      "options": {
+        "Agree": "I",
+        "Disagree": "E"
+      }
+    },
+    {
+      "qnum": 11,
+      "question": "I make sure my work is finished on time",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 12,
+      "question": "It is important to me to follow traditions",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 13,
+      "question": "I make an effort to be popular",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 14,
+      "question": "I sympathize with the homeless",
+      "options": {
+        "Disagree": "T",
+        "Agree": "F"
+      }
+    },
+    {
+      "qnum": 15,
+      "question": "I have trouble controlling my impulses",
+      "options": {
+        "Agree": "T",
+        "Disagree": "F"
+      }
+    },
+    {
+      "qnum": 16,
+      "question": "I think about why people do the things they do",
+      "options": {
+        "Disagree": "T",
+        "Agree": "F"
+      }
+    },
+    {
+      "qnum": 17,
+      "question": "Being around lots of people energizes me",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 18,
+      "question": "I am helpful to the people around me",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 19,
+      "question": "I am ambitious",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 20,
+      "question": "I like to do things as they were done in the past",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 21,
+      "question": "I avoid being alone",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 22,
+      "question": "I forgive easily",
+      "options": {
+        "Disagree": "T",
+        "Agree": "F"
+      }
+    },
+    {
+      "qnum": 23,
+      "question": "I like trying out new hobbies",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 24,
+      "question": "I like to stay active",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 25,
+      "question": "It is best to be totally objective when making a decision",
+      "options": {
+        "Agree": "T",
+        "Disagree": "F"
+      }
+    },
+    {
+      "qnum": 26,
+      "question": "I keep my belongings in their proper place",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 27,
+      "question": "I have a rich fantasy life",
+      "options": {
+        "Disagree": "S",
+        "Agree": "N"
+      }
+    },
+    {
+      "qnum": 28,
+      "question": "I have little to say",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 29,
+      "question": "I enjoy being there for people when they are feeling sad",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 30,
+      "question": "I would rather go with the flow than have a set schedule",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 31,
+      "question": "I enjoy philosophical discussions",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 32,
+      "question": "I let other people know what I think",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 33,
+      "question": "I avoid arguing, even when I disagree",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 34,
+      "question": "I am very attentive to deadlines",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 35,
+      "question": "I would like to play a musical instrument",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 36,
+      "question": "I have a lot of fun",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 37,
+      "question": "I resist temptations",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 38,
+      "question": "It is easy for me to talk to strangers",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    },
+    {
+      "qnum": 39,
+      "question": "I am concerned for the welfare of elderly people",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 40,
+      "question": "I am determined to achieve success in life",
+      "options": {
+        "Agree": "J",
+        "Disagree": "P"
+      }
+    },
+    {
+      "qnum": 41,
+      "question": "I believe in the importance of art",
+      "options": {
+        "Disagree": "J",
+        "Agree": "P"
+      }
+    },
+    {
+      "qnum": 42,
+      "question": "I like to spend my free time alone",
+      "options": {
+        "Disagree": "I",
+        "Agree": "E"
+      }
+    }
+  ]
+  
