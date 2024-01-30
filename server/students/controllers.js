@@ -50,7 +50,7 @@ export const createStudent = async (req, res) => {
 }
 
 export const updateStudent = async (req, res) => {
-  const { id } = req.user.studentID
+  const id = req.user.studentID
   const { student } = req.body
   try {
     const updatedStudent = await queries.updateStudent(id, student)
@@ -96,7 +96,9 @@ export const addReview = async (req, res) => {
   try {
     const studentID = req.user.studentID
     const review = req.body.review
-    const addReview = await queries.addReview(studentID, review)
+    const TeacherId = req.body.teacherID
+    const label = req.body.label
+    const addReview = await queries.addReview(studentID, review, TeacherId, label)
     res.status(200).json(addReview)
   } catch (err) {
     res.status(400).json({ error: err.message });

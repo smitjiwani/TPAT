@@ -180,7 +180,7 @@ router.post('/', controller.createTeacher)
  *      400:
  *        description: Bad Request
  */
-router.put('/:id', fetchuser, controller.updateTeacher)
+router.put('/updateteacher', fetchuser, controller.updateTeacher)
 
 /**
  * @swagger
