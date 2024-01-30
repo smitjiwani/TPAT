@@ -100,18 +100,18 @@ export const publishQuiz = async (req, res) => {
   }
 }
 
-export const getAllMbtiQuestions = async (req, res) => {
-  try {
-    const { questionList } = await Quiz.findOne({ name: 'Personality finder' }); 
-    res.status(200).json(questionList);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+// export const getAllMbtiQuestions = async (req, res) => {
+//   try {
+//     const { questionList } = await Quiz.findOne({ name: 'Personality finder' }); 
+//     res.status(200).json(questionList);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// }
 
 export const submitMbtiAnswers = async (req, res) => {
   try {
-    const answers = req.body.answers;
+    const answers = req.body.answers
 
     let I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
 
