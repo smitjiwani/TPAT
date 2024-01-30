@@ -1,35 +1,28 @@
-h1{
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
-}
-
-.profile {
+.teacher__dashboard {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    border-radius: 10px;
+    width: 100vw;
 }
 
-.profile h2 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
+.teacher__dashboard__main {
+    display: flex;
 }
 
-.profile p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
+.teacher__dashboard__left {
+    width: 15rem;
+    height: 100vh;
+    background-color: var(--primary-color);
+    padding: 1px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teacher__dashboard__right {
+    width: 85rem;
+    height: 100vh;
+    background-color: var(--font-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

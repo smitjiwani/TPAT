@@ -1,0 +1,51 @@
+.sidebar {
+    width: 14rem;
+    height: 100vh;
+    background-color: var(--primary-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar__avatar {
+    padding: 5px 20px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+
+.sidebar__name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--font-color);
+}
+
+.sidebar__email {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.sidebar__options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar__options li {
+    margin-bottom: 10px;
+}
+
+.sidebar__options li a {
+    width: 14rem;
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.sidebar__options li a:hover {
+    background-color: var(--font-color);
+    color: var(--font-color-dark);
+}

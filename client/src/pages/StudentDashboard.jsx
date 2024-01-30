@@ -1,11 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/StudentDashboard.css'
-import TeacherCard from '../components/TeacherCard'
 import Navbar from '../components/Navbar'
+import RateYourTeachers from '../components/RateYourTeachers'
+import Sidebar from '../components/Sidebar'
 
 function StudentDashboard() {
-  const [teachers, setTeachers] = useState([])
   const [student, setStudent] = useState({})
+  const [active, setActive] = useState('')
+
+  const options = [
+    {
+      onclick: () => setActive('My Classes'),
+      label: 'My Classes',
+      active: true,
+    },
+    {
+      onclick: () => setActive('My Teachers'),
+      label: 'My Teachers',
+      active: false,
+    },
+    {
+      onclick: () => setActive('My Grades'),
+      label: 'My Grades',
+      active: false,
+    },
+    {
+      onclick: () => setActive('Profile'),
+      label: 'Profile',
+      active: false,
+    },
+    {
+      onclick: () => setActive('Settings'),
+      label: 'Settings',
+      active: false,
+    },
+  ]
+
+
+  if (!localStorage.getItem('user')) {
+    window.location.replace('/login')
+  }
+
+  if (JSON.parse(localStorage.getItem('user')).role !== 'student') {
+    window.location.replace('/')
+  }
 
   const getStudentInfo = async () => {
     try {
@@ -17,6 +55,7 @@ function StudentDashboard() {
           authtoken: authtoken,
         },
       })
+
       if (response.status === 200) {
         const data = await response.json()
         setStudent(data.student[0])
@@ -28,44 +67,45 @@ function StudentDashboard() {
     }
   }
 
-  const getTeachers = async () => {
-    try {
-      const response = await fetch('/api/teachers')
-      const jsonData = await response.json()
-      setTeachers(jsonData.teachers)
-    } catch (err) {
-      console.error(err.message)
-    }
-  }
-
   useEffect(() => {
-    getTeachers()
     getStudentInfo()
   }, [])
 
+  const renderRightContent = () => {
+    switch (active) {
+      case 'My Classes':
+        return <h1>My Classes Content</h1>
+      case 'My Teachers':
+        return <h1>My Teachers Content</h1>
+      case 'My Grades':
+        return <h1>My Grades Content</h1>
+      case 'Profile':
+        return <h1>Profile Content</h1>
+      case 'Settings':
+        return <h1>Settings Content</h1>
+      default:
+        return null
+    }
+  }
+
+
   return (
-    <>
+    <div className="student__dashboard">
       <Navbar />
-      <div>
-        <h1>Student Dashboard</h1>
-        <h2>{student.name}</h2>
-        <p>{student.email}</p>
-        <p>{student.phone}</p>
-        <p>Rate Your Teachers</p>
-        {teachers.map((teacher) => {
-          return (
-            <TeacherCard
-              key={teacher.teacherID}
-              id={teacher.teacherID}
-              name={teacher.name}
-              email={teacher.email}
-              phone={teacher.phone}
-              score={teacher.reviewScore}
-            />
-          )
-        })}
+      <div className="student__dashboard__main">
+        <div className="student__dashboard__left">
+          <Sidebar
+            avatar="S"
+            userName={student.name}
+            userEmail={student.email}
+            options={options}
+          />
+        </div>
+        <div className="student__dashboard__right">
+          {renderRightContent()}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
