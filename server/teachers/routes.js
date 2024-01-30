@@ -250,6 +250,7 @@ router.post('/updateexamscorebyid', controller.updateExamScoreById)
 
 
 router.get('/getmyclasses', fetchuser, controller.getMyClasses);
+router.get("/getReviews", fetchuser, controller.getReviews);
 
 // router.use('/auth', auth);
 

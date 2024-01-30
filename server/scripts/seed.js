@@ -8,6 +8,8 @@ const classID2 = uuidv4()
 const studentID = uuidv4()
 const studentID2 = uuidv4()
 const scoreID = uuidv4()
+const reviewID = uuidv4()
+const reviewID2 = uuidv4()
 
 const seed = async () => {
   try {
@@ -89,6 +91,20 @@ const seed = async () => {
       classID: classID2,
       subjectID: 'sample-subject-2',
       grade: 'B',
+    })
+    console.log('Added sample students!')
+
+    await db('reviews').insert({
+      reviewID: reviewID,
+      teacherID: teacherID,
+      studentID: studentID,
+      review: "Great teacher!, With his way of teaching I could grasp the concepts better!"
+    })
+    await db('grades').insert({
+      reviewID: reviewID2,
+      teacherID: teacherID2,
+      studentID: studentID2,
+      review: "Great teacher!, With his way of teaching I could grasp the concepts better!"
     })
     console.log('Added sample students!')
 

@@ -65,3 +65,8 @@ export const getMyClasses = (teacherID) => {
     .where({ teacherID })
     .select('*');
 }
+
+export const getRewviews = (studentID) =>
+  db('reviews')
+    .where({ studentID })
+    .select('*')

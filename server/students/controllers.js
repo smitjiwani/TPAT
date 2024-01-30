@@ -82,6 +82,16 @@ export const getMyClasses = async (req, res) => {
   }
 }
 
+export const getReviews = async (req, res) => {
+  try {
+    const studentID = req.user.id
+    const reviews = await queries.getRewviews(studentID)
+    res.status(200).json({ reviews })
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+
 export default {
   getAllStudents,
   getStudentById,
