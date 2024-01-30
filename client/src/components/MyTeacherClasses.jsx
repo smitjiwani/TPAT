@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TeacherClassCard from './TeacherClassCard'
 import '../styles/MyTeacherClasses.css'
+import AddClass from "./AddClass"
 
 function MyTeacherClasses() {
     const [teacherClasses, setTeacherClasses] = useState([
@@ -30,6 +31,7 @@ function MyTeacherClasses() {
     return (
         <div className="my-teacher-classes">
             <h1 className="my-classes-heading">My Classes</h1>
+            <AddClass />
             <div className="my-classes">
                 {
                     teacherClasses.map((teacherClass) => {
