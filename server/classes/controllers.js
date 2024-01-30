@@ -63,9 +63,10 @@ export const deleteClassById = async (req, res) => {
 
 export const addClass = async (req, res) => {
     try {
-        const newClass = req.body;
+        let newClass = req.body;
+        newClass["teacherID"] = req.user.teacherID
         const classes = await queries.addClass(newClass);
-        res.json(classes);
+        res.status(200).json({ "message": "Class Created Successfully" });
     } catch (error) {
         res.json({ error: error.message || error.toString() });
     }
