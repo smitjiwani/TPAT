@@ -1,4 +1,6 @@
 import Quiz from '../scripts/quizSchema.cjs'
+import fs from 'fs'
+import jsonFile from "../16mbti.json" assert { type: "json" };
 
 export const createQuiz = async (req, res) => {
   try {
@@ -148,8 +150,25 @@ export const submitMbtiAnswers = async (req, res) => {
 
     const mbtiType = `${E > I ? 'E' : 'I'}${S > N ? 'S' : 'N'}${T > F ? 'T' : 'F'}${J > P ? 'J' : 'P'}`;
 
+    console.log(mbtiType)
     res.status(200).json({ mbtiType });
   } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const getPersonalityQuiz = async (req, res) => {
+  try {
+    // fs.readFile("../16mbti.json", (err, data) => {
+    //   if (!err) {
+    //     const jsonFile = JSON.parse(data)
+    //   }
+    // })
+
+    console.log(jsonFile);
+    res.status(200).json(jsonFile);
+  } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message });
   }
 }

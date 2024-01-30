@@ -2,8 +2,7 @@ import db from '../db.js'
 import * as queries from './queries.js'
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET =
-  '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
+const JWT_SECRET = '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
 
 export const getAllTeachers = async (req, res) => {
   try {
