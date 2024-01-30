@@ -26,6 +26,12 @@
 .sidebar__email {
     font-size: 14px;
     color: #888;
+    /* margin-bottom: 20px; */
+}
+
+.sidebar__score{
+    font-size: 14px;
+    color: #888;
     margin-bottom: 20px;
 }
 
