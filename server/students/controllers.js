@@ -1,5 +1,6 @@
 import db from '../db.js'
 import * as queries from './queries.js'
+import { getClassById } from '../classes/queries.js'
 //controllers for student table
 
 export const getAllStudents = async (req, res) => {
@@ -74,11 +75,17 @@ export const getMyClasses = async (req, res) => {
   const id = req.user.studentID
   try{
     const classes = await queries.getMyClasses(id)
-    res.status(200).json({classes: classes})
+    console.log(classes)
+    let data = []
+    for (let cID of classes[0].classID) {
+      data.push(await getClassById(cID))
+    }
+    console.log(data[0])
+    res.status(200).json(data[0])
   }
   catch(err){
     console.error(err);
-    res.status(500).json({error: err.message});
+    res.status(400).json({error: err.message});
   }
 }
 
