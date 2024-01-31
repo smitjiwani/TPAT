@@ -121,10 +121,10 @@ export const submitMbtiAnswers = async (req, res) => {
       let updateQuery;
       if (req.user.studentID) {
         id = req.user.studentID
-        updateQuery = query.updatembti
+        updateQuery = query.updatembtistudent
       } else {
         id = req.user.teacherID
-        updateQuery = queries.updatembti
+        updateQuery = queries.updatembtiteacher
       }
   
     const answers = req.body.answers
