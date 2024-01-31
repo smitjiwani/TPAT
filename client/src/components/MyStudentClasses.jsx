@@ -19,7 +19,7 @@ function MyStudentClasses() {
 
       if (response.status === 200) {
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
         setStudentClasses(data)
       } else {
         console.log('Error')

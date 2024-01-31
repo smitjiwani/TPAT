@@ -119,13 +119,13 @@ export const publishQuiz = async (req, res) => {
 export const submitMbtiAnswers = async (req, res) => {
   try {
     let id;
-    let updateQuery;
+    let role;
     if (req.user.studentID) {
       id = req.user.studentID
-      updateQuery = query.updatembtistudent
+      role = "student";
     } else {
       id = req.user.teacherID
-      updateQuery = queries.updatembtiteacher
+      role = "teacher";
     }
 
     const answers = req.body.answers
@@ -328,12 +328,18 @@ export const submitMbtiAnswers = async (req, res) => {
       }
     }
 
-    const updatedRecord = await updateQuery(id, mbtiType)
-
+    let runQuery;
+    if (role == "student") {
+      runQuery = await query.updatembtistudent(id, mbtiType)
+    }
+    else {
+      runQuery = await queries.updatembtiteacher(id, mbtiType)
+    }
 
     const personality = personalityInfo[mbtiType]
 
-    console.log(mbtiType)
+    console.log(runQuery)
+
     res.status(200).json({ mbtiType, personality });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -355,7 +361,7 @@ export const SubmitEQAnswers = async (req, res) => {
 
     for (const answer of answers) {
       console.log(answers)
-      if(answer == null) continue;
+      if (answer == null) continue;
       const questionScore = scoreMap[answer];
       totalScore += questionScore;
     }
@@ -385,7 +391,7 @@ export const getPersonalityQuiz = async (req, res) => {
     //   }
     // })
 
-    console.log(jsonFile);
+    // console.log(jsonFile);
     res.status(200).json(jsonFile);
   } catch (error) {
     console.log(error)
@@ -401,7 +407,7 @@ export const getEmoQuiz = async (req, res) => {
     //   }
     // })
 
-    console.log(emojson);
+    // console.log(emojson);
     res.status(200).json(emojson);
   } catch (error) {
     console.log(error)

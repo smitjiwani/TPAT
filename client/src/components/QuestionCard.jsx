@@ -4,9 +4,6 @@ const QuestionCard = (props) => {
 
   const { queNum, question, options, handleAnswer } = props
 
-  // useEffect(() => {
-  //   console.log(options)
-  // }, [])
 
   // State for storing the selected option. Default is "Male"
   const [selectedOption, setSelectedOption] = useState(null)
@@ -14,7 +11,6 @@ const QuestionCard = (props) => {
   function onValueChange(event) {
     // Updating the state with the selected radio button's value
     setSelectedOption(event.target.value)
-    console.log(event.target.value)
     handleAnswer(queNum, event.target.value)
   }
 
@@ -24,7 +20,6 @@ const QuestionCard = (props) => {
     event.preventDefault();
 
     // Logging the selected option
-    console.log(selectedOption)
 
     // Alerting the user with the selected option
     alert("Your gender is " + selectedOption)

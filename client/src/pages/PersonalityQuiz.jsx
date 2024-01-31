@@ -41,7 +41,7 @@ const PersonalityQuiz = () => {
                 // const res = response.json()
                 if (response.status === 200) {
                     const data = await response.json()
-                    console.log(data)
+                    // console.log(data)
                     // Initializing answers with null
                     for (let i = 0; i < data.length; i++) {
                         answers.push(null)
