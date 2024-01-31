@@ -98,6 +98,10 @@ export const getReviews = (teacherID) =>
     .where({ teacherID })
     .select('*')
 
+export const getReviewLabels = (teacherID, label) =>
+  db('reviews')
+    .where({ teacherID, label })
+    .select('label')
   
 export const getAllReviews = () =>
   db('reviews')
