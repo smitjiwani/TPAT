@@ -33,10 +33,6 @@ function TeacherDashboard() {
       onclick: () => setActive('Profile'),
       label: 'Profile',
     },
-    {
-      onclick: () => setActive('Settings'),
-      label: 'Settings',
-    },
   ]
 
   if (!localStorage.getItem('user')) {
@@ -83,8 +79,6 @@ function TeacherDashboard() {
         return <MyReviews />
       case 'Profile':
         return <TeacherProfile />
-      case 'Settings':
-        return <h1>Settings</h1>
       default:
         return <Dashboard />
     }

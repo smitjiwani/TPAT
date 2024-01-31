@@ -5,6 +5,8 @@ import Sidebar from '../components/Sidebar'
 import RateYourTeachers from '../components/RateYourTeachers'
 import MyStudentClasses from '../components/MyStudentClasses.jsx'
 import MyStudentDashboard from '../components/MyStudentDashboard.jsx'
+import StudentProfile from '../components/StudentProfile.jsx'
+import { Link } from 'react-router-dom'
 
 function StudentDashboard() {
   const [student, setStudent] = useState({})
@@ -85,7 +87,7 @@ function StudentDashboard() {
       case 'My Grades':
         return <h1>My Grades Content</h1>
       case 'Profile':
-        return <h1>Profile Content</h1>
+        return <StudentProfile />
       default:
         return <MyStudentDashboard />
     }
@@ -95,6 +97,7 @@ function StudentDashboard() {
   return (
     <div className="student__dashboard">
       <Navbar />
+      <Link to='/personalityquiz'><button className='mbtibutton'>Take Test Now!</button></Link>
       <div className="student__dashboard__main">
         <div className="student__dashboard__left">
           <Sidebar
