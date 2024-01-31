@@ -76,3 +76,9 @@ export const addReview = (studentID, review) =>
     .where({ studentID })
     .update({ review })
     .returning('*')
+
+export const updatembti = (studentID, mbti) =>
+  db('students')
+    .where({ studentID })
+    .update({ mbti })
+    .returning('*')

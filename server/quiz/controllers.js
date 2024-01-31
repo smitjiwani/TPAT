@@ -1,4 +1,6 @@
 import Quiz from '../scripts/quizSchema.cjs'
+import * as queries from '../teachers/queries.js'
+import * as query from '../students/queries.js'
 
 export const createQuiz = async (req, res) => {
   try {
@@ -111,7 +113,17 @@ export const publishQuiz = async (req, res) => {
 
 
 export const submitMbtiAnswers = async (req, res) => {
-  try {
+    try {
+      let id;
+      let updateQuery;
+      if (req.user.studentID) {
+        id = req.user.studentID
+        updateQuery = query.updatembti
+      } else {
+        id = req.user.teacherID
+        updateQuery = queries.updatembti
+      }
+  
     const answers = req.body.answers
 
     let I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
@@ -311,6 +323,9 @@ export const submitMbtiAnswers = async (req, res) => {
         ]
       }
     }
+
+  const updatedRecord = await updateQuery(id, mbtiType)
+
 
     const personality = personalityInfo[mbtiType]
     
