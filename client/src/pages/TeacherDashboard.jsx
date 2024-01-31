@@ -7,12 +7,16 @@ import Dashboard from '../components/Dashboard'
 import MyTeacherClasses from '../components/MyTeacherClasses'
 import MyReviews from '../components/MyReviews'
 import TeacherProfile from '../components/TeacherProfile'
+import { Link } from 'react-router-dom'
 
 function TeacherDashboard() {
   const [teachers, setTeachers] = useState([])
   const [active, setActive] = useState('')
 
   const options = [
+    {
+      label: teachers.mbti,
+    },
     {
       onclick: () => setActive('Dashboard'),
       label: 'Dashboard',
@@ -89,6 +93,7 @@ function TeacherDashboard() {
   return (
     <div className='teacher__dashboard'>
       <Navbar />
+      <Link to='/personalityquiz'><button className='mbtibutton'>Take Test Now!</button></Link>
       <div className="teacher__dashboard__main">
         <div className='teacher__dashboard__left'>
           <Sidebar
