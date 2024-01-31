@@ -12,7 +12,6 @@ import quizRoutes from './quiz/routes.js'
 
 import takingQuizRoutes from './takeQuiz/routes.js'
 
-import sentimentRoutes from './sentiment/controller.js'
 import chatbotRoutes from './chatbot/routes.js'
 
 
@@ -68,11 +67,10 @@ app.listen(PORT, () => {
 app.use('/api/teachers', teacherRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/classes', classRoutes)
-app.use('/api/quizzes', quizRoutes)
+app.use('/api/quiz', quizRoutes)
 
 app.use('/api/takeQuiz', takingQuizRoutes)
 
-app.use('/api/sentiment', sentimentRoutes)
 app.use('/api/chatbot', chatbotRoutes)
 
 app.use('/api/auth', auth)

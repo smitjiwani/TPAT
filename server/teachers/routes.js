@@ -180,7 +180,7 @@ router.post('/', controller.createTeacher)
  *      400:
  *        description: Bad Request
  */
-router.put('/updateteacher', fetchuser, controller.updateTeacher)
+router.put('/:id', fetchuser, controller.updateTeacher)
 
 /**
  * @swagger
@@ -242,7 +242,7 @@ router.get('/getscore/review', fetchuser, controller.getReviewScoreById)
 router.get('/getscore/quiz', fetchuser, controller.getQuizScoreById)
 router.get('/getscore/course', fetchuser, controller.getCourseScoreById)
 router.get('/getscore/total', fetchuser, controller.getTotalScoreById)
-router.patch('/updatescore/review/:teacherID',  controller.updateReviewScoreById)
+router.patch('/updatescore/review/:id', controller.updateReviewScoreById)
 
 router.get('/leaderboard', controller.getLeaderboard)
 router.get('/score/:teacherID', fetchuser, controller.getStudentGrades)
@@ -250,11 +250,7 @@ router.post('/updateexamscorebyid', controller.updateExamScoreById)
 
 
 router.get('/getmyclasses', fetchuser, controller.getMyClasses);
-router.get("/getReviews", fetchuser, controller.getReviews);
-router.get("/getallreviews", controller.getAllReviews);
 
 // router.use('/auth', auth);
 
 export default router
-
-

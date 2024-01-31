@@ -13,8 +13,6 @@
 
 .my-classes {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+    align-items: space-between;
+    justify-content: space-around;
 }

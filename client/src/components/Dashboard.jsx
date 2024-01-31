@@ -1,13 +1,12 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import Leaderboard from '../pages/Leaderboard';
-import { Link } from 'react-router-dom';
 
 function Dashboard() {
 
     return (
         <div className='dashboard__component'>
-            <h1>Dashboard</h1>
+            <h1>Dahsboard</h1>
             <div className="component__dashboard__main">
                 <div className="component__dashboard__left">
                     <Leaderboard />
@@ -23,6 +22,10 @@ function Dashboard() {
             <div className="line__chartforscore">
                 <h1>Line Chart for Scores</h1>
             </div>
+
+
+
+
         </div>
     );
 }

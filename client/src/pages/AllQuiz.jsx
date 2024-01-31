@@ -7,7 +7,7 @@ const AllQuiz = () => {
   useEffect(() => {
     const getQuiz = async () => {
       try {
-        const response = await fetch('/api/quizzes/')
+        const response = await fetch('/api/quiz')
         // const res = response.json()
         if (response.status === 200) {
           const data = await response.json()

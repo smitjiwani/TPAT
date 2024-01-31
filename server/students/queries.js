@@ -60,23 +60,8 @@ export const updateStudent = (studentID, student) =>
 export const deleteStudent = (studentID) =>
   db('students').where({ studentID }).del().returning('*')
 
-export const getMyClasses = (studentID) =>
-  db('students')
-    .where({ studentID })
-    .select('classID');
-
-export const getReviews = (studentID) =>
-  db('reviews')
-    .where({ studentID })
-    .select('*')
-
-export const addReview = (studentID, review, teacherID, label) =>
-  db('reviews')
-    .insert({ studentID, review, teacherID, label })
-    .returning('*')
-
-export const updatembtistudent = (studentID, mbti) =>
-  db('students')
-    .where({ studentID })
-    .update({ mbti })
-    .returning('*')
+export const getMyClasses = (teacherID) => {
+  return db('classes')
+    .where({ teacherID })
+    .select('*');
+}

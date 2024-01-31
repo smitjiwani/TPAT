@@ -2,7 +2,8 @@ import db from '../db.js'
 import * as queries from './queries.js'
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET = '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
+const JWT_SECRET =
+  '31b1e3f4bf16aab56c07a77e79866aec92514dc4300115d8e5a1300711e86842'
 
 export const getAllTeachers = async (req, res) => {
   try {
@@ -44,17 +45,13 @@ export const createTeacher = async (req, res) => {
 }
 
 export const updateTeacher = async (req, res) => {
-  const teacherID = req.user.teacherID
-  const name = req.body.name
-  const email = req.body.email
-  const phone = req.body.phone
-  console.log(teacherID, name, email, phone)
+  const { id } = req.user.id
+  const { teacher } = req.body
   try {
-    console.log()
-    const updatedTeacher = await queries.updateTeacher(teacherID, name, email, phone)
+    const updatedTeacher = await queries.updateTeacher(id, teacher)
     res.status(200).json({ updatedTeacher })
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    res.status(400).json({ err })
   }
 }
 
@@ -110,7 +107,7 @@ export const getTotalScoreById = async (req, res) => {
 
 export const updateReviewScoreById = async (req, res) => {
   try {
-    const id = req.params.id
+    const { id } = req.params
     const { score } = req.body
     const prevScore = await queries.getReviewScoreById(id)
     console.log(prevScore)
@@ -118,10 +115,6 @@ export const updateReviewScoreById = async (req, res) => {
     const updatedScore = ((prevScore + parseFloat(score)) / 2).toFixed(2)
     console.log(updatedScore)
     await queries.updateReviewScoreById(id, updatedScore)
-
-    totalscore = await queries.getTotalScoreById(id)
-    totalscore = totalscore + updatedScore
-    await queries.updateTotalScoreById(id, totalscore)
     res.status(200).json({ updatedScore })
   } catch (err) {
     console.error(err)
@@ -159,7 +152,7 @@ export const getStudentGrades = async (req, res) => {
 
 export const updateExamScoreById = async (req, res) => {
   try {
-    const teacherID = req.user.teacherID;
+    const teacherID = req.user.id;
     const grades = await queries.getOnlyGrades(teacherID);
 
     const gradeMap = {
@@ -200,49 +193,3 @@ export const getMyClasses = async (req, res) => {
     res.status(500).json({error: err.message});
   }
 }
-
-export const getReviews = async (req, res) => {
-  try {
-    const teacherID = req.user.teacherID
-    const reviews = await queries.getReviews(teacherID)
-    res.status(200).json({ reviews })
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-}
-
-export const getAllReviews = async (req, res) => {
-  try {
-    const reviews = await queries.getAllReviews()
-    res.status(200).json({ reviews })
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-}
-
-export const updateTotalScore = async (req, res) => {
-  try {
-    const teacherID = req.user.teacherID;
-
-    // Fetch review score, quiz score, and EQ score separately from the database
-    const reviewScore = await query.getReviewScore(teacherID)
-    const quizScore = await query.getQuizScore(teacherID)
-    const eqScore = await query.getEqScore(teacherID)
-
-    // Define weights for each score
-    const reviewWeight = 1;
-    const quizWeight = 1;
-    const eqWeight = 2; // Higher weight for EQ score
-
-    // Calculate the weighted total score
-    const totalScore = (reviewScore * reviewWeight) + (quizScore * quizWeight) + (eqScore * eqWeight);
-
-    // Update the total score in the database
-    const score = await query.updateTotalScoreById(studentID, totalScore)
-
-    res.status(200).json({ message: 'Total score updated successfully' })
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
-

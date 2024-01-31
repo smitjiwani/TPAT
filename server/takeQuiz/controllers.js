@@ -28,7 +28,7 @@ export const startQuiz = async (req, res) => {
 export const submitQuiz = async (req, res) => {
   try {
     const quizID = req.params.quizID
-    const teacherID = req.params.teacherID
+    // const userID = req.params.userID // get this from the auth
     const attemptedQues = req.body.attemptedQues
     const quiz = await Quiz.findById(quizID, { answerList: 1 })
     const answers = quiz.answerList
@@ -54,8 +54,8 @@ export const submitQuiz = async (req, res) => {
     const newTotal = parseFloat(total);
     const newAverage = ((oldAverage * newTotal) + quizScore) / (newTotal + 1)
 
-    await updateQuizScoreById(teacherID, newAverage.toFixed(2))
-    const result = new Result({ teacherID, quizID, score, total })
+    await updateQuizScoreById(userID, newAverage.toFixed(2))
+    const result = new Result({ userID, quizID, score, total })
     const data = await result.save()
 
     res.status(200).send({ score, total, resultID: data._id })

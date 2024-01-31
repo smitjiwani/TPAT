@@ -3,21 +3,12 @@ import '../styles/StudentDashboard.css'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import RateYourTeachers from '../components/RateYourTeachers'
-import MyStudentClasses from '../components/MyStudentClasses.jsx'
-import MyStudentDashboard from '../components/MyStudentDashboard.jsx'
-import StudentProfile from '../components/StudentProfile.jsx'
-import { Link } from 'react-router-dom'
 
 function StudentDashboard() {
   const [student, setStudent] = useState({})
   const [active, setActive] = useState('')
 
   const options = [
-    {
-      onclick: () => setActive('Dashboard'),
-      label: 'Dashboard',
-      active: false,
-    },
     {
       onclick: () => setActive('My Classes'),
       label: 'My Classes',
@@ -38,7 +29,11 @@ function StudentDashboard() {
       label: 'Profile',
       active: false,
     },
-
+    {
+      onclick: () => setActive('Settings'),
+      label: 'Settings',
+      active: false,
+    },
   ]
 
 
@@ -78,18 +73,18 @@ function StudentDashboard() {
 
   const renderRightContent = () => {
     switch (active) {
-      case 'Dashboard':
-        return <MyStudentDashboard />
       case 'My Classes':
-        return <MyStudentClasses />
+        return <h1>My Classes Content</h1>
       case 'My Teachers':
         return <RateYourTeachers />
       case 'My Grades':
         return <h1>My Grades Content</h1>
       case 'Profile':
-        return <StudentProfile />
+        return <h1>Profile Content</h1>
+      case 'Settings':
+        return <h1>Settings Content</h1>
       default:
-        return <MyStudentDashboard />
+        return null
     }
   }
 
@@ -97,7 +92,6 @@ function StudentDashboard() {
   return (
     <div className="student__dashboard">
       <Navbar />
-      <Link to='/personalityquiz'><button className='mbtibutton'>Take Test Now!</button></Link>
       <div className="student__dashboard__main">
         <div className="student__dashboard__left">
           <Sidebar

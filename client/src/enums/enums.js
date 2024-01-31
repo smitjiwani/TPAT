@@ -22,5 +22,4 @@ const course = [
     'Biotech',
     'BioMed',
 ];
-
-export {year, semester, course}
+ 

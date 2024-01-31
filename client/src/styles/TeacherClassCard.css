@@ -1,8 +1,8 @@
 .class__card {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px ;
+    padding: 10px;
     border: 1px solid var(--tertiary-color);
     border-radius: 5px;
     margin-bottom: 10px;
@@ -10,12 +10,10 @@
 
 .class__card__left {
     flex: 1;
-    margin-right: 100px;
 }
 
 .class__card__right {
-    flex: 1;
-    margin-left: 100px;
+    flex: 0;
 }
 
 .class__card h3 {
