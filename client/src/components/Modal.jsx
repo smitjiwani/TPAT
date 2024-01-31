@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Modal(props) {
-    const [showModal, setShowModal] = React.useState(true);
+    const [showModal, setShowModal] = React.useState(props.showModal);
     return (
         <>
             {showModal ? (
@@ -23,7 +23,7 @@ export default function Modal(props) {
                                             <p key={index}><b>Trait no: {index + 1} :</b> {trait}</p>
                                         )
                                     })}
-                                    <p>{props.totalScore != undefined && <><b>TotalScore: </b>{props?.totalScore}</>}</p>
+                                    <p>{props.totalScore && <><b>TotalScore: </b>{props?.totalScore}</>}</p>
                                     <p>{props.guidance && <><b>Guidance: </b>{props?.guidance}</>}</p>
                                 </div>
                             </div>
