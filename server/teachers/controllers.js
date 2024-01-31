@@ -110,7 +110,7 @@ export const getTotalScoreById = async (req, res) => {
 
 export const updateReviewScoreById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.params.id
     const { score } = req.body
     const prevScore = await queries.getReviewScoreById(id)
     console.log(prevScore)
@@ -118,6 +118,10 @@ export const updateReviewScoreById = async (req, res) => {
     const updatedScore = ((prevScore + parseFloat(score)) / 2).toFixed(2)
     console.log(updatedScore)
     await queries.updateReviewScoreById(id, updatedScore)
+
+    totalscore = await queries.getTotalScoreById(id)
+    totalscore = totalscore + updatedScore
+    await queries.updateTotalScoreById(id, totalscore)
     res.status(200).json({ updatedScore })
   } catch (err) {
     console.error(err)
@@ -215,3 +219,30 @@ export const getAllReviews = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 }
+
+export const updateTotalScore = async (req, res) => {
+  try {
+    const teacherID = req.user.teacherID;
+
+    // Fetch review score, quiz score, and EQ score separately from the database
+    const reviewScore = await query.getReviewScore(teacherID)
+    const quizScore = await query.getQuizScore(teacherID)
+    const eqScore = await query.getEqScore(teacherID)
+
+    // Define weights for each score
+    const reviewWeight = 1;
+    const quizWeight = 1;
+    const eqWeight = 2; // Higher weight for EQ score
+
+    // Calculate the weighted total score
+    const totalScore = (reviewScore * reviewWeight) + (quizScore * quizWeight) + (eqScore * eqWeight);
+
+    // Update the total score in the database
+    const score = await query.updateTotalScoreById(studentID, totalScore)
+
+    res.status(200).json({ message: 'Total score updated successfully' })
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
