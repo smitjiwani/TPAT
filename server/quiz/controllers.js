@@ -1,6 +1,9 @@
 import Quiz from '../scripts/quizSchema.cjs'
 import * as queries from '../teachers/queries.js'
 import * as query from '../students/queries.js'
+import fs from 'fs'
+import jsonFile from "../16mbti.json" assert { type: "json" };
+
 
 export const createQuiz = async (req, res) => {
   try {
@@ -328,9 +331,61 @@ export const submitMbtiAnswers = async (req, res) => {
 
 
     const personality = personalityInfo[mbtiType]
-    
-    res.status(200).json({ mbtiType , personality });
+
+    console.log(mbtiType)
+    res.status(200).json({ mbtiType, personality });
   } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const submitEQAnswers = async (req, res) => {
+  try {
+    const answers = req.body.answers;
+
+    const scoreMap = {
+      "A": 1,
+      "B": 2,
+      "C": 3,
+      "D": 4
+    };
+
+    let totalScore = 0;
+
+    for (const answer of answers) {
+      const questionScore = scoreMap[answer];
+      totalScore += questionScore;
+    }
+
+    let guidance = "";
+    if (totalScore >= 30) {
+      guidance = "Your EQ level is excellent!";
+    } else if (totalScore >= 20) {
+      guidance = "Your EQ level is good, but there's room for improvement.";
+    } else if (totalScore >= 10) {
+      guidance = "Your EQ level is moderate. Consider working on areas of weakness.";
+    } else {
+      guidance = "Your EQ level needs improvement. Focus on developing emotional intelligence skills.";
+    }
+
+    res.status(200).json({ totalScore, guidance });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getPersonalityQuiz = async (req, res) => {
+  try {
+    // fs.readFile("../16mbti.json", (err, data) => {
+    //   if (!err) {
+    //     const jsonFile = JSON.parse(data)
+    //   }
+    // })
+
+    console.log(jsonFile);
+    res.status(200).json(jsonFile);
+  } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message });
   }
 }

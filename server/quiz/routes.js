@@ -5,15 +5,19 @@ const router = Router()
 
 router.get('/', controller.getQuiz)
 router.post('/', controller.createQuiz)
-router.get('/:quizID', controller.getQuizById)
-router.put('/:quizID', controller.updateQuiz)
-router.delete('/:quizID', controller.deleteQuiz)
+router.get('/quiz/:quizID', controller.getQuizById)
+router.put('/quiz/:quizID', controller.updateQuiz)
+router.delete('/quiz/:quizID', controller.deleteQuiz)
 // router.get('/mbti', controller.getAllMbtiQuestions)
+
 router.post('/mbti',fetchuser, controller.submitMbtiAnswers)
+
 router.post('/eq', controller.submitEQAnswers)
 
 // Publish quiz for students to take
-router.patch('/:quizID/publish', controller.publishQuiz)
-router.get('/:quizID/published/', controller.getPublishedQuiz)
+router.patch('/quiz/:quizID/publish', controller.publishQuiz)
+router.get('/quiz/:quizID/published/', controller.getPublishedQuiz)
+
+router.get('/getpersonalityquiz', controller.getPersonalityQuiz)
 
 export default router

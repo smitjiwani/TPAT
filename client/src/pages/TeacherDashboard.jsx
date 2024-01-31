@@ -95,6 +95,7 @@ function TeacherDashboard() {
             avatar="T"
             userName={teachers.name}
             userEmail={teachers.email}
+            userScore={teachers.reviewScore}
             options={options}
           />
         </div>

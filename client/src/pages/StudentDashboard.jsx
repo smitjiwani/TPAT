@@ -3,6 +3,7 @@ import '../styles/StudentDashboard.css'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import RateYourTeachers from '../components/RateYourTeachers'
+import MyStudentClasses from '../components/MyStudentClasses.jsx'
 
 function StudentDashboard() {
   const [student, setStudent] = useState({})
@@ -74,7 +75,7 @@ function StudentDashboard() {
   const renderRightContent = () => {
     switch (active) {
       case 'My Classes':
-        return <h1>My Classes Content</h1>
+        return <MyStudentClasses />
       case 'My Teachers':
         return <RateYourTeachers />
       case 'My Grades':

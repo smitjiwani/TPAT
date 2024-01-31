@@ -69,7 +69,7 @@ const migrate = async () => {
     await db.schema.withSchema('public').createTable('grades', (table) => {
       table.uuid('teacherID')
       table.uuid('studentID')
-      table.uuid('classID')
+      table.uuid('classID').defaultTo(db.fn.uuid())
       table.string('subjectID')
       table.string('grade')
     })
@@ -77,7 +77,7 @@ const migrate = async () => {
 
     // Create reviews table
     await db.schema.withSchema('public').createTable('reviews', (table) => {
-      table.uuid('reviewID').primary()
+      table.uuid('reviewID').primary().defaultTo(db.fn.uuid())
       table.uuid('teacherID')
       table.uuid('studentID')
       table.text('review')
