@@ -211,6 +211,18 @@ export const getReviews = async (req, res) => {
   }
 }
 
+export const getReviewLabels = async (req, res) => {
+  try {
+    const teacherID = req.user.teacherID
+    const label = req.body.label
+    const reviews = await queries.getReviewLabels(teacherID, label)
+    console.log(reviews)
+    res.status(200).json({ reviews })
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+}
+
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await queries.getAllReviews()

@@ -98,12 +98,16 @@ export const getReviews = (teacherID) =>
     .where({ teacherID })
     .select('*')
 
+export const getReviewLabels = (teacherID, label) =>
+  db('reviews')
+    .where({ teacherID, label })
+    .select('label')
   
 export const getAllReviews = () =>
   db('reviews')
     .select('*')
 
-export const updatembtiteacher = (teacherID, mbti) =>
+export const updatembti = (teacherID, mbti) =>
  db('teachers')
   .where({ teacherID })
   .update({ mbti })
