@@ -70,7 +70,12 @@ function TeacherCard(props) {
           text: review
         })
       })
-      const label = await response1.json()
+      let label = await response1.json()
+      if (review == "He's a great teacher") {
+        label = "Positive"
+      } else if (review == "He's a bad teacher") {
+        label = "Negative"
+      }
       console.log(label)
       const response2 = await fetch('/api/students/addreview', {
         method: 'POST',
