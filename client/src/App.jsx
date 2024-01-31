@@ -12,6 +12,7 @@ import TakeQuiz from './pages/Quiz'
 import Leaderboard from './pages/Leaderboard'
 import AllQuiz from './pages/AllQuiz'
 import PersonalityQuiz from './pages/PersonalityQuiz'
+import EmoQuiz from './pages/EmoQuiz'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/allquiz/:id" element={<TakeQuiz />} />
           <Route path="/allquiz" element={<AllQuiz />} />
           <Route path="/personalityquiz" element={<PersonalityQuiz />} />
+          <Route path="/emoquiz" element={<EmoQuiz />} />
 
         </Routes>
       </BrowserRouter>

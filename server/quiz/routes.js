@@ -17,5 +17,6 @@ router.patch('/quiz/:quizID/publish', controller.publishQuiz)
 router.get('/quiz/:quizID/published/', controller.getPublishedQuiz)
 
 router.get('/getpersonalityquiz', controller.getPersonalityQuiz)
+router.get('/getemoquiz', controller.getEmoQuiz)
 
 export default router
