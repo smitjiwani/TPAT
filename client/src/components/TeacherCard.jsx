@@ -117,6 +117,7 @@ function TeacherCard(props) {
 
       {/* Modal */}
       <Modal
+        className='Modal'
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         contentLabel="Leave a Review Modal"
@@ -125,8 +126,8 @@ function TeacherCard(props) {
         <form onSubmit={handleReviewSubmit}>
           <label htmlFor="review">Review:</label>
           <textarea id="review" value={review} onChange={(e) => setReview(e.target.value)} />
-          <button type="submit" onClick={onSubmit}>Submit</button>
-          <button type='submit' onClick={() => setModalIsOpen(false)}>close</button>
+          <button type="submit" onClick={onSubmit} className='submitButton'>Submit</button>
+          <button type='submit' onClick={() => setModalIsOpen(false)} className='closeButton'>X</button>
         </form>
       </Modal>
     </div>
