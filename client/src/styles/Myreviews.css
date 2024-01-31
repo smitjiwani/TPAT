@@ -1,0 +1,44 @@
+/* Styles for the card container */
+.card {
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+/* Styles for the heading */
+.card h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+
+}
+
+/* Styles for the reviews container */
+.reviews__container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/* Styles for the review card */
+.review__card {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+    padding: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+/* Styles for the review text */
+.review__card p {
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.review__label{
+    font-size: 12px;
+    margin: 0;
+    top: 0;
+    font-weight: lighter !important;
+    z-index: 1;
+}
