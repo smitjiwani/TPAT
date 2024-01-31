@@ -251,6 +251,7 @@ router.post('/updateexamscorebyid', controller.updateExamScoreById)
 
 router.get('/getmyclasses', fetchuser, controller.getMyClasses);
 router.get("/getReviews", fetchuser, controller.getReviews);
+router.post("/getReviewLabels", fetchuser, controller.getReviewLabels);
 router.get("/getallreviews", controller.getAllReviews);
 
 // router.use('/auth', auth);

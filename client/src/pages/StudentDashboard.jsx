@@ -38,7 +38,6 @@ function StudentDashboard() {
       label: 'Profile',
       active: false,
     },
-
   ]
 
 
