@@ -23,7 +23,6 @@ function TeacherCard(props) {
       });
       
       const data = await response.json();
-      console.log(data);
       setScore(data.updatedScore); 
     } catch (error) {
       console.error('Error updating score:', error);
@@ -44,7 +43,7 @@ function TeacherCard(props) {
       });
       
       const data = await response.json();
-      console.log(data); // This might contain the updated score
+      // console.log(data); // This might contain the updated score
       setScore(data.updatedScore); // Update the score state
     } catch (error) {
       console.error('Error updating score:', error);

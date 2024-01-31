@@ -12,7 +12,7 @@ export const createTeacher = (teacher) =>
   db('teachers').insert(teacher).returning('*')
 
 export const updateTeacher = (teacherID, name, email, phone) =>
-  db('teachers').where({ teacherID }).update({name: name, email:email, phone:phone}).returning('*')
+  db('teachers').where({ teacherID }).update({ name: name, email: email, phone: phone }).returning('*')
 
 export const deleteTeacher = (teacherID) =>
   db('teachers').where({ teacherID }).del().returning('*')
@@ -98,13 +98,10 @@ export const getReviews = (teacherID) =>
     .where({ teacherID })
     .select('*')
 
-  
+
 export const getAllReviews = () =>
   db('reviews')
     .select('*')
 
-export const updatembti = (teacherID, mbti) =>
- db('teachers')
-  .where({ teacherID })
-  .update({ mbti })
-  .returning('*')
+export const updatembtiteacher = (teacherID, mbti) => 
+  db('teachers').update({mbti}).where({teacherID})

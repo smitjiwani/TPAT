@@ -4,10 +4,6 @@ const PersonalityQues = (props) => {
 
     const { qnum, question, options, handleAnswer } = props
 
-    // useEffect(() => {
-    //   console.log(options)
-    // }, [])
-
     // State for storing the selected option. Default is "Male"
     const [selectedOption, setSelectedOption] = useState(null)
     // Function to handle the change in radio button selection
