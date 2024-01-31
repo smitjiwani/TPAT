@@ -328,14 +328,17 @@ export const submitMbtiAnswers = async (req, res) => {
       }
     }
 
+    let runQuery;
     if (role == "student") {
-      query.updatembtistudent(id, mbtiType)
+      runQuery = await query.updatembtistudent(id, mbtiType)
     }
     else {
-      queries.updatembtiteacher(id, mbtiType)
+      runQuery = await queries.updatembtiteacher(id, mbtiType)
     }
 
     const personality = personalityInfo[mbtiType]
+
+    console.log(runQuery)
 
     res.status(200).json({ mbtiType, personality });
   } catch (error) {
