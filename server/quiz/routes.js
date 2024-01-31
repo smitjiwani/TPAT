@@ -9,7 +9,9 @@ router.get('/quiz/:quizID', controller.getQuizById)
 router.put('/quiz/:quizID', controller.updateQuiz)
 router.delete('/quiz/:quizID', controller.deleteQuiz)
 // router.get('/mbti', controller.getAllMbtiQuestions)
-router.post('/mbti', controller.submitMbtiAnswers)
+
+router.post('/mbti',fetchuser, controller.submitMbtiAnswers)
+
 router.post('/eq', controller.submitEQAnswers)
 
 // Publish quiz for students to take
