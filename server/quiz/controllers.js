@@ -1,6 +1,9 @@
 import Quiz from '../scripts/quizSchema.cjs'
 import * as queries from '../teachers/queries.js'
 import * as query from '../students/queries.js'
+import fs from 'fs'
+import jsonFile from "../16mbti.json" assert { type: "json" };
+import emojson from "../emotion.json" assert { type: "json" };
 
 export const createQuiz = async (req, res) => {
   try {
@@ -118,10 +121,10 @@ export const submitMbtiAnswers = async (req, res) => {
       let updateQuery;
       if (req.user.studentID) {
         id = req.user.studentID
-        updateQuery = query.updatembti
+        updateQuery = query.updatembtistudent
       } else {
         id = req.user.teacherID
-        updateQuery = queries.updatembti
+        updateQuery = queries.updatembtiteacher
       }
   
     const answers = req.body.answers
@@ -328,14 +331,15 @@ export const submitMbtiAnswers = async (req, res) => {
 
 
     const personality = personalityInfo[mbtiType]
-    
-    res.status(200).json({ mbtiType , personality });
+
+    console.log(mbtiType)
+    res.status(200).json({ mbtiType, personality });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 }
 
-export const submitEQAnswers = async (req, res) => {
+export const SubmitEQAnswers = async (req, res) => {
   try {
     const answers = req.body.answers;
 
@@ -369,3 +373,35 @@ export const submitEQAnswers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getPersonalityQuiz = async (req, res) => {
+  try {
+    // fs.readFile("../16mbti.json", (err, data) => {
+    //   if (!err) {
+    //     const jsonFile = JSON.parse(data)
+    //   }
+    // })
+
+    console.log(jsonFile);
+    res.status(200).json(jsonFile);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const getEmoQuiz = async (req, res) => {
+  try {
+    // fs.readFile("../16mbti.json", (err, data) => {
+    //   if (!err) {
+    //     const jsonFile = JSON.parse(data)
+    //   }
+    // })
+
+    console.log(emojson);
+    res.status(200).json(emojson);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message });
+  }
+}

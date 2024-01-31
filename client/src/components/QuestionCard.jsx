@@ -44,7 +44,7 @@ const QuestionCard = (props) => {
                 type="radio"
                 value={key}
                 // Checking this radio button if the selected option is "Male"
-                checked={selectedOption === options[key]}
+                checked={selectedOption == key}
                 onChange={onValueChange}
               />
               {options[key]}

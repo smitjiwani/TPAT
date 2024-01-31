@@ -43,10 +43,10 @@ function MyTeacherClasses() {
                             <div className="teacher-class-card" key={teacherClass.classID}>
                                 <TeacherClassCard
                                     classID={teacherClass.classID}
-                                    SubjectName={teacherClass.SubjectName}
+                                    subjectName={teacherClass.subjectName}
                                     year={teacherClass.year}
                                     semester={teacherClass.semester}
-                                    Course={teacherClass.Course}
+                                    course={teacherClass.course}
                                 />
                             </div>
                         )
