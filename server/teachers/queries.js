@@ -107,7 +107,7 @@ export const getAllReviews = () =>
   db('reviews')
     .select('*')
 
-export const updatembtiteacher = (teacherID, mbti) =>
+export const updatembti = (teacherID, mbti) =>
  db('teachers')
   .where({ teacherID })
   .update({ mbti })
