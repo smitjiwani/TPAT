@@ -339,7 +339,7 @@ export const submitMbtiAnswers = async (req, res) => {
   }
 }
 
-export const submitEQAnswers = async (req, res) => {
+export const SubmitEQAnswers = async (req, res) => {
   try {
     const answers = req.body.answers;
 
