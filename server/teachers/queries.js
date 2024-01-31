@@ -112,3 +112,9 @@ export const updatembti = (teacherID, mbti) =>
   .where({ teacherID })
   .update({ mbti })
   .returning('*')
+
+export const updateEqScoreById = (teacherID, score) =>
+  db('teachers')
+    .where({ teacherID })
+    .update({ eqScore: score })
+    .returning('totalScore')

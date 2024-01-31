@@ -340,9 +340,11 @@ export const submitMbtiAnswers = async (req, res) => {
   }
 }
 
-export const SubmitEQAnswers = async (req, res) => {
+export const submitEQAnswers = async (req, res) => {
   try {
-    const answers = req.body.answers;
+
+    const teacherID = req.user.teacherID
+    const answers = req.body.answers
 
     const scoreMap = {
       "A": 1,
@@ -370,6 +372,8 @@ export const SubmitEQAnswers = async (req, res) => {
     } else {
       guidance = "Your EQ level needs improvement. Focus on developing emotional intelligence skills.";
     }
+
+    const eqScore = await updateEqScoreById(teacherID, totalScore)
 
     res.status(200).json({ totalScore, guidance });
   } catch (error) {

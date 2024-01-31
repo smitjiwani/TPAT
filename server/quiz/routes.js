@@ -14,7 +14,7 @@ router.delete('/quiz/:quizID', controller.deleteQuiz)
 
 router.post('/mbti',fetchuser, controller.submitMbtiAnswers)
 
-router.post('/eq', controller.SubmitEQAnswers)
+router.post('/eq', controller.submitEQAnswers)
 
 // Publish quiz for students to take
 router.patch('/quiz/:quizID/publish', controller.publishQuiz)
