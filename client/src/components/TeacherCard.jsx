@@ -65,7 +65,7 @@ function TeacherCard(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // authToken : authToken
+          authToken : authToken
         },
         body: JSON.stringify({
           text: review
@@ -81,7 +81,7 @@ function TeacherCard(props) {
         },
         body: JSON.stringify({
           review: review,
-          teacherI: props.id,
+          teacherID: props.id,
           label: label.sentiment
         })
       });
