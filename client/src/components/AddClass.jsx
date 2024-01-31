@@ -22,7 +22,6 @@ const AddClass = () => {
         }
         else if (e.target.name == 'semester') {
             setClassSemester(e.target.value)
-            console.log(ClassSemester)
         }
         else if (e.target.name == 'course') {
             setClassCourse(e.target.value)
@@ -44,7 +43,6 @@ const AddClass = () => {
         if (res.status == 200) {
             setShowModal(false);
         }
-        console.log(res.json());
     }
 
     return (
