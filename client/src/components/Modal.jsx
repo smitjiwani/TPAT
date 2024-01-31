@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Modal(props) {
-    const [showModal, setShowModal] = React.useState(props.showModal);
+    const [showModal, setShowModal] = React.useState(true);
     return (
         <>
             {showModal ? (
@@ -13,15 +13,19 @@ export default function Modal(props) {
                             {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
-                                <p><b>MBTI:</b> {props.mbti}</p>
-                                <br />
-                                <p><b>Description: </b>{props.personality.description}</p>
-                                {props.personality.traits.map((trait, index) => {
-                                    
-                                    return(
-                                        <p key={index}><b>Trait no: {index+1} :</b> {trait}</p>
-                                    )
-                                })}
+                                <p onClick={() => (setShowModal(false))} className="self-end px-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer">X</p>
+                                <div className="px-2">
+                                    {props.mbti && <p><b>MBTI:</b> {props?.mbti}</p>}
+                                    <br />
+                                    {props.personality && <p><b>Description: </b>{props?.personality?.description}</p>}
+                                    {props?.personality?.traits.map((trait, index) => {
+                                        return (
+                                            <p key={index}><b>Trait no: {index + 1} :</b> {trait}</p>
+                                        )
+                                    })}
+                                    <p>{props.totalScore != undefined && <><b>TotalScore: </b>{props?.totalScore}</>}</p>
+                                    <p>{props.guidance && <><b>Guidance: </b>{props?.guidance}</>}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

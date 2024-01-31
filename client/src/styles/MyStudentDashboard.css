@@ -1,0 +1,23 @@
+.mbtibutton{
+    position: absolute;
+    right: 0rem;
+    top: 4.5rem;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+.mbtibutton:hover{
+    background-color: var(--secondary-color);
+    color: var(--font-color-dark);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.5rem;
+}

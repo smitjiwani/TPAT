@@ -31,3 +31,47 @@
     flex-direction: row;
     gap: 1rem;
 }
+
+.Modal {
+    width: 400px; /* Update the width to your desired size */
+    height: 300px; /* Update the height to your desired size */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--font-color);
+    padding: 20px;
+}
+
+.Modal textarea {
+    width: 90%;
+    height: 80%;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--font-color-dark);
+}
+
+.Modal .submitButton {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.closeButton {
+    background-color: red;
+    color: var(--font-color);
+    border: none;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

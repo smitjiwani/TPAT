@@ -74,3 +74,9 @@ export const addReview = (studentID, review, teacherID, label) =>
   db('reviews')
     .insert({ studentID, review, teacherID, label })
     .returning('*')
+
+export const updatembtistudent = (studentID, mbti) =>
+  db('students')
+    .where({ studentID })
+    .update({ mbti })
+    .returning('*')

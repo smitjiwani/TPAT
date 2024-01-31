@@ -1,6 +1,9 @@
 import Quiz from '../scripts/quizSchema.cjs'
+import * as queries from '../teachers/queries.js'
+import * as query from '../students/queries.js'
 import fs from 'fs'
 import jsonFile from "../16mbti.json" assert { type: "json" };
+import emojson from "../emotion.json" assert { type: "json" };
 
 export const createQuiz = async (req, res) => {
   try {
@@ -113,7 +116,17 @@ export const publishQuiz = async (req, res) => {
 
 
 export const submitMbtiAnswers = async (req, res) => {
-  try {
+    try {
+      let id;
+      let updateQuery;
+      if (req.user.studentID) {
+        id = req.user.studentID
+        updateQuery = query.updatembtistudent
+      } else {
+        id = req.user.teacherID
+        updateQuery = queries.updatembtiteacher
+      }
+  
     const answers = req.body.answers
 
     let I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
@@ -314,6 +327,9 @@ export const submitMbtiAnswers = async (req, res) => {
       }
     }
 
+  const updatedRecord = await updateQuery(id, mbtiType)
+
+
     const personality = personalityInfo[mbtiType]
 
     console.log(mbtiType)
@@ -323,7 +339,7 @@ export const submitMbtiAnswers = async (req, res) => {
   }
 }
 
-export const submitEQAnswers = async (req, res) => {
+export const SubmitEQAnswers = async (req, res) => {
   try {
     const answers = req.body.answers;
 
@@ -368,6 +384,22 @@ export const getPersonalityQuiz = async (req, res) => {
 
     console.log(jsonFile);
     res.status(200).json(jsonFile);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const getEmoQuiz = async (req, res) => {
+  try {
+    // fs.readFile("../16mbti.json", (err, data) => {
+    //   if (!err) {
+    //     const jsonFile = JSON.parse(data)
+    //   }
+    // })
+
+    console.log(emojson);
+    res.status(200).json(emojson);
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error.message });
