@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import '../styles/MyReviews.css'
 
 function MyReviews() {
   const [reviews, setReviews] = useState([
@@ -41,13 +42,13 @@ function MyReviews() {
   //   getReviews()
   // }, [])
   return (
-    <div>
+    <div className='card'>
         <h1>My Reviews</h1>
       <div className="reviews__container">
         {reviews.map((review) => (
           <div className="review__card">
-            <h3>{review.title}</h3>
-            <p>{review.description}</p>
+            <h3>{review.review}</h3>
+            <p>{review.teacherID}</p>
           </div>
         ))}
       </div>

@@ -57,6 +57,7 @@ function TeacherDashboard() {
       if (response.status === 200) {
         const data = await response.json()
         setTeachers(data.teacher[0])
+        console.log(data.teacher[0])
       } else {
         console.error('Error:', response.status)
       }
@@ -89,6 +90,7 @@ function TeacherDashboard() {
   return (
     <div className='teacher__dashboard'>
       <Navbar />
+      <Link to='/personalityquiz'><button className='mbtibutton'>Take Test Now!</button></Link>
       <div className="teacher__dashboard__main">
         <div className='teacher__dashboard__left'>
           <Sidebar
@@ -99,6 +101,7 @@ function TeacherDashboard() {
           />
         </div>
         <div className='teacher__dashboard__right'>
+          
           {renderActive()}
         </div>
       </div>

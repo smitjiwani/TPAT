@@ -78,9 +78,9 @@ const migrate = async () => {
       table.uuid('teacherID')
       table.uuid('studentID')
       table.text('review')
-      table.integer('likes')
-      table.integer('dislikes')
-      table.label('label')
+      table.integer('likes').defaultTo(0)
+      table.integer('dislikes').defaultTo(0)
+      table.enum('label', ['Positive', 'Neutral', 'Negative']).defaultTo('Neutral')
     })
     console.log('Created students table!')
 

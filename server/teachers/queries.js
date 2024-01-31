@@ -92,3 +92,29 @@ export const getMyClasses = (teacherID) => {
     .where({ teacherID })
     .select('*');
 }
+
+export const getReviews = (teacherID) =>
+  db('reviews')
+    .where({ teacherID })
+    .select('*')
+
+export const getReviewLabels = (teacherID, label) =>
+  db('reviews')
+    .where({ teacherID, label })
+    .select('label')
+  
+export const getAllReviews = () =>
+  db('reviews')
+    .select('*')
+
+export const updatembti = (teacherID, mbti) =>
+ db('teachers')
+  .where({ teacherID })
+  .update({ mbti })
+  .returning('*')
+
+export const updateEqScoreById = (teacherID, score) =>
+  db('teachers')
+    .where({ teacherID })
+    .update({ eqScore: score })
+    .returning('totalScore')

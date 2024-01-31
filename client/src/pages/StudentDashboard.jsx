@@ -29,11 +29,7 @@ function StudentDashboard() {
       label: 'Profile',
       active: false,
     },
-    {
-      onclick: () => setActive('Settings'),
-      label: 'Settings',
-      active: false,
-    },
+
   ]
 
 
@@ -92,6 +88,7 @@ function StudentDashboard() {
   return (
     <div className="student__dashboard">
       <Navbar />
+      <Link to='/personalityquiz'><button className='mbtibutton'>Take Test Now!</button></Link>
       <div className="student__dashboard__main">
         <div className="student__dashboard__left">
           <Sidebar
@@ -102,6 +99,7 @@ function StudentDashboard() {
           />
         </div>
         <div className="student__dashboard__right">
+        <h1> </h1>
           {renderRightContent()}
         </div>
       </div>
